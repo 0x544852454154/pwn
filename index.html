@@ -1,274 +1,475 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>terminal · monochrome</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+from pathlib import Path
+import re
 
-        body {
-            background: #0b0d10;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Fira Code', 'JetBrains Mono', 'Menlo', 'Cascadia Code', 'Consolas', monospace;
-            padding: 1.5rem;
-        }
+src = Path("/mnt/data/pwnlab-about-redesigned.html")
+html = src.read_text(encoding="utf-8")
 
-        /* terminal card – monochrome */
-        .terminal {
-            background: #14171c;
-            border-radius: 1.25rem;
-            box-shadow: 
-                0 20px 40px -12px rgba(0, 0, 0, 0.9),
-                0 0 0 1px rgba(255, 255, 255, 0.04);
-            padding: 1.75rem 2rem 1.8rem 2rem;
-            max-width: 1100px;
-            width: fit-content;
-            transition: all 0.15s ease;
-            position: relative;
-            overflow: hidden;
-        }
+# Replace the current CSS with a softer, more human/editorial visual language:
+# asymmetric spacing, organic curves, soft borders, subtle texture, and restrained motion.
+start = html.index("<style>")
+end = html.index("</style>") + len("</style>")
 
-        /* subtle scanline effect */
-        .terminal::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg, 
-                rgba(0,0,0,0) 0px, 
-                rgba(0,0,0,0) 2px, 
-                rgba(255,255,255,0.008) 2px, 
-                rgba(255,255,255,0.008) 4px);
-            pointer-events: none;
-            border-radius: 1.25rem;
-        }
+style = """<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
 
-        /* terminal header – monochrome dots */
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 1.4rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 1px solid #2a2f38;
-            position: relative;
-            z-index: 1;
-        }
+:root {
+    --bg: #0b0b0b;
+    --surface: #111111;
+    --surface-2: #161616;
+    --border: rgba(255,255,255,.09);
+    --border-soft: rgba(255,255,255,.055);
+    --text: #e7e7e7;
+    --muted: #929292;
+    --quiet: #5e5e5e;
+    --white: #f4f4f4;
+}
 
-        .dot {
-            width: 0.85rem;
-            height: 0.85rem;
-            border-radius: 50%;
-            display: inline-block;
-            background: #3b414c;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .dot.red,
-        .dot.yellow,
-        .dot.green {
-            background: #3b414c;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        .terminal-title {
-            color: #6b7380;
-            font-size: 0.8rem;
-            letter-spacing: 0.4px;
-            margin-left: 0.4rem;
-            font-weight: 450;
-            text-shadow: 0 1px 0 rgba(0,0,0,0.5);
-        }
+body {
+    min-height: 100vh;
+    padding: 28px;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,.035), transparent 27%),
+        radial-gradient(circle at 88% 75%, rgba(255,255,255,.022), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', system-ui, sans-serif;
+}
 
-        .terminal-title span {
-            opacity: 0.5;
-        }
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .22;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+    mix-blend-mode: screen;
+}
 
-        /* ascii container */
-        .ascii-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0.2rem 0.1rem;
-            overflow-x: auto;
-            white-space: pre;
-            position: relative;
-            z-index: 1;
-        }
+.shell {
+    width: min(1060px, 100%);
+    margin: auto;
+}
 
-        .ascii-art {
-            display: inline-block;
-            color: #bdc3ce;
-            font-size: 0.75rem;
-            line-height: 1.3;
-            letter-spacing: 0.02em;
-            font-weight: 400;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.6);
-            white-space: pre;
-            font-family: 'Fira Code', 'JetBrains Mono', 'Menlo', 'Cascadia Code', 'Consolas', monospace;
-        }
+/* top navigation */
 
-        /* footer */
-        .terminal-footer {
-            margin-top: 1.6rem;
-            padding-top: 1rem;
-            border-top: 1px solid #2a2f38;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
+.topbar {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 4px;
+    border-bottom: 1px solid var(--border-soft);
+}
 
-        .footer-status {
-            color: #7a8290;
-            font-size: 0.75rem;
-            letter-spacing: 0.3px;
-            font-weight: 400;
-            text-shadow: 0 1px 0 rgba(0,0,0,0.6);
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+}
 
-        .footer-status .blink {
-            display: inline-block;
-            animation: pulse 1.6s infinite;
-        }
+.brand-mark {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #3b3b3b;
+    border-radius: 11px 8px 12px 9px;
+    color: #eee;
+    background: #151515;
+}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
+.brand span:last-child {
+    color: #666;
+}
 
-        .footer-discord {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: #8e96a3;
-            font-size: 0.85rem;
-            text-decoration: none;
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            background: #1e232b;
-            border: 1px solid #2f3540;
-            transition: all 0.2s ease;
-            font-weight: 420;
-            letter-spacing: 0.2px;
-            text-shadow: 0 1px 0 rgba(0,0,0,0.5);
-        }
+.status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #666;
+    font: 400 .62rem 'DM Mono', monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
 
-        .footer-discord:hover {
-            background: #252b35;
-            border-color: #4a525f;
-            color: #c8cedb;
-            transform: scale(1.01);
-        }
+.status i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #aaa;
+    box-shadow: 0 0 0 5px rgba(255,255,255,.025);
+}
 
-        .footer-discord svg {
-            width: 18px;
-            height: 18px;
-            fill: #8e96a3;
-            transition: fill 0.2s;
-            flex-shrink: 0;
-        }
+/* hero */
 
-        .footer-discord:hover svg {
-            fill: #c8cedb;
-        }
+.hero {
+    position: relative;
+    padding: 86px 8px 82px;
+}
 
-        .footer-discord .arrow {
-            opacity: 0.5;
-            margin-left: 0.1rem;
-        }
+.hero::before {
+    content: "P";
+    position: absolute;
+    right: 3%;
+    top: 38px;
+    color: rgba(255,255,255,.018);
+    font: 700 clamp(12rem, 28vw, 22rem)/1 'Manrope', sans-serif;
+    letter-spacing: -.14em;
+    pointer-events: none;
+}
 
-        /* responsive */
-        @media (max-width: 700px) {
-            .terminal {
-                padding: 1.2rem 1rem 1.5rem 1rem;
-            }
-            .ascii-art {
-                font-size: 0.55rem;
-                line-height: 1.2;
-            }
-            .terminal-title {
-                font-size: 0.7rem;
-            }
-            .footer-discord {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.8rem;
-            }
-            .footer-status {
-                font-size: 0.65rem;
-            }
-        }
+.kicker {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 23px;
+    color: #777;
+    font: 400 .63rem 'DM Mono', monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
 
-        @media (max-width: 480px) {
-            .ascii-art {
-                font-size: 0.4rem;
-                line-height: 1.1;
-            }
-            .footer-discord {
-                font-size: 0.65rem;
-                padding: 0.25rem 0.6rem;
-            }
-            .footer-discord svg {
-                width: 15px;
-                height: 15px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="terminal">
-        <!-- header -->
-        <div class="terminal-header">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="terminal-title"><span>⸻</span> ascii · monochrome <span>⸻</span></span>
-        </div>
+.kicker::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: #555;
+}
 
-        <!-- ascii art -->
-        <div class="ascii-container">
-            <pre class="ascii-art">
-                                                     ..                   ..                 ..                   .. 
-                x=~                            x .d88"              . uW8"             x .d88"              x .d88"  
- .d``          88x.   .e.   .e.     u.    u.    5888R               `t888               5888R          u.    5888R   
- @8Ne.   .u   '8888X.x888:.x888   x@88k u@88c.  '888R         u      8888   .           '888R    ...ue888b   '888R   
- %8888:u@88N   `8888  888X '888k ^"8888""8888"   888R      us888u.   9888.z88N           888R    888R Y888r   888R   
-  `888I  888.   X888  888X  888X   8888  888R    888R   .@88 "8888"  9888  888E          888R    888R I888>   888R   
-   888I  888I   X888  888X  888X   8888  888R    888R   9888  9888   9888  888E          888R    888R I888>   888R   
-   888I  888I   X888  888X  888X   8888  888R    888R   9888  9888   9888  888E          888R    888R I888>   888R   
- uW888L  888'  .X888  888X. 888~   8888  888R    888R   9888  9888   9888  888E    .     888R   u8888cJ888    888R   
-'*88888Nu88P   `%88%``"*888Y"     "*88*" 8888"  .888B . 9888  9888  .8888  888"  .@8c   .888B .  "*888P*"    .888B . 
-~ '88888F`       `~     `"          ""   'Y"    ^*888%  "888*""888"  `%888*%"   '%888"  ^*888%     'Y"       ^*888%  
-   888 ^                                          "%     ^Y"   ^Y'      "`        ^*      "%                   "%    
-   *8E                                                                                                               
-   '8>                                                                                                               
-    "                                                                                                                
-            </pre>
-        </div>
+h1 {
+    position: relative;
+    max-width: 760px;
+    font-size: clamp(3.2rem, 8.8vw, 7.4rem);
+    line-height: .91;
+    letter-spacing: -.075em;
+    font-weight: 600;
+}
 
-        <!-- footer -->
-        <div class="terminal-footer">
-            <div class="footer-status">
-                <span class="blink">⏣</span> currently in the making. <span class="blink">⏣</span>
-            </div>
-            <a href="https://discord.gg/4rX2C8A98" target="_blank" rel="noopener noreferrer" class="footer-discord">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.317 4.369a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.245.198.372.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.093-.838-9.584-3.549-13.664a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                </svg>
-                join discord for update
-                <span class="arrow">↗</span>
-            </a>
-        </div>
-    </div>
-</body>
-</html>
+.hero p {
+    position: relative;
+    max-width: 650px;
+    margin: 30px 0 0 4px;
+    color: #858585;
+    font-size: .94rem;
+    line-height: 1.9;
+}
+
+.hero p strong {
+    color: #ddd;
+    font-weight: 600;
+}
+
+/* main area */
+
+.layout {
+    display: grid;
+    grid-template-columns: 205px 1fr;
+    gap: 0;
+}
+
+.sidebar {
+    padding: 33px 30px 40px 7px;
+    border-top: 1px solid var(--border);
+}
+
+.side-label {
+    margin-bottom: 20px;
+    color: #555;
+    font: 400 .6rem 'DM Mono', monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.side-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+}
+
+.side-list li {
+    color: #686868;
+    font: 400 .66rem 'DM Mono', monospace;
+    line-height: 1.45;
+}
+
+.side-list li::before {
+    content: "·";
+    display: inline-block;
+    width: 16px;
+    color: #444;
+}
+
+.main {
+    padding: 33px 8px 25px 42px;
+    border-top: 1px solid var(--border);
+}
+
+.section {
+    position: relative;
+    padding: 0 0 44px;
+    margin: 0 0 43px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.section:last-child {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 17px;
+    color: #d4d4d4;
+    font: 500 .65rem 'DM Mono', monospace;
+    letter-spacing: .1em;
+    text-transform: lowercase;
+}
+
+.label::before {
+    content: attr(data-index);
+    color: #4e4e4e;
+    font-size: .57rem;
+}
+
+.section p {
+    max-width: 720px;
+    color: #8b8b8b;
+    font-size: .89rem;
+    line-height: 1.9;
+}
+
+/* offer cards — deliberately irregular and soft */
+
+.offer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.offer {
+    min-height: 142px;
+    padding: 21px 22px;
+    background: linear-gradient(145deg, #131313, #0f0f0f);
+    border: 1px solid var(--border);
+    border-radius: 18px 25px 20px 27px;
+    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+}
+
+.offer:nth-child(2) {
+    border-radius: 25px 18px 27px 20px;
+}
+
+.offer:nth-child(3) {
+    border-radius: 23px 28px 17px 22px;
+}
+
+.offer:nth-child(4) {
+    border-radius: 17px 22px 27px 19px;
+}
+
+.offer:hover {
+    transform: translateY(-3px);
+    background: #171717;
+    border-color: rgba(255,255,255,.15);
+}
+
+.offer-num {
+    color: #555;
+    font: 400 .59rem 'DM Mono', monospace;
+}
+
+.offer h3 {
+    margin: 16px 0 7px;
+    color: #d6d6d6;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.offer p {
+    color: #666;
+    font-size: .73rem;
+    line-height: 1.6;
+}
+
+/* principles */
+
+.principles {
+    display: grid;
+    gap: 7px;
+}
+
+.principle {
+    display: grid;
+    grid-template-columns: 116px 1fr;
+    align-items: center;
+    gap: 18px;
+    padding: 15px 17px;
+    background: #101010;
+    border: 1px solid var(--border-soft);
+    border-radius: 13px 18px 15px 17px;
+}
+
+.principle:nth-child(2) {
+    border-radius: 18px 13px 17px 15px;
+}
+
+.principle:nth-child(3) {
+    border-radius: 15px 17px 12px 19px;
+}
+
+.principle:nth-child(4) {
+    border-radius: 19px 14px 16px 12px;
+}
+
+.principle strong {
+    color: #ccc;
+    font: 500 .64rem 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+}
+
+.principle span {
+    color: #666;
+    font-size: .76rem;
+    line-height: 1.55;
+}
+
+/* footer */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 8px 4px;
+}
+
+.footer-note {
+    color: #4f4f4f;
+    font: 400 .59rem 'DM Mono', monospace;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+.discord-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 14px;
+    color: #cfcfcf;
+    text-decoration: none;
+    background: #121212;
+    border: 1px solid #303030;
+    border-radius: 13px 16px 12px 15px;
+    font: 500 .62rem 'DM Mono', monospace;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    transition: .2s ease;
+}
+
+.discord-link:hover {
+    color: #0b0b0b;
+    background: #ddd;
+    border-color: #ddd;
+    transform: translateY(-2px);
+}
+
+.discord-link svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+}
+
+.arrow {
+    opacity: .55;
+}
+
+/* responsive */
+
+@media (max-width: 760px) {
+    body {
+        padding: 18px;
+    }
+
+    .hero {
+        padding: 64px 5px 58px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 23px 5px;
+        border-bottom: 1px solid var(--border-soft);
+    }
+
+    .side-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .main {
+        padding: 30px 5px 20px;
+    }
+
+    .offer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 470px) {
+    .topbar {
+        height: auto;
+        padding-bottom: 15px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .hero {
+        padding-top: 52px;
+    }
+
+    h1 {
+        font-size: clamp(3rem, 20vw, 5rem);
+    }
+
+    .hero p {
+        font-size: .82rem;
+    }
+
+    .principle {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+}
+</style>"""
+
+html = html[:start] + style + html[end:]
+
+out = Path("/mnt/data/pwnlab-about-organic-redesign.html")
+out.write_text(html, encoding="utf-8")
+print(f"Created: {out}")
