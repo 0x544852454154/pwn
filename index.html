@@ -1,15 +1,10 @@
-from pathlib import Path
-import re
-
-src = Path("/mnt/data/pwnlab-about-redesigned.html")
-html = src.read_text(encoding="utf-8")
-
-# Replace the current CSS with a softer, more human/editorial visual language:
-# asymmetric spacing, organic curves, soft borders, subtle texture, and restrained motion.
-start = html.index("<style>")
-end = html.index("</style>") + len("</style>")
-
-style = """<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pwnlab · about</title>
+    <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
 
 :root {
@@ -466,10 +461,146 @@ h1 {
         gap: 7px;
     }
 }
-</style>"""
+</style>
+</head>
+<body>
+    <div class="shell">
 
-html = html[:start] + style + html[end:]
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">P</div>
+                <span>pwnlab</span>
+                <span>/ about</span>
+            </div>
+            <div class="status">
+                <i></i>
+                system in development
+            </div>
+        </header>
 
-out = Path("/mnt/data/pwnlab-about-organic-redesign.html")
-out.write_text(html, encoding="utf-8")
-print(f"Created: {out}")
+        <section class="hero">
+            <div class="kicker">security education / community</div>
+            <h1>learn.<br>break.<br>build.</h1>
+            <p>
+                <strong>pwnlab</strong> is a community-driven environment for learning
+                ethical hacking, penetration testing, and cybersecurity through
+                practical challenges and controlled experimentation.
+            </p>
+        </section>
+
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="side-label">contents</div>
+                <ul class="side-list">
+                    <li>what is pwnlab</li>
+                    <li>our mission</li>
+                    <li>what we offer</li>
+                    <li>who is this for</li>
+                    <li>core principles</li>
+                    <li>development</li>
+                </ul>
+            </aside>
+
+            <main class="main">
+                <section class="section">
+                    <div class="label" data-index="01">what is pwnlab</div>
+                    <p>
+                        pwnlab is a space where beginners and experienced practitioners
+                        can learn, share, and practice offensive and defensive security
+                        techniques in a legal and responsible environment.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <div class="label" data-index="02">our mission</div>
+                    <p>
+                        We believe cybersecurity knowledge should be accessible.
+                        pwnlab focuses on hands-on learning through curated labs,
+                        challenges, and realistic scenarios designed to turn theory
+                        into practical skill.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <div class="label" data-index="03">what we offer</div>
+                    <div class="offer-grid">
+                        <article class="offer">
+                            <span class="offer-num">01</span>
+                            <h3>CTF challenges</h3>
+                            <p>Problems ranging from fundamentals to advanced concepts.</p>
+                        </article>
+                        <article class="offer">
+                            <span class="offer-num">02</span>
+                            <h3>Practical labs</h3>
+                            <p>Controlled environments for learning security techniques.</p>
+                        </article>
+                        <article class="offer">
+                            <span class="offer-num">03</span>
+                            <h3>Knowledge sharing</h3>
+                            <p>Walkthroughs, workshops, discussion, and community learning.</p>
+                        </article>
+                        <article class="offer">
+                            <span class="offer-num">04</span>
+                            <h3>Skill development</h3>
+                            <p>A structured path from curiosity to practical capability.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="label" data-index="04">who is this for</div>
+                    <p>
+                        Anyone interested in cybersecurity. Whether you're learning
+                        the fundamentals, preparing for certifications, studying security,
+                        or sharpening existing skills, pwnlab is built around curiosity,
+                        experimentation, and continuous improvement.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <div class="label" data-index="05">core principles</div>
+                    <div class="principles">
+                        <div class="principle">
+                            <strong>legal</strong>
+                            <span>All activities stay within authorized and legal boundaries.</span>
+                        </div>
+                        <div class="principle">
+                            <strong>ethical</strong>
+                            <span>Responsible testing, disclosure, and defensive thinking come first.</span>
+                        </div>
+                        <div class="principle">
+                            <strong>educational</strong>
+                            <span>Every challenge should teach a useful concept or technique.</span>
+                        </div>
+                        <div class="principle">
+                            <strong>collaborative</strong>
+                            <span>Knowledge becomes stronger when people learn and build together.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="label" data-index="06">currently in development</div>
+                    <p>
+                        pwnlab is actively being built. New labs, challenges, and
+                        platform features are being added over time. Feedback and
+                        contributions will help shape what comes next.
+                    </p>
+                </section>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-note">pwnlab // authorized learning only</div>
+            <a href="https://discord.gg/4rX2C8A98" target="_blank" rel="noopener noreferrer" class="discord-link">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.369a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.245.198.372.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.093-.838-9.584-3.549-13.664a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+                join discord
+                <span class="arrow">↗</span>
+            </a>
+        </footer>
+
+    </div>
+</body></body>
+</html>
