@@ -1,6 +1,7 @@
 const { Client } = require('discord.js');
 const { generateRandomPin, hashPin, createUser, linkDiscordAccount, getUserByDiscordId, updateUserPin, userExists } = require('../lib/auth');
-require('dotenv').config({ path: '.env.local' });
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const client = new Client({ intents: ['Guilds', 'GuildMessages', 'DirectMessages', 'MessageContent'] });
 
