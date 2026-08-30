@@ -75,4 +75,4 @@ export function sanitizeError(error) {
   return 'An internal error occurred';
 }
 
-export { getClientIp } from './middleware';
+export { getClientIp, apiRateLimit, authRateLimit, pinResetRateLimit } from './middleware';
