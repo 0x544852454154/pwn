@@ -84,6 +84,11 @@ export default function Layout({ children, requireAuth = false }) {
     if (path.startsWith('/profile')) return 'profile';
     if (path.startsWith('/user/')) return 'operator';
     if (path.startsWith('/login')) return 'login';
+    if (path.startsWith('/submissions')) return 'submissions';
+    if (path.startsWith('/writeups')) return 'writeups';
+    if (path.startsWith('/events')) return 'events';
+    if (path.startsWith('/settings')) return 'settings';
+    if (path.startsWith('/notifications')) return 'notifications';
     return path.replace(/^\//, '') || 'about';
   }
 
@@ -139,10 +144,22 @@ export default function Layout({ children, requireAuth = false }) {
                 teams
               </Link>
               <Link
+                href="/events"
+                className={router.pathname.startsWith('/events') ? styles.navLink + ' ' + styles.active : styles.navLink}
+              >
+                events
+              </Link>
+              <Link
                 href="/notes"
                 className={router.pathname === '/notes' ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
                 notes
+              </Link>
+              <Link
+                href="/writeups"
+                className={router.pathname.startsWith('/writeups') ? styles.navLink + ' ' + styles.active : styles.navLink}
+              >
+                writeups
               </Link>
               <Link
                 href="/activity"
@@ -150,8 +167,12 @@ export default function Layout({ children, requireAuth = false }) {
               >
                 activity
               </Link>
+              <NotificationBell />
               <Link href="/profile" className={styles.username}>
                 {user.username}
+              </Link>
+              <Link href="/settings" className={styles.navLink}>
+                settings
               </Link>
               <button
                 onClick={handleLogout}
@@ -215,6 +236,111 @@ export default function Layout({ children, requireAuth = false }) {
           </a>
         </footer>
       </div>
+    </div>
+  );
+}
+
+function NotificationBell({ user }) {
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(interval);
+  }, [user]);
+
+  async function fetchNotifications() {
+    try {
+      const response = await fetch('/api/notifications');
+      if (response.ok) {
+        const data = await response.json();
+        setNotifications(data.notifications.slice(0, 10));
+        setUnreadCount(data.notifications.filter(n => !n.isRead).length);
+      }
+    } catch (err) {
+      console.error('Failed to fetch notifications', err);
+    }
+  }
+
+  async function handleMarkRead(id) {
+    try {
+      await fetch(`/api/notifications/${id}`, { method: 'POST' });
+      setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
+      setUnreadCount(prev => Math.max(0, prev - 1));
+    } catch (err) {
+      console.error('Failed to mark notification as read', err);
+    }
+  }
+
+  async function handleMarkAllRead() {
+    try {
+      await fetch('/api/notifications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'readAll' })
+      });
+      setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+      setUnreadCount(0);
+    } catch (err) {
+      console.error('Failed to mark all as read', err);
+    }
+  }
+
+  if (!user) return null;
+
+  return (
+    <div className={styles.notifWrapper}>
+      <button
+        type="button"
+        className={styles.notifBell}
+        onClick={() => setOpen(!open)}
+        aria-label="Notifications"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+        {unreadCount > 0 && <span className={styles.notifBadge}>{unreadCount}</span>}
+      </button>
+
+      {open && (
+        <div className={styles.notifDropdown}>
+          <div className={styles.notifHeader}>
+            <span>notifications</span>
+            {unreadCount > 0 && (
+              <button type="button" onClick={handleMarkAllRead} className={styles.notifMarkAll}>
+                mark all read
+              </button>
+            )}
+          </div>
+          {notifications.length === 0 ? (
+            <div className={styles.notifEmpty}>No notifications</div>
+          ) : (
+            <div className={styles.notifList}>
+              {notifications.map(n => (
+                <div
+                  key={n.id}
+                  className={`${styles.notifItem} ${n.isRead ? '' : styles.notifUnread}`}
+                  onClick={() => handleMarkRead(n.id)}
+                >
+                  <div className={styles.notifTitle}>{n.title}</div>
+                  {n.message && <div className={styles.notifMessage}>{n.message}</div>}
+                  <div className={styles.notifTime}>
+                    {new Date(n.created_at).toLocaleTimeString('en-US', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: false
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

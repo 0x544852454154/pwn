@@ -141,6 +141,46 @@ export default async function handler(req, res) {
           points_earned: pointsEarned,
         });
 
+      const challengeUpdates = {};
+      if (isFirstBlood) {
+        challengeUpdates.first_blood_user_id = user.id;
+        challengeUpdates.first_blood_at = new Date().toISOString();
+      }
+      if (Object.keys(challengeUpdates).length > 0) {
+        await supabaseAdmin.from('challenges').update(challengeUpdates).eq('id', challId);
+      }
+
+      const { data: profile } = await supabaseAdmin
+        .from('profiles')
+        .select('last_solve_at, current_streak, longest_streak')
+        .eq('user_id', user.id)
+        .single();
+
+      const now = new Date();
+      let newStreak = (profile?.current_streak || 0) + 1;
+      let longestStreak = profile?.longest_streak || 0;
+
+      if (profile?.last_solve_at) {
+        const lastSolve = new Date(profile.last_solve_at);
+        const hoursDiff = (now - lastSolve) / (1000 * 60 * 60);
+        if (hoursDiff > 48) {
+          newStreak = 1;
+        }
+      }
+
+      if (newStreak > longestStreak) {
+        longestStreak = newStreak;
+      }
+
+      await supabaseAdmin
+        .from('profiles')
+        .update({
+          current_streak: newStreak,
+          longest_streak: longestStreak,
+          last_solve_at: now.toISOString()
+        })
+        .eq('user_id', user.id);
+
       await supabaseAdmin
         .from('activity_log')
         .insert({
@@ -150,6 +190,16 @@ export default async function handler(req, res) {
             ? `FIRST BLOOD: ${user.username} solved [${challenge.name}] (+${pointsEarned} pts)`
             : `Solved challenge: ${challenge.name} (+${pointsEarned} pts)`,
         });
+
+      if (isFirstBlood) {
+        await supabaseAdmin.from('notifications').insert({
+          user_id: user.id,
+          type: 'FIRST_BLOOD',
+          title: 'FIRST BLOOD!',
+          message: `You were the first to solve ${challenge.name}!`,
+          data: { challengeId: challId, challengeName: challenge.name }
+        });
+      }
     }
 
     return res.status(200).json({

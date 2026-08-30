@@ -488,3 +488,56 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 0;
+}
+
+.tab {
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--quiet);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--muted);
+}
+
+.tabActive {
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  background: none;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  cursor: pointer;
+}
+
+.firstBloodValue {
+  color: #ff6666;
+  font-weight: 600;
+}
+
+.firstBloodTime {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--quiet);
+  margin-top: 2px;
+}

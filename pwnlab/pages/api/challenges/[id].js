@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
     const { data: c, error: challError } = await supabaseAdmin
       .from('challenges')
-      .select('id, name, description, difficulty, points, estimated_time, storage_path, category:challenge_categories(name), completions:challenge_completions(id, user_id)')
+      .select('id, name, description, difficulty, points, estimated_time, storage_path, category:challenge_categories(name), completions:challenge_completions(id, user_id), first_blood_user_id, first_blood_at')
       .eq('id', challengeId)
       .single();
 
@@ -30,10 +30,25 @@ export default async function handler(req, res) {
     const solves = c.completions?.length || 0;
     const isCompleted = c.completions?.some((comp) => comp.user_id === user.id) || false;
 
+    const firstBlood = c.first_blood_user_id ? {
+      userId: c.first_blood_user_id,
+      username: null,
+      timestamp: c.first_blood_at
+    } : null;
+
     const [objectivesRes, hintsRes] = await Promise.all([
       supabaseAdmin.from('challenge_objectives').select('id, objective').eq('challenge_id', challengeId).order('order_num', { ascending: true }),
       supabaseAdmin.from('challenge_hints').select('id, hint_text, point_penalty').eq('challenge_id', challengeId).order('order_num', { ascending: true })
     ]);
+
+    if (firstBlood && !firstBlood.username) {
+      const { data: fbUser } = await supabaseAdmin
+        .from('users')
+        .select('username')
+        .eq('id', firstBlood.userId)
+        .single();
+      firstBlood.username = fbUser?.username || 'unknown';
+    }
 
     return res.status(200).json({
       challenge: {
@@ -46,6 +61,7 @@ export default async function handler(req, res) {
         category: c.category?.name || 'GENERAL',
         solves,
         is_completed: isCompleted,
+        first_blood: firstBlood,
         objectives: objectivesRes.data || [],
         hints: hintsRes.data || [],
       },

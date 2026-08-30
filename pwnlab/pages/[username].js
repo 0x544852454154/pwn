@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import Layout from '../../components/Layout';
-import styles from '../../styles/Profile.module.css';
-import { supabaseAdmin } from '../../lib/db';
-import { fetchDiscordUser } from '../../lib/discord-presence';
+import Link from 'next/link';
+import Layout from '../components/Layout';
+import styles from '../styles/Profile.module.css';
+import { supabaseAdmin } from '../lib/db';
+import { fetchDiscordUser } from '../lib/discord-presence';
 
 function parseProfileMeta(rawBio) {
   if (!rawBio) return { bio: '', banner_url: null, friends: [] };
@@ -184,7 +185,7 @@ export default function PublicProfilePage({ profile }) {
               <div className={styles.statBox}>
                 <span className={styles.statLabel}>this is your profile</span>
                 <span className={styles.statValue}>
-                  <a href="/profile" style={{ color: '#f23f43', textDecoration: 'underline' }}>view full dossier →</a>
+                  <Link href="/profile" style={{ color: '#f23f43', textDecoration: 'underline' }}>view full dossier →</Link>
                 </span>
               </div>
             </div>

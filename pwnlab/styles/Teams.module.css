@@ -292,6 +292,83 @@
   transform: translateY(-2px);
 }
 
+.statusBadge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.status_active {
+  color: #0b0b0b;
+  background-color: #ddd;
+}
+
+.status_scheduled {
+  color: var(--quiet);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border-soft);
+}
+
+.stopBtn {
+  color: #0b0b0b;
+  background-color: #f23f43;
+  border: 1px solid #f23f43;
+  padding: 9px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: center;
+  border-radius: 11px 14px 10px 13px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stopBtn:hover:not(:disabled) {
+  background-color: #ff5555;
+  border-color: #ff5555;
+  transform: translateY(-2px);
+}
+
+.stopBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #cfcfcf;
+  background-color: #121212;
+  border: 1px solid #303030;
+  border-radius: 11px 14px 10px 13px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  margin-bottom: 16px;
+}
+
+.backLink:hover {
+  color: #0b0b0b;
+  background-color: #ddd;
+  border-color: #ddd;
+  transform: translateY(-2px);
+}
+
 @media (max-width: 600px) {
   .teamsGrid {
     grid-template-columns: 1fr;

@@ -114,22 +114,24 @@ export default async function handler(req, res) {
     }
 
     const [
-      profileRes,
-      discordRes,
-      completionsRes,
-      submissionsRes,
-      allCompletionsRes,
-      teamMemberRes,
-      currentUserProfileRes
-    ] = await Promise.all([
-      supabaseAdmin.from('profiles').select('bio, rank_title').eq('user_id', profileUser.id).single(),
-      supabaseAdmin.from('discord_accounts').select('discord_id, username').eq('user_id', profileUser.id).single(),
-      supabaseAdmin.from('challenge_completions').select('points_earned, challenge:challenges(category:challenge_categories(name))').eq('user_id', profileUser.id),
-      supabaseAdmin.from('challenge_submissions').select('is_correct').eq('user_id', profileUser.id),
-      supabaseAdmin.from('challenge_completions').select('user_id, points_earned'),
-      supabaseAdmin.from('team_members').select('team:teams(id, name)').eq('user_id', profileUser.id).maybeSingle(),
-      supabaseAdmin.from('profiles').select('bio').eq('user_id', user.id).single()
-    ]);
+       profileRes,
+       discordRes,
+       completionsRes,
+       submissionsRes,
+       allCompletionsRes,
+       teamMemberRes,
+       currentUserProfileRes,
+       profileStreakRes
+     ] = await Promise.all([
+       supabaseAdmin.from('profiles').select('bio, rank_title').eq('user_id', profileUser.id).single(),
+       supabaseAdmin.from('discord_accounts').select('discord_id, username').eq('user_id', profileUser.id).single(),
+       supabaseAdmin.from('challenge_completions').select('points_earned, challenge:challenges(category:challenge_categories(name))').eq('user_id', profileUser.id),
+       supabaseAdmin.from('challenge_submissions').select('is_correct').eq('user_id', profileUser.id),
+       supabaseAdmin.from('challenge_completions').select('user_id, points_earned'),
+       supabaseAdmin.from('team_members').select('team:teams(id, name)').eq('user_id', profileUser.id).maybeSingle(),
+       supabaseAdmin.from('profiles').select('bio').eq('user_id', user.id).single(),
+       supabaseAdmin.from('profiles').select('current_streak, longest_streak').eq('user_id', profileUser.id).single()
+     ]);
 
     const meta = parseProfileMeta(profileRes.data?.bio);
     const currentUserMeta = parseProfileMeta(currentUserProfileRes.data?.bio);
@@ -190,6 +192,8 @@ export default async function handler(req, res) {
         team: teamMemberRes.data?.team || null,
         isOwnProfile: profileUser.id === user.id,
         discord: discordPresence,
+        currentStreak: profileStreakRes.data?.current_streak || 0,
+        longestStreak: profileStreakRes.data?.longest_streak || 0
       },
     });
   } catch (error) {

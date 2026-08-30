@@ -49,6 +49,11 @@ async function setupDatabase() {
         id SERIAL PRIMARY KEY,
         user_id INTEGER UNIQUE REFERENCES users(id) ON DELETE CASCADE,
         bio TEXT,
+        banner_url TEXT,
+        specialties TEXT[],
+        current_streak INTEGER DEFAULT 0,
+        longest_streak INTEGER DEFAULT 0,
+        last_solve_at TIMESTAMP,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
@@ -76,6 +81,8 @@ async function setupDatabase() {
         flag VARCHAR(255) NOT NULL,
         creator_id INTEGER REFERENCES users(id),
         visibility VARCHAR(20) DEFAULT 'PRIVATE',
+        first_blood_user_id INTEGER REFERENCES users(id),
+        first_blood_at TIMESTAMP,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
@@ -215,6 +222,34 @@ async function setupDatabase() {
         content TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Writeups table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS writeups (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        challenge_id INTEGER REFERENCES challenges(id) ON DELETE CASCADE,
+        title VARCHAR(255) NOT NULL,
+        content TEXT NOT NULL,
+        visibility VARCHAR(20) DEFAULT 'PUBLIC',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    // Notifications table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS notifications (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        type VARCHAR(50) NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        message TEXT,
+        data JSONB,
+        is_read BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
 

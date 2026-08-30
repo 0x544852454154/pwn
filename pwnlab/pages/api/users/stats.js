@@ -14,7 +14,8 @@ export default async function handler(req, res) {
       completionsRes,
       submissionsRes,
       challengesRes,
-      allCompletionsRes
+      allCompletionsRes,
+      profileRes
     ] = await Promise.all([
       supabaseAdmin
         .from('challenge_completions')
@@ -33,6 +34,10 @@ export default async function handler(req, res) {
         .from('challenge_completions')
         .select('user_id, points_earned')
     ]);
+
+    const profile = profileRes.data || {};
+    const currentStreak = profile.current_streak || 0;
+    const longestStreak = profile.longest_streak || 0;
 
     const completions = completionsRes.data || [];
     const totalCompleted = completions.length;
@@ -102,6 +107,8 @@ export default async function handler(req, res) {
         rank,
         submissionsCorrect: correctSubmissions,
         submissionsTotal: totalSubmissions,
+        currentStreak,
+        longestStreak
       },
       byCategory,
       recentChallenges,

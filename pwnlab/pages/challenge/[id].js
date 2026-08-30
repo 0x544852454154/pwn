@@ -25,6 +25,7 @@ export default function ChallengeDetailPage() {
   const [notesSaving, setNotesSaving] = useState(false);
   const [notesSavedAt, setNotesSavedAt] = useState(null);
   const [showTerminal, setShowTerminal] = useState(false);
+  const [activeTab, setActiveTab] = useState('briefing');
 
   const fetchNote = useCallback(async () => {
     if (!id) return;
@@ -185,6 +186,19 @@ export default function ChallengeDetailPage() {
                 <span className={styles.label}>solves</span>
                 <span className={styles.value}>{challenge.solves}</span>
               </div>
+              {challenge.first_blood && (
+                <div className={styles.metaItem}>
+                  <span className={styles.label}>first blood</span>
+                  <span className={`${styles.value} ${styles.firstBloodValue}`}>
+                    {challenge.first_blood.username}
+                  </span>
+                  {challenge.first_blood.timestamp && (
+                    <span className={styles.firstBloodTime}>
+                      {new Date(challenge.first_blood.timestamp).toLocaleString()}
+                    </span>
+                  )}
+                </div>
+              )}
 
               {/* Action Buttons: Download and Web Terminal */}
               <div className={styles.metaActions}>
@@ -215,79 +229,119 @@ export default function ChallengeDetailPage() {
             />
           )}
 
+          <div className={styles.tabs}>
+            <button
+              type="button"
+              className={activeTab === 'briefing' ? styles.tabActive : styles.tab}
+              onClick={() => setActiveTab('briefing')}
+            >
+              briefing
+            </button>
+            <button
+              type="button"
+              className={activeTab === 'writeups' ? styles.tabActive : styles.tab}
+              onClick={() => setActiveTab('writeups')}
+            >
+              writeups
+            </button>
+          </div>
+
+          <div className={styles.tabs}>
+            <button
+              type="button"
+              className={activeTab === 'briefing' ? styles.tabActive : styles.tab}
+              onClick={() => setActiveTab('briefing')}
+            >
+              briefing
+            </button>
+            <button
+              type="button"
+              className={activeTab === 'writeups' ? styles.tabActive : styles.tab}
+              onClick={() => setActiveTab('writeups')}
+            >
+              writeups
+            </button>
+          </div>
+
           <div className={styles.contentGrid}>
-            <main className={styles.mainContent}>
-              <section className={styles.section}>
-                <h2>briefing / description</h2>
-                <p className={styles.descriptionText}>{challenge.description}</p>
-              </section>
-
-              {challenge.objectives && challenge.objectives.length > 0 && (
+            {activeTab === 'briefing' ? (
+              <main className={styles.mainContent}>
                 <section className={styles.section}>
-                  <h2>mission objectives</h2>
-                  <ul className={styles.objectivesList}>
-                    {challenge.objectives.map((obj, idx) => (
-                      <li key={idx}>
-                        <span className={styles.checkbox}>[ ]</span>
-                        <span>{obj.objective}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h2>briefing / description</h2>
+                  <p className={styles.descriptionText}>{challenge.description}</p>
                 </section>
-              )}
 
-              <section className={styles.section}>
-                <h2>submit flag</h2>
-
-                {submission && (
-                  <div
-                    className={
-                      submission.correct
-                        ? styles.successMessage
-                        : styles.errorMessage
-                    }
-                  >
-                    <strong>
-                      {submission.correct
-                        ? submission.isFirstBlood
-                          ? '🩸 [FIRST BLOOD!]'
-                          : '[SOLVED]'
-                        : submission.error === 'RATE_LIMITED'
-                        ? '[RATE LIMITED]'
-                        : '[REJECTED]'}
-                    </strong>
-                    <br />
-                    {submission.message}
-                    {submission.pointsEarned ? (
-                      <span className={styles.pointsEarned}>
-                        <br />+{submission.pointsEarned} points awarded
-                      </span>
-                    ) : null}
-                  </div>
+                {challenge.objectives && challenge.objectives.length > 0 && (
+                  <section className={styles.section}>
+                    <h2>mission objectives</h2>
+                    <ul className={styles.objectivesList}>
+                      {challenge.objectives.map((obj, idx) => (
+                        <li key={idx}>
+                          <span className={styles.checkbox}>[ ]</span>
+                          <span>{obj.objective}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
                 )}
 
-                <form onSubmit={handleFlagSubmit} className={styles.form}>
-                  <div className={styles.inputGroup}>
-                    <input
-                      type="text"
-                      placeholder="pwnlab{...} or pwn{...}"
-                      value={flag}
-                      onChange={(e) => setFlag(e.target.value)}
-                      disabled={submitting}
-                      className={styles.flagInput}
-                      required
-                    />
-                    <button
-                      type="submit"
-                      disabled={submitting || !flag.trim()}
-                      className={styles.submitBtn}
+                <section className={styles.section}>
+                  <h2>submit flag</h2>
+
+                  {submission && (
+                    <div
+                      className={
+                        submission.correct
+                          ? styles.successMessage
+                          : styles.errorMessage
+                      }
                     >
-                      {submitting ? 'verifying...' : 'submit →'}
-                    </button>
-                  </div>
-                </form>
-              </section>
-            </main>
+                      <strong>
+                        {submission.correct
+                          ? submission.isFirstBlood
+                            ? '🩸 [FIRST BLOOD!]'
+                            : '[SOLVED]'
+                          : submission.error === 'RATE_LIMITED'
+                          ? '[RATE LIMITED]'
+                          : '[REJECTED]'}
+                      </strong>
+                      <br />
+                      {submission.message}
+                      {submission.pointsEarned ? (
+                        <span className={styles.pointsEarned}>
+                          <br />+{submission.pointsEarned} points awarded
+                        </span>
+                      ) : null}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleFlagSubmit} className={styles.form}>
+                    <div className={styles.inputGroup}>
+                      <input
+                        type="text"
+                        placeholder="pwnlab{...} or pwn{...}"
+                        value={flag}
+                        onChange={(e) => setFlag(e.target.value)}
+                        disabled={submitting}
+                        className={styles.flagInput}
+                        required
+                      />
+                      <button
+                        type="submit"
+                        disabled={submitting || !flag.trim()}
+                        className={styles.submitBtn}
+                      >
+                        {submitting ? 'verifying...' : 'submit →'}
+                      </button>
+                    </div>
+                  </form>
+                </section>
+              </main>
+            ) : (
+              <main className={styles.mainContent}>
+                <WriteupsTab challengeId={id} />
+              </main>
+            )}
 
             <aside className={styles.sidebar}>
               {challenge.hints && challenge.hints.length > 0 && (
@@ -325,5 +379,161 @@ export default function ChallengeDetailPage() {
         </div>
       </Layout>
     </>
+  );
+}
+
+function WriteupsTab({ challengeId }) {
+  const [writeups, setWriteups] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const fetchWriteups = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/writeups?challengeId=${challengeId}`);
+      if (!response.ok) throw new Error('Failed to fetch');
+      const data = await response.json();
+      setWriteups(data.writeups);
+      setError('');
+    } catch (err) {
+      setError('Failed to load writeups');
+    } finally {
+      setLoading(false);
+    }
+  }, [challengeId]);
+
+  useEffect(() => {
+    fetchWriteups();
+  }, [fetchWriteups]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const response = await fetch('/api/writeups', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ challengeId, title, content }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed');
+      setTitle('');
+      setContent('');
+      setShowForm(false);
+      fetchWriteups();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: '1.5em' }}>
+        <button
+          type="button"
+          onClick={() => setShowForm(!showForm)}
+          style={{
+            background: '#121212',
+            border: '1px solid #303030',
+            color: '#cfcfcf',
+            padding: '10px 14px',
+            borderRadius: '13px 16px 12px 15px',
+            font: '500 .62rem ui-monospace, monospace',
+            cursor: 'pointer'
+          }}
+        >
+          {showForm ? 'cancel' : '+ add writeup'}
+        </button>
+
+        {showForm && (
+          <form onSubmit={handleSubmit} style={{ marginTop: '1em' }}>
+            {error && (
+              <div style={{ color: '#f44747', marginBottom: '1em' }}>
+                [ERROR]<br />{error}
+              </div>
+            )}
+            <div style={{ marginBottom: '1em' }}>
+              <label style={{ display: 'block', color: '#666', fontSize: '.7rem', marginBottom: '.3em' }}>title</label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                style={{
+                  width: '100%',
+                  background: '#0f0f0f',
+                  border: '1px solid #2a2a2a',
+                  color: '#e7e7e7',
+                  padding: '8px 10px',
+                  borderRadius: '6px',
+                  fontFamily: 'inherit'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '1em' }}>
+              <label style={{ display: 'block', color: '#666', fontSize: '.7rem', marginBottom: '.3em' }}>content</label>
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                rows={6}
+                required
+                style={{
+                  width: '100%',
+                  background: '#0f0f0f',
+                  border: '1px solid #2a2a2a',
+                  color: '#e7e7e7',
+                  padding: '8px 10px',
+                  borderRadius: '6px',
+                  fontFamily: 'inherit',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+            <button type="submit" disabled={submitting} style={{
+              background: '#121212',
+              border: '1px solid #303030',
+              color: '#cfcfcf',
+              padding: '10px 14px',
+              borderRadius: '13px 16px 12px 15px',
+              font: '500 .62rem ui-monospace, monospace',
+              cursor: 'pointer'
+            }}>
+              {submitting ? 'publishing...' : 'publish writeup →'}
+            </button>
+          </form>
+        )}
+      </div>
+
+      {loading ? (
+        <div>loading writeups...</div>
+      ) : writeups.length === 0 ? (
+        <div style={{ color: '#666' }}>No writeups for this challenge yet.</div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
+          {writeups.map((w) => (
+            <div key={w.id} style={{
+              background: '#101010',
+              border: '1px solid #2a2a2a',
+              borderRadius: '12px',
+              padding: '1em'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '.5em' }}>
+                <h3 style={{ color: '#d6d6d6', fontSize: '.85rem', fontWeight: 600 }}>{w.title}</h3>
+                <span style={{ color: '#555', fontSize: '.65rem', fontFamily: 'ui-monospace, monospace' }}>
+                  {new Date(w.created_at).toLocaleDateString()}
+                </span>
+              </div>
+              <p style={{ color: '#888', fontSize: '.8rem', lineHeight: 1.6, marginBottom: '.5em' }}>{w.content}</p>
+              <span style={{ color: '#555', fontSize: '.65rem', fontFamily: 'ui-monospace, monospace' }}>by {w.author}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

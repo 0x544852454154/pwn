@@ -78,6 +78,16 @@ export default function DashboardPage() {
               <h3>global rank</h3>
               <p className={styles.statValue}>#{stats?.stats.rank || 0}</p>
             </article>
+
+            <article className={styles.statBox}>
+              <h3>current streak</h3>
+              <p className={styles.statValue}>{stats?.stats.currentStreak || 0}</p>
+            </article>
+
+            <article className={styles.statBox}>
+              <h3>longest streak</h3>
+              <p className={styles.statValue}>{stats?.stats.longestStreak || 0}</p>
+            </article>
           </section>
 
           <div className={styles.gridLayout}>
