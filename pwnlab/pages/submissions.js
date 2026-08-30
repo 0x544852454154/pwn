@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { SkeletonTable } from '../components/Skeleton';
+import Pagination from '../components/Pagination';
 import styles from '../styles/Activity.module.css';
 
 export default function SubmissionsPage() {
@@ -54,7 +56,7 @@ export default function SubmissionsPage() {
           )}
 
           {loading ? (
-            <div className={styles.loading}>loading submissions...</div>
+            <SkeletonTable rows={6} cols={4} />
           ) : submissions.length === 0 ? (
             <div className={styles.empty}>No submissions yet. Start solving challenges.</div>
           ) : (
@@ -95,23 +97,11 @@ export default function SubmissionsPage() {
               </table>
 
               {pagination && pagination.pages > 1 && (
-                <div className={styles.pagination}>
-                  <button
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                  >
-                    ← previous
-                  </button>
-                  <span className={styles.pageInfo}>
-                    page {pagination.page} of {pagination.pages}
-                  </span>
-                  <button
-                    disabled={currentPage === pagination.pages}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                  >
-                    next →
-                  </button>
-                </div>
+                <Pagination
+                  page={pagination.page}
+                  pages={pagination.pages}
+                  onChange={(newPage) => setCurrentPage(newPage)}
+                />
               )}
             </>
           )}

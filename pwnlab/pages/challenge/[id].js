@@ -4,6 +4,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
+import { MarkdownRenderer } from '../../components/MarkdownRenderer';
 import styles from '../../styles/ChallengeDetail.module.css';
 
 // Dynamically import xterm component without SSR
@@ -24,7 +25,13 @@ export default function ChallengeDetailPage() {
   const [notes, setNotes] = useState('');
   const [notesSaving, setNotesSaving] = useState(false);
   const [notesSavedAt, setNotesSavedAt] = useState(null);
+  const [notesError, setNotesError] = useState('');
+  const [notesRetry, setNotesRetry] = useState(null);
+  const [notesPreview, setNotesPreview] = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
+  const [machines, setMachines] = useState([]);
+  const [machinesLoading, setMachinesLoading] = useState(false);
+  const [machineActionLoading, setMachineActionLoading] = useState({});
   const [activeTab, setActiveTab] = useState('briefing');
 
   const fetchNote = useCallback(async () => {
@@ -61,12 +68,61 @@ export default function ChallengeDetailPage() {
     if (id) {
       fetchChallenge();
       fetchNote();
+      fetchMachines();
     }
-  }, [id, fetchChallenge, fetchNote]);
+  }, [id, fetchChallenge, fetchNote, fetchMachines]);
 
-  async function saveNotes(content) {
+  async function fetchMachines() {
+    if (!id) return;
+    setMachinesLoading(true);
+    try {
+      const response = await fetch(`/api/challenges/${id}/machines`);
+      if (response.ok) {
+        const data = await response.json();
+        setMachines(data.machines || []);
+      }
+    } catch (err) {
+      console.error('Failed to load machines:', err);
+    } finally {
+      setMachinesLoading(false);
+    }
+  }
+
+  async function startMachine(machineId) {
+    setMachineActionLoading(prev => ({ ...prev, [machineId]: true }));
+    try {
+      const response = await fetch(`/api/machines/${machineId}/start`, { method: 'POST' });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed');
+      fetchMachines();
+    } catch (err) {
+      console.error('Failed to start machine:', err);
+      alert(err.message || 'Failed to start machine');
+    } finally {
+      setMachineActionLoading(prev => ({ ...prev, [machineId]: false }));
+    }
+  }
+
+  async function stopMachine(machineId) {
+    setMachineActionLoading(prev => ({ ...prev, [machineId]: true }));
+    try {
+      const response = await fetch(`/api/machines/${machineId}/stop`, { method: 'POST' });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed');
+      fetchMachines();
+    } catch (err) {
+      console.error('Failed to stop machine:', err);
+      alert(err.message || 'Failed to stop machine');
+    } finally {
+      setMachineActionLoading(prev => ({ ...prev, [machineId]: false }));
+    }
+  }
+
+  async function saveNotes(content, isRetry = false) {
     if (!id) return;
     setNotesSaving(true);
+    setNotesError('');
+    setNotesRetry(null);
     try {
       const response = await fetch('/api/notes', {
         method: 'POST',
@@ -75,9 +131,14 @@ export default function ChallengeDetailPage() {
       });
       if (response.ok) {
         setNotesSavedAt(new Date());
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to save');
       }
     } catch (err) {
       console.error(err);
+      setNotesError(err.message || 'Save failed');
+      setNotesRetry(() => () => saveNotes(content, true));
     } finally {
       setNotesSaving(false);
     }
@@ -359,20 +420,102 @@ export default function ChallengeDetailPage() {
               )}
 
               <section className={styles.section}>
-                <h2>lab notes</h2>
-                <textarea
-                  className={styles.notesTextarea}
-                  placeholder="Record your observations, payload dumps, and decoding notes..."
-                  value={notes}
-                  onChange={handleNotesChange}
-                />
-                <span className={styles.notesStatus}>
-                  {notesSaving
-                    ? 'saving...'
-                    : notesSavedAt
-                    ? `Saved at ${notesSavedAt.toLocaleTimeString()}`
-                    : 'Notes auto-save'}
-                </span>
+                <h2>machines</h2>
+                {machinesLoading ? (
+                  <div className={styles.loading}>loading machines...</div>
+                ) : machines.length === 0 ? (
+                  <p className={styles.empty}>No machines for this challenge.</p>
+                ) : (
+                  <div className={styles.machinesList}>
+                    {machines.map((machine) => (
+                      <div key={machine.id} className={styles.machineCard}>
+                        <div className={styles.machineInfo}>
+                          <span className={styles.machineName}>{machine.name}</span>
+                          <span className={styles.machineIp}>{machine.target_ip}</span>
+                          <span className={`${styles.machineStatus} ${machine.instance?.status === 'RUNNING' ? styles.machineRunning : styles.machineStopped}`}>
+                            {machine.instance?.status === 'RUNNING' ? '● running' : '○ stopped'}
+                          </span>
+                        </div>
+                        <div className={styles.machineActions}>
+                          {machine.instance?.status === 'RUNNING' ? (
+                            <button
+                              type="button"
+                              onClick={() => stopMachine(machine.id)}
+                              disabled={machineActionLoading[machine.id]}
+                              className={styles.machineStopBtn}
+                            >
+                              {machineActionLoading[machine.id] ? 'stopping...' : 'stop'}
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => startMachine(machine.id)}
+                              disabled={machineActionLoading[machine.id]}
+                              className={styles.machineStartBtn}
+                            >
+                              {machineActionLoading[machine.id] ? 'starting...' : 'start'}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </section>
+
+              <section className={styles.section}>
+                <div className={styles.notesHeader}>
+                  <h2>lab notes</h2>
+                  {notes && (
+                    <button
+                      type="button"
+                      onClick={() => setNotesPreview(!notesPreview)}
+                      className={styles.notesPreviewBtn}
+                    >
+                      {notesPreview ? 'edit' : 'preview'}
+                    </button>
+                  )}
+                </div>
+                {notesPreview ? (
+                  <div className={`${styles.notesPreview} ${!notes ? styles.notesPreviewEmpty : ''}`}>
+                    {notes ? (
+                      <MarkdownRenderer content={notes} />
+                    ) : (
+                      <span className={styles.notesPreviewPlaceholder}>No notes yet. Start typing to see preview.</span>
+                    )}
+                  </div>
+                ) : (
+                  <textarea
+                    className={styles.notesTextarea}
+                    placeholder="Record your observations, payload dumps, and decoding notes... (supports **bold**, *italic*, `code`, and more)"
+                    value={notes}
+                    onChange={handleNotesChange}
+                  />
+                )}
+                <div className={styles.notesStatus}>
+                  {notesSaving ? (
+                    <span>saving...</span>
+                  ) : notesError ? (
+                    <span className={styles.notesError}>
+                      {notesError}
+                      {notesRetry && (
+                        <button
+                          type="button"
+                          onClick={notesRetry}
+                          className={styles.notesRetryBtn}
+                        >
+                          retry
+                        </button>
+                      )}
+                    </span>
+                  ) : notesSavedAt ? (
+                    <span className={styles.notesSuccess}>
+                      Saved at {notesSavedAt.toLocaleTimeString()}
+                    </span>
+                  ) : (
+                    <span>Notes auto-save</span>
+                  )}
+                </div>
               </section>
             </aside>
           </div>
@@ -522,14 +665,16 @@ function WriteupsTab({ challengeId }) {
               borderRadius: '12px',
               padding: '1em'
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '.5em' }}>
-                <h3 style={{ color: '#d6d6d6', fontSize: '.85rem', fontWeight: 600 }}>{w.title}</h3>
-                <span style={{ color: '#555', fontSize: '.65rem', fontFamily: 'ui-monospace, monospace' }}>
-                  {new Date(w.created_at).toLocaleDateString()}
-                </span>
-              </div>
-              <p style={{ color: '#888', fontSize: '.8rem', lineHeight: 1.6, marginBottom: '.5em' }}>{w.content}</p>
-              <span style={{ color: '#555', fontSize: '.65rem', fontFamily: 'ui-monospace, monospace' }}>by {w.author}</span>
+               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '.5em' }}>
+                 <h3 style={{ color: '#d6d6d6', fontSize: '.85rem', fontWeight: 600 }}>{w.title}</h3>
+                 <span style={{ color: '#555', fontSize: '.65rem', fontFamily: 'ui-monospace, monospace' }}>
+                   {new Date(w.created_at).toLocaleDateString()}
+                 </span>
+               </div>
+               <div style={{ color: '#888', fontSize: '.8rem', lineHeight: 1.6, marginBottom: '.5em' }}>
+                 <MarkdownRenderer content={w.content} />
+               </div>
+               <span style={{ color: '#555', fontSize: '.65rem', fontFamily: 'ui-monospace, monospace' }}>by {w.author}</span>
             </div>
           ))}
         </div>

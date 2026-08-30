@@ -28,7 +28,10 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Invalid session' });
     }
 
-    const { type = 'global' } = req.query;
+    const { type = 'global', search = '', page = 1, limit = 20 } = req.query;
+    const pageNum = parseInt(page) || 1;
+    const limitVal = parseInt(limit) || 20;
+    const offset = (pageNum - 1) * limitVal;
 
     const [usersRes, completionsRes, discordRes] = await Promise.all([
       supabaseAdmin.from('users').select('id, username'),
@@ -43,8 +46,13 @@ export default async function handler(req, res) {
       discordMap[d.user_id] = d;
     }
 
+    const searchLower = typeof search === 'string' ? search.toLowerCase().trim() : '';
+    const filteredUsers = searchLower
+      ? users.filter(u => u.username.toLowerCase().includes(searchLower))
+      : users;
+
     const statsByUser = {};
-    for (const u of users) {
+    for (const u of filteredUsers) {
       statsByUser[u.id] = {
         id: u.id,
         username: u.username,
@@ -72,14 +80,16 @@ export default async function handler(req, res) {
           return b.total_points - a.total_points;
         }
         return a.username.localeCompare(b.username);
-      })
-      .slice(0, 100);
+      });
+
+    const total = sortedLeaderboard.length;
+    const paginatedLeaderboard = sortedLeaderboard.slice(offset, offset + limitVal);
 
     const leaderboardWithAvatars = await Promise.all(
-      sortedLeaderboard.map(async (entry, index) => {
+      paginatedLeaderboard.map(async (entry, index) => {
         const discordInfo = entry.discord_id ? await fetchDiscordUser(entry.discord_id, process.env.DISCORD_TOKEN) : null;
         return {
-          rank: index + 1,
+          rank: offset + index + 1,
           id: entry.id,
           username: entry.username,
           avatarUrl: discordInfo?.avatarUrl || null,
@@ -94,6 +104,12 @@ export default async function handler(req, res) {
     return res.status(200).json({
       leaderboard: leaderboardWithAvatars,
       type,
+      pagination: {
+        page: pageNum,
+        limit: limitVal,
+        total,
+        pages: Math.ceil(total / limitVal) || 1
+      }
     });
   } catch (error) {
     console.error('[API] Leaderboard error');

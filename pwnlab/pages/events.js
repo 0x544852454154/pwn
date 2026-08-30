@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { SkeletonList } from '../components/Skeleton';
+import Pagination from '../components/Pagination';
 import styles from '../styles/Teams.module.css';
 
 export default function EventsPage() {
@@ -15,17 +17,20 @@ export default function EventsPage() {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [creating, setCreating] = useState(false);
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState(null);
 
   async function fetchEvents() {
     try {
-      const response = await fetch('/api/events');
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
+      params.append('page', currentPage);
+      const response = await fetch(`/api/events?${params.toString()}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setEvents(data.events);
+      setPagination(data.pagination || null);
       setError('');
     } catch (err) {
       setError('Failed to load events');
@@ -73,6 +78,10 @@ export default function EventsPage() {
     }
   }
 
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
+
   return (
     <>
       <Head>
@@ -101,6 +110,19 @@ export default function EventsPage() {
               {error}
             </div>
           )}
+
+          <div className={styles.searchRow}>
+            <input
+              type="text"
+              placeholder="Search events..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setCurrentPage(1);
+              }}
+              className={styles.searchInput}
+            />
+          </div>
 
           {showCreateForm && (
             <div className={styles.createForm}>
@@ -152,7 +174,7 @@ export default function EventsPage() {
           )}
 
           {loading ? (
-            <div className={styles.loading}>loading events...</div>
+            <SkeletonList items={6} />
           ) : events.length === 0 ? (
             <div className={styles.empty}>No events yet. Create the first competition.</div>
           ) : (
@@ -208,6 +230,14 @@ export default function EventsPage() {
                 );
               })}
             </div>
+          )}
+
+          {pagination && pagination.pages > 1 && (
+            <Pagination
+              page={pagination.page}
+              pages={pagination.pages}
+              onChange={(newPage) => setCurrentPage(newPage)}
+            />
           )}
         </div>
       </Layout>

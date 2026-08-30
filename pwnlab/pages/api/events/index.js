@@ -7,18 +7,25 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
+      const { search = '', page = 1, limit = 20 } = req.query;
+      const pageNum = parseInt(page) || 1;
+      const limitVal = parseInt(limit) || 20;
+      const offset = (pageNum - 1) * limitVal;
+      const searchLower = typeof search === 'string' ? search.toLowerCase().trim() : '';
+
       const [eventsRes, participantsRes] = await Promise.all([
         supabaseAdmin
           .from('competitions')
           .select('id, name, description, mode, start_time, end_time, status, creator_id, created_at, creator:users(username)')
-          .order('created_at', { ascending: false }),
+          .order('created_at', { ascending: false })
+          .range(offset, offset + limitVal - 1),
         supabaseAdmin
           .from('competition_participants')
           .select('competition_id, user_id, team_id, points_earned')
           .eq('user_id', user.id)
       ]);
 
-      const events = (eventsRes.data || []).map(e => {
+      let events = (eventsRes.data || []).map(e => {
         const participant = participantsRes.data?.find(p => p.competition_id === e.id);
         return {
           id: e.id,
@@ -34,7 +41,23 @@ export default async function handler(req, res) {
         };
       });
 
-      return res.status(200).json({ events });
+      if (searchLower) {
+        events = events.filter(e => e.name.toLowerCase().includes(searchLower));
+      }
+
+      const totalRes = await supabaseAdmin
+        .from('competitions')
+        .select('id', { count: 'exact', head: true });
+
+      return res.status(200).json({
+        events,
+        pagination: {
+          page: pageNum,
+          limit: limitVal,
+          total: totalRes.count || 0,
+          pages: Math.ceil((totalRes.count || 0) / limitVal) || 1
+        }
+      });
     } catch (error) {
       console.error('[API] Events list error');
       return res.status(500).json({ error: sanitizeError(error) });

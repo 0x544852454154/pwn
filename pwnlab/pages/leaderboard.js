@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../components/Layout';
+import { SkeletonTable } from '../components/Skeleton';
+import Pagination from '../components/Pagination';
 import styles from '../styles/Leaderboard.module.css';
 
 export default function LeaderboardPage() {
@@ -10,13 +12,21 @@ export default function LeaderboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [actionLoading, setActionLoading] = useState({});
+  const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState(null);
 
   const fetchLeaderboard = useCallback(async () => {
+    setLoading(true);
     try {
-      const response = await fetch('/api/leaderboard');
+      const params = new URLSearchParams();
+      params.append('page', currentPage);
+      if (search) params.append('search', search);
+      const response = await fetch(`/api/leaderboard?${params.toString()}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setLeaderboard(data.leaderboard);
+      setPagination(data.pagination || null);
       setError('');
     } catch (err) {
       setError('Failed to load leaderboard');
@@ -24,7 +34,11 @@ export default function LeaderboardPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [search, currentPage]);
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, [fetchLeaderboard]);
 
   useEffect(() => {
     fetchLeaderboard();
@@ -82,8 +96,21 @@ export default function LeaderboardPage() {
             </div>
           )}
 
+          <div className={styles.searchRow}>
+            <input
+              type="text"
+              placeholder="Search operators..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setCurrentPage(1);
+              }}
+              className={styles.searchInput}
+            />
+          </div>
+
           {loading ? (
-            <div className={styles.loading}>loading global standings...</div>
+            <SkeletonTable rows={8} cols={5} />
           ) : leaderboard.length === 0 ? (
             <div className={styles.empty}>No entries on leaderboard yet.</div>
           ) : (
@@ -187,9 +214,16 @@ export default function LeaderboardPage() {
                         </td>
                       </tr>
                     );
-                  })}
+                  }                  )}
                 </tbody>
               </table>
+              {pagination && pagination.pages > 1 && (
+                <Pagination
+                  page={pagination.page}
+                  pages={pagination.pages}
+                  onChange={(newPage) => setCurrentPage(newPage)}
+                />
+              )}
             </div>
           )}
         </div>

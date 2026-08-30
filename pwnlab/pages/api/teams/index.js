@@ -7,6 +7,9 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
+      const { search = '' } = req.query;
+      const searchLower = typeof search === 'string' ? search.toLowerCase().trim() : '';
+
       const [teamsRes, teamMembersRes, completionsRes] = await Promise.all([
         supabaseAdmin.from('teams').select('id, name, owner_id, created_at, owner:users(username)'),
         supabaseAdmin.from('team_members').select('team_id, user_id'),
@@ -24,6 +27,9 @@ export default async function handler(req, res) {
 
       const teamMap = {};
       for (const t of teams) {
+        if (searchLower && !t.name.toLowerCase().includes(searchLower)) {
+          continue;
+        }
         teamMap[t.id] = {
           id: t.id,
           name: t.name,

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { SkeletonCard } from '../components/Skeleton';
+import Pagination from '../components/Pagination';
 import styles from '../styles/Challenges.module.css';
 
 const DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD', 'INSANE'];
@@ -166,7 +168,11 @@ export default function ChallengesPage() {
 
             <section className={styles.challengesList}>
               {loading ? (
-                <div className={styles.loading}>loading challenges...</div>
+                <div className={styles.challengesGrid}>
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <SkeletonCard key={i} />
+                  ))}
+                </div>
               ) : challenges.length === 0 ? (
                 <div className={styles.empty}>No challenges match the active filters.</div>
               ) : (
@@ -227,25 +233,11 @@ export default function ChallengesPage() {
                   </div>
 
                   {pagination && pagination.pages > 1 && (
-                    <div className={styles.pagination}>
-                      <button
-                        disabled={currentPage === 1}
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                      >
-                        ← previous
-                      </button>
-
-                      <span className={styles.pageInfo}>
-                        page {pagination.page} of {pagination.pages}
-                      </span>
-
-                      <button
-                        disabled={currentPage === pagination.pages}
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                      >
-                        next →
-                      </button>
-                    </div>
+                    <Pagination
+                      page={pagination.page}
+                      pages={pagination.pages}
+                      onChange={(newPage) => setCurrentPage(newPage)}
+                    />
                   )}
                 </>
               )}

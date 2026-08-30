@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { SkeletonList } from '../components/Skeleton';
 import styles from '../styles/Teams.module.css';
 
 export default function TeamsPage() {
@@ -13,6 +14,7 @@ export default function TeamsPage() {
   const [teamName, setTeamName] = useState('');
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     fetchTeams();
@@ -20,7 +22,9 @@ export default function TeamsPage() {
 
   async function fetchTeams() {
     try {
-      const response = await fetch('/api/teams');
+      const params = new URLSearchParams();
+      if (search) params.append('search', search);
+      const response = await fetch(`/api/teams?${params.toString()}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setTeams(data.teams);
@@ -117,6 +121,18 @@ export default function TeamsPage() {
             </div>
           )}
 
+          <div className={styles.searchRow}>
+            <input
+              type="text"
+              placeholder="Search teams..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              className={styles.searchInput}
+            />
+          </div>
+
           {showCreateForm && (
             <div className={styles.createForm}>
               <h3>form new team</h3>
@@ -146,7 +162,7 @@ export default function TeamsPage() {
           )}
 
           {loading ? (
-            <div className={styles.loading}>loading teams...</div>
+            <SkeletonList items={6} />
           ) : teams.length === 0 ? (
             <div className={styles.empty}>No teams yet. Form the first one.</div>
           ) : (

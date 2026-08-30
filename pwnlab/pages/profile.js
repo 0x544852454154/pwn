@@ -4,7 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
+import { SkeletonStats, SkeletonList } from '../components/Skeleton';
 import styles from '../styles/Profile.module.css';
+import { supabaseAdmin } from '../lib/db';
+import { fetchDiscordUser } from '../lib/discord-presence';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -79,14 +82,16 @@ export default function ProfilePage() {
     }
   }, [activeTab, fetchFriends]);
 
-  // Live refresh for Discord presence every 10 seconds
+  // Live refresh for Discord presence every 30 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      fetchProfile();
-      if (activeTab === 'friends') {
-        fetchFriends();
+      if (document.visibilityState === 'visible') {
+        fetchProfile();
+        if (activeTab === 'friends') {
+          fetchFriends();
+        }
       }
-    }, 10000);
+    }, 30000);
     return () => clearInterval(interval);
   }, [fetchProfile, fetchFriends, activeTab]);
 
@@ -179,7 +184,13 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <Layout requireAuth={true}>
-        <div className={styles.loading}>loading operator dossier...</div>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <div className={styles.kicker}>operator dossier</div>
+            <h1>profile</h1>
+          </div>
+          <SkeletonStats count={4} />
+        </div>
       </Layout>
     );
   }
@@ -445,6 +456,14 @@ export default function ProfilePage() {
                 <div className={styles.statBox}>
                   <span className={styles.statLabel}>success rate</span>
                   <span className={styles.statValue}>{profile.successRate}%</span>
+                </div>
+                <div className={styles.statBox}>
+                  <span className={styles.statLabel}>current streak</span>
+                  <span className={styles.statValue}>{profile.currentStreak}🔥</span>
+                </div>
+                <div className={styles.statBox}>
+                  <span className={styles.statLabel}>longest streak</span>
+                  <span className={styles.statValue}>{profile.longestStreak}</span>
                 </div>
                 <div className={styles.statBox}>
                   <span className={styles.statLabel}>global rank</span>

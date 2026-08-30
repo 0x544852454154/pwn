@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { SkeletonList } from '../components/Skeleton';
 import styles from '../styles/Activity.module.css';
 
 export default function NotificationsPage() {
@@ -83,7 +84,7 @@ export default function NotificationsPage() {
           )}
 
           {loading ? (
-            <div className={styles.loading}>loading notifications...</div>
+            <SkeletonList items={5} />
           ) : notifications.length === 0 ? (
             <div className={styles.empty}>No notifications yet.</div>
           ) : (

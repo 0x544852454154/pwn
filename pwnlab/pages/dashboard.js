@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import { SkeletonStats, SkeletonTable, SkeletonList } from '../components/Skeleton';
 import styles from '../styles/Dashboard.module.css';
 
 export default function DashboardPage() {
@@ -32,7 +33,13 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <Layout requireAuth={true}>
-        <div className={styles.loading}>loading dashboard...</div>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <div className={styles.kicker}>operator console / overview</div>
+            <h1>dashboard</h1>
+          </div>
+          <SkeletonStats count={6} />
+        </div>
       </Layout>
     );
   }
