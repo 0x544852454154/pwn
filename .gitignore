@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log
+
+# Env vars - NEVER commit these
+.env
+.env.local
+.env.production.local
+.env.development.local
+.env.test.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Production
+.next/
+out/
+build/
+dist/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Secrets
+*.pem
+*.key
+*.cert
+secrets/
+credentials/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Challenge flags and sensitive data
+challenges/**/flag*
+challenges/**/secret*
+challenges/**/password*

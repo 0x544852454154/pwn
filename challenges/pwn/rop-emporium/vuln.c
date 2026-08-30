@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <unistd.h>
+
+const unsigned char xor_secret[] = {
+    0x13, 0x14, 0x1d, 0x0f, 0x02, 0x01, 0x18, 0x11,
+    0x53, 0x13, 0x3c, 0x04, 0x02, 0x06, 0x56, 0x17,
+    0x3c, 0x0f, 0x56, 0x00, 0x06, 0x52, 0x3c, 0x10,
+    0x0b, 0x56, 0x0f, 0x0f, 0x3c, 0x5a, 0x53, 0x51,
+    0x52, 0x1e
+};
+
+void print_secret() {
+    for (size_t i = 0; i < sizeof(xor_secret); i++) {
+        putchar(xor_secret[i] ^ 0x63);
+    }
+    putchar('\n');
+}
+
+void vulnerable_prompt() {
+    char buf[32];
+    puts("ROP Gadget Target:");
+    read(0, buf, 128); // Buffer overflow
+}
+
+int main() {
+    setvbuf(stdout, NULL, _IONBF, 0);
+    vulnerable_prompt();
+    return 0;
+}

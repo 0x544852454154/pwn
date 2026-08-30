@@ -1,0 +1,38 @@
+{
+  "name": "pwnlab-platform",
+  "version": "1.0.0",
+  "description": "Professional private cybersecurity CTF platform",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:setup": "node scripts/db-setup.js",
+    "db:seed": "node scripts/db-seed.js",
+    "discord-bot": "node scripts/discord-bot.js",
+    "supabase:check": "node scripts/check-supabase.js",
+    "discord:diagnose": "node scripts/discord-diagnose.js",
+    "discord:test-login": "node scripts/discord-test-login.js"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.112.4",
+    "adm-zip": "^0.6.0",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.30.0",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^14.0.0",
+    "pg": "^8.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.1",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "eslint-config-next": "^14.0.0"
+  }
+}

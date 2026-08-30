@@ -1,0 +1,109 @@
+.terminalWrapper {
+  background: #090909;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #121212;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.terminalTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.terminalDots {
+  display: flex;
+  gap: 6px;
+}
+
+.dotRed {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+}
+
+.dotYellow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffbd2e;
+}
+
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27c93f;
+}
+
+.terminalActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.helpBtn,
+.clearBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: #888;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.helpBtn:hover,
+.clearBtn:hover {
+  color: #fff;
+  border-color: #777;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.terminalContainer {
+  padding: 12px 16px;
+  min-height: 260px;
+  max-height: 380px;
+  width: 100%;
+}
+
+.terminalContainer :global(.xterm) {
+  padding: 4px;
+}
+
+.terminalContainer :global(.xterm-viewport) {
+  background-color: transparent !important;
+}
+
+.terminalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  background: #0d0d0d;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #666;
+}

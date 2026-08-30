@@ -1,0 +1,1032 @@
+.container {
+  width: 100%;
+  padding-top: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ================= HERO / BANNER CARD ================= */
+.heroCard {
+  position: relative;
+  background: #0d0d0d;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.bannerWrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #111111 50%, #0a0a0a 100%);
+  overflow: hidden;
+}
+
+.bannerPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.8;
+  pointer-events: none !important;
+}
+
+.bannerGlow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none !important;
+}
+
+.bannerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  pointer-events: none !important;
+}
+
+.editBannerBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #eee;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 50 !important;
+  pointer-events: auto !important;
+}
+
+.editBannerBtn:hover {
+  background: #222;
+  border-color: #fff;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Banner Edit Inline Overlay */
+.bannerEditOverlay {
+  position: relative;
+  z-index: 60 !important;
+  background: #141414;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 24px;
+  animation: slideDown 0.2s ease;
+  pointer-events: auto !important;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bannerEditForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bannerEditLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  font-weight: 600;
+}
+
+.bannerInputRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bannerInput {
+  flex: 1;
+  min-width: 280px;
+  background: #080808;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #eee;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  pointer-events: auto !important;
+}
+
+.bannerInput:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.saveBannerBtn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: #eee;
+  color: #111;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: background-color 0.2s ease;
+}
+
+.saveBannerBtn:hover {
+  background: #fff;
+}
+
+.removeBannerBtn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #ff5555;
+  border: 1px solid rgba(255, 85, 85, 0.4);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: all 0.2s ease;
+}
+
+.removeBannerBtn:hover {
+  background: rgba(255, 85, 85, 0.1);
+  border-color: #ff5555;
+}
+
+.cancelBannerBtn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #888;
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: all 0.2s ease;
+}
+
+.cancelBannerBtn:hover {
+  color: #fff;
+  border-color: #aaa;
+}
+
+/* ================= CENTERED PROFILE CONTENT ================= */
+.profileContent {
+  position: relative;
+  padding: 0 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: -60px;
+  z-index: 10;
+}
+
+.avatarContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+  z-index: 20;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #0d0d0d;
+  background-color: #141414;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+}
+
+.avatarPlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #181818;
+  border: 4px solid #0d0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+}
+
+.statusIndicator {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 4px solid #0d0d0d;
+}
+
+.status_online {
+  background-color: #23a55a;
+  box-shadow: 0 0 10px rgba(35, 165, 90, 0.6);
+}
+
+.status_idle {
+  background-color: #f0b232;
+  box-shadow: 0 0 10px rgba(240, 178, 50, 0.6);
+}
+
+.status_dnd {
+  background-color: #f23f43;
+  box-shadow: 0 0 10px rgba(242, 63, 67, 0.6);
+}
+
+.status_offline {
+  background-color: #80848e;
+}
+
+/* User Names */
+.namesRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.username {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: #fff;
+}
+
+.clanBadge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0b0b0b;
+  background: #eee;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.discordTag {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #888;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profileFriendBtn {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profileFriendBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #fff;
+  color: #fff;
+}
+
+.profileFriendBtnActive {
+  padding: 4px 12px;
+  background: #23a55a;
+  border: 1px solid #23a55a;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #0b0b0b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.customStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+/* Live Activity Pill */
+.activityPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 16px;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.activityIcon {
+  font-size: 1.1rem;
+}
+
+.activityText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.activityTitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #eee;
+}
+
+.activitySub {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #888;
+}
+
+/* ================= BIO SECTION BELOW PFP ================= */
+.bioContainer {
+  width: 100%;
+  max-width: 680px;
+  margin-top: 18px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  position: relative;
+  z-index: 20;
+}
+
+.bioHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.bioLabel {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #666;
+}
+
+.editBioBtn {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: #888;
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  pointer-events: auto !important;
+}
+
+.editBioBtn:hover {
+  color: #fff;
+  border-color: #aaa;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bioText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ccc;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.bioTextEmpty {
+  font-size: 0.88rem;
+  color: #555;
+  font-style: italic;
+  margin: 0;
+}
+
+.bioEditForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.bioTextarea {
+  width: 100%;
+  min-height: 80px;
+  background: #090909;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #eee;
+  font-family: inherit;
+  font-size: 0.92rem;
+  resize: vertical;
+  pointer-events: auto !important;
+}
+
+.bioTextarea:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.bioActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.saveBioBtn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: #eee;
+  color: #111;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+
+.cancelBioBtn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #888;
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+
+/* ================= STATS BELOW BANNER ================= */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.statBox {
+  padding: 22px 24px;
+  background: linear-gradient(145deg, #131313, #0f0f0f);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.statBox:hover {
+  transform: translateY(-3px);
+  background: #171717;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--quiet);
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+}
+
+/* ================= LOWER DETAILS GRID ================= */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.section {
+  background: linear-gradient(145deg, #131313, #0f0f0f);
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.section h2 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 12px;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #cfcfcf;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.teamLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #0b0b0b;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.teamLink:hover {
+  background-color: var(--white);
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+.memberSince {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+.empty {
+  color: var(--quiet);
+  font-size: 0.82rem;
+  margin-bottom: 0;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--quiet);
+}
+
+.error {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 2px solid #999;
+  padding: var(--spacing-md);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--text);
+  margin-top: 36px;
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bannerWrapper {
+    height: 160px;
+  }
+
+  .avatarContainer {
+    width: 96px;
+    height: 96px;
+  }
+
+  .avatar, .avatarPlaceholder {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+
+/* ================= SOCIAL / FRIENDS HUB ================= */
+.profileTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 12px;
+}
+
+.profileTab {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profileTab:hover {
+  color: #fff;
+  border-color: #888;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.profileTabActive {
+  background: #eee;
+  border-color: #eee;
+  color: #111;
+  font-weight: 700;
+}
+
+.friendsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.friendCard {
+  background: linear-gradient(145deg, #131313, #0f0f0f);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.friendCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.friendCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.friendInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.friendAvatarWrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.friendAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  background: #1c1c1c;
+}
+
+.friendAvatarPlaceholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #222;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.friendStatusDot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #131313;
+}
+
+.friendNames {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.friendUsername {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.friendUsername:hover {
+  text-decoration: underline;
+}
+
+.friendDiscord {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #777;
+}
+
+.friendStatsMini {
+  display: flex;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.friendStatItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.friendStatLabel {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: var(--quiet);
+}
+
+.friendStatVal {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #eee;
+}
+
+.friendActions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.compareBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #eee;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.compareBtn:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.unfriendBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 85, 85, 0.3);
+  color: #ff6666;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.unfriendBtn:hover {
+  background: rgba(255, 85, 85, 0.1);
+  border-color: #ff6666;
+}
+
+/* ================= HEAD-TO-HEAD COMPARISON MODAL ================= */
+.rivalModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.rivalModal {
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  width: min(650px, 100%);
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+
+.rivalModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 14px;
+}
+
+.rivalModalTitle {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.rivalVersusRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.rivalOperator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.rivalVsBadge {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f23f43;
+}
+
+.rivalStatsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rivalStatRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rivalStatHeader {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #bbb;
+}
+
+.rivalBar {
+  display: flex;
+  height: 8px;
+  background: #222;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rivalBarLeft {
+  background: #569cd6;
+  height: 100%;
+}
+
+.rivalBarRight {
+  background: #f23f43;
+  height: 100%;
+}
+
+.closeModalBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: #888;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.closeModalBtn:hover {
+  color: #fff;
+  border-color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .friendsGrid {
+    grid-template-columns: 1fr;
+  }
+}

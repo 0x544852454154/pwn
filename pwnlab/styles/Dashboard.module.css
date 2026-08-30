@@ -1,0 +1,340 @@
+.container {
+  width: 100%;
+  padding-top: 36px;
+}
+
+.header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 14px;
+  color: #777;
+  font: 400 0.63rem var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: #555;
+}
+
+.header h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  margin-bottom: 0;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--quiet);
+}
+
+.error {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 2px solid #999;
+  border-radius: 10px;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--text);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.statBox {
+  min-height: 120px;
+  padding: 21px 22px;
+  background: linear-gradient(145deg, #131313, #0f0f0f);
+  border: 1px solid var(--border);
+  border-radius: 18px 25px 20px 27px;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.statBox:nth-child(2) {
+  border-radius: 25px 18px 27px 20px;
+}
+
+.statBox:nth-child(3) {
+  border-radius: 23px 28px 17px 22px;
+}
+
+.statBox:nth-child(4) {
+  border-radius: 17px 22px 27px 19px;
+}
+
+.statBox:hover {
+  transform: translateY(-3px);
+  background: #171717;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.statBox h3 {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--quiet);
+  margin-bottom: 12px;
+}
+
+.statValue {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.gridLayout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 14px;
+}
+
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section {
+  background: linear-gradient(145deg, #131313, #0f0f0f);
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 20px 26px 18px 24px;
+}
+
+.section h2 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 14px;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.catHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catName {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+.catProgress {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--quiet);
+}
+
+.progressBar {
+  height: 5px;
+  background-color: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #888;
+  transition: width 0.3s ease;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--quiet);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.table tr:hover {
+  background-color: var(--surface-2);
+}
+
+.challengeLink {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.challengeLink:hover {
+  color: var(--white);
+}
+
+.difficulty {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  background-color: var(--surface-2);
+  padding: 3px 7px;
+  border-radius: 6px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border-soft);
+}
+
+.pointsCell {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--quiet);
+}
+
+.empty {
+  color: var(--quiet);
+  font-size: 0.85rem;
+  padding: 18px 0;
+  margin-bottom: 0;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #cfcfcf;
+  background: #121212;
+  border: 1px solid #303030;
+  border-radius: 11px 14px 10px 13px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.link:hover {
+  color: #0b0b0b;
+  background-color: #ddd;
+  border-color: #ddd;
+  transform: translateY(-2px);
+}
+
+.statsList {
+  display: grid;
+  gap: 8px;
+}
+
+.statsList dt {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--quiet);
+}
+
+.statsList dd {
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-left: 0;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+}

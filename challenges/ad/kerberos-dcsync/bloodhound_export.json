@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    {
+      "id": "SVC_BACKUP@PWNLAB.LOCAL",
+      "adminCount": 1,
+      "permissions": [
+        "GetChangesAll",
+        "DCSync"
+      ],
+      "hash_hint": "c34138a..."
+    }
+  ]
+}
