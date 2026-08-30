@@ -119,9 +119,11 @@ async function sendDM(user, content) {
   try {
     const dmChannel = await user.createDM();
     await dmChannel.send(content);
+    console.log(`[DISCORD] DM sent to ${user.tag || user.id}`);
     return true;
   } catch (error) {
     console.error('[DISCORD] Failed to send DM:', error.message);
+    console.log(`[DISCORD] Attempting fallback reply for ${user.tag || user.id}`);
     return false;
   }
 }

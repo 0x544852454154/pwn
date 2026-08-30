@@ -4,32 +4,7 @@ import Image from 'next/image';
 import Layout from '../../components/Layout';
 import styles from '../../styles/Profile.module.css';
 import { supabaseAdmin } from '../../lib/db';
-import https from 'https';
-
-function fetchJSON(url, headers = {}, timeoutMs = 2500) {
-  return new Promise((resolve) => {
-    const req = https.get(url, { headers, timeout: timeoutMs }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve({ ok: res.statusCode >= 200 && res.statusCode < 300, data: JSON.parse(data) });
-        } catch {
-          resolve({ ok: false, data: null });
-        }
-      });
-    });
-
-    req.on('timeout', () => {
-      req.destroy();
-      resolve({ ok: false, data: null });
-    });
-
-    req.on('error', () => {
-      resolve({ ok: false, data: null });
-    });
-  });
-}
+import { fetchDiscordUser } from '../../lib/discord-presence';
 
 function parseProfileMeta(rawBio) {
   if (!rawBio) return { bio: '', banner_url: null, friends: [] };
@@ -69,21 +44,9 @@ export async function getServerSideProps(context) {
     const meta = parseProfileMeta(profileRes.data?.bio);
     const discordAccount = discordRes.data;
 
-    let discordAvatarUrl = 'https://cdn.discordapp.com/embed/avatars/0.png';
-    let discordStatus = 'offline';
-
-    if (discordAccount?.discord_id) {
-      const lanyardRes = await fetchJSON(`https://api.lanyard.rest/v1/users/${discordAccount.discord_id}`);
-      if (lanyardRes.ok && lanyardRes.data?.success && lanyardRes.data?.data) {
-        const d = lanyardRes.data.data;
-        const u = d.discord_user || {};
-        discordStatus = d.discord_status || 'offline';
-        if (u.avatar) {
-          const ext = u.avatar.startsWith('a_') ? 'gif' : 'png';
-          discordAvatarUrl = `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.${ext}?size=256`;
-        }
-      }
-    }
+    const discordData = discordAccount?.discord_id
+      ? await fetchDiscordUser(discordAccount.discord_id, process.env.DISCORD_TOKEN)
+      : null;
 
     return {
       props: {
@@ -96,8 +59,8 @@ export async function getServerSideProps(context) {
           discord: {
             discord_id: discordAccount?.discord_id || null,
             username: discordAccount?.username || null,
-            avatarUrl: discordAvatarUrl,
-            status: discordStatus
+            avatarUrl: discordData?.avatarUrl || 'https://cdn.discordapp.com/embed/avatars/0.png',
+            status: discordData?.status || 'offline'
           }
         }
       }

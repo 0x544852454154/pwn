@@ -2,53 +2,7 @@ import { supabaseAdmin } from '../../lib/db';
 import { getCookie } from '../../lib/cookies';
 import { getCurrentUser } from '../../lib/auth';
 import { sanitizeError, getClientIp } from '../../lib/api-middleware';
-
-import https from 'https';
-
-function fetchJSON(url, headers = {}, timeoutMs = 2500) {
-  return new Promise((resolve) => {
-    const req = https.get(url, { headers, timeout: timeoutMs }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve({ ok: res.statusCode >= 200 && res.statusCode < 300, data: JSON.parse(data) });
-        } catch {
-          resolve({ ok: false, data: null });
-        }
-      });
-    });
-
-    req.on('timeout', () => {
-      req.destroy();
-      resolve({ ok: false, data: null });
-    });
-
-    req.on('error', () => {
-      resolve({ ok: false, data: null });
-    });
-  });
-}
-
-async function getDiscordAvatar(discordId) {
-  if (!discordId) return null;
-
-  try {
-    const lanyardRes = await fetchJSON('https://api.lanyard.rest/v1/users/' + discordId);
-    if (lanyardRes.ok && lanyardRes.data && lanyardRes.data.success && lanyardRes.data.data) {
-      const u = lanyardRes.data.data.discord_user || {};
-      if (u.avatar) {
-        const ext = u.avatar.startsWith('a_') ? 'gif' : 'png';
-        return {
-          avatarUrl: 'https://cdn.discordapp.com/avatars/' + u.id + '/' + u.avatar + '.' + ext + '?size=128',
-          status: lanyardRes.data.data.discord_status || 'offline'
-        };
-      }
-    }
-  } catch {}
-
-  return null;
-}
+import { fetchDiscordUser } from '../../lib/discord-presence';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -115,7 +69,7 @@ export default async function handler(req, res) {
 
     const leaderboardWithAvatars = await Promise.all(
       sortedLeaderboard.map(async (entry, index) => {
-        const discordInfo = entry.discord_id ? await getDiscordAvatar(entry.discord_id) : null;
+        const discordInfo = entry.discord_id ? await fetchDiscordUser(entry.discord_id, process.env.DISCORD_TOKEN) : null;
         return {
           rank: index + 1,
           id: entry.id,

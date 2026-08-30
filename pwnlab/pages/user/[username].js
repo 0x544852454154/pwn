@@ -5,32 +5,7 @@ import Image from 'next/image';
 import Layout from '../../components/Layout';
 import styles from '../../styles/Profile.module.css';
 import { supabaseAdmin } from '../../lib/db';
-import https from 'https';
-
-function fetchJSON(url, headers = {}, timeoutMs = 2500) {
-  return new Promise((resolve) => {
-    const req = https.get(url, { headers, timeout: timeoutMs }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve({ ok: res.statusCode >= 200 && res.statusCode < 300, data: JSON.parse(data) });
-        } catch {
-          resolve({ ok: false, data: null });
-        }
-      });
-    });
-
-    req.on('timeout', () => {
-      req.destroy();
-      resolve({ ok: false, data: null });
-    });
-
-    req.on('error', () => {
-      resolve({ ok: false, data: null });
-    });
-  });
-}
+import { fetchDiscordUser } from '../../lib/discord-presence';
 
 function parseProfileMeta(rawBio) {
   if (!rawBio) return { bio: '', banner_url: null, friends: [] };
@@ -74,23 +49,13 @@ export async function getServerSideProps(context) {
     const meta = parseProfileMeta(profileRes.data?.bio);
     const discordAccount = discordRes.data;
 
-    // Fetch Discord Avatar from Lanyard or Discord API
-    let discordAvatarUrl = 'https://cdn.discordapp.com/embed/avatars/0.png';
-    let discordStatus = 'offline';
-    let discordUser = null;
-
-    if (discordAccount?.discord_id) {
-      const lanyardRes = await fetchJSON(`https://api.lanyard.rest/v1/users/${discordAccount.discord_id}`);
-      if (lanyardRes.ok && lanyardRes.data?.success && lanyardRes.data?.data) {
-        const d = lanyardRes.data.data;
-        discordUser = d.discord_user;
-        discordStatus = d.discord_status || 'offline';
-        if (discordUser?.avatar) {
-          const ext = discordUser.avatar.startsWith('a_') ? 'gif' : 'png';
-          discordAvatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${ext}?size=256`;
-        }
-      }
-    }
+    // Fetch Discord user data with fallback to Discord API
+    const discordData = discordAccount?.discord_id
+      ? await fetchDiscordUser(discordAccount.discord_id, process.env.DISCORD_TOKEN)
+      : null;
+    const discordAvatarUrl = discordData?.avatarUrl || 'https://cdn.discordapp.com/embed/avatars/0.png';
+    const discordStatus = discordData?.status || 'offline';
+    const discordUser = discordData ? { avatar: discordData.avatarUrl } : null;
 
     // Completions & points
     const completions = completionsRes.data || [];

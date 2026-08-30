@@ -1,6 +1,7 @@
 import https from 'https';
 import { supabaseAdmin } from '../../../lib/db';
 import { requireAuth, sanitizeError } from '../../../lib/api-middleware';
+import { fetchDiscordUser } from '../../../lib/discord-presence';
 
 function fetchJSON(url, headers = {}, timeoutMs = 3000) {
   return new Promise((resolve) => {
@@ -49,49 +50,6 @@ function sanitizeBannerUrl(url) {
   if (/^https:\/\/[^\s/$.?#].[^\s]*$/i.test(trimmed)) {
     return trimmed.substring(0, 500);
   }
-  return null;
-}
-
-async function getDiscordPresence(discordId) {
-  if (!discordId) return null;
-
-  try {
-    const lanyardRes = await fetchJSON('https://api.lanyard.rest/v1/users/' + discordId);
-    if (lanyardRes.ok && lanyardRes.data && lanyardRes.data.success && lanyardRes.data.data) {
-      const d = lanyardRes.data.data;
-      const u = d.discord_user || {};
-
-      let avatarUrl = null;
-      if (u.avatar) {
-        const ext = u.avatar.startsWith('a_') ? 'gif' : 'png';
-        avatarUrl = 'https://cdn.discordapp.com/avatars/' + u.id + '/' + u.avatar + '.' + ext + '?size=256';
-      } else {
-        avatarUrl = 'https://cdn.discordapp.com/embed/avatars/0.png';
-      }
-
-      const customActivity = d.activities ? d.activities.find(a => a.type === 4 || a.id === 'custom') : null;
-      const richActivities = d.activities ? d.activities.filter(a => a.type !== 4 && a.id !== 'custom') : [];
-
-      return {
-        discord_id: u.id,
-        username: u.username,
-        global_name: u.global_name || u.display_name || u.username,
-        avatarUrl,
-        status: d.discord_status || 'offline',
-        custom_status: customActivity ? (customActivity.state || '') : null,
-        custom_status_emoji: customActivity && customActivity.emoji ? customActivity.emoji.name : null,
-        activities: richActivities.map(a => ({
-          name: a.name,
-          details: a.details,
-          state: a.state,
-          platform: a.platform
-        })),
-        spotify: d.listening_to_spotify ? { title: d.spotify.song, artist: d.spotify.artist } : null,
-        source: 'lanyard'
-      };
-    }
-  } catch {}
-
   return null;
 }
 
@@ -178,7 +136,7 @@ export default async function handler(req, res) {
     const isFriend = currentUserMeta.friends.includes(profileUser.username.toLowerCase());
 
     const discordPresence = discordRes.data?.discord_id
-      ? await getDiscordPresence(discordRes.data.discord_id)
+      ? await fetchDiscordUser(discordRes.data.discord_id, process.env.DISCORD_TOKEN)
       : null;
 
     const completions = completionsRes.data || [];
