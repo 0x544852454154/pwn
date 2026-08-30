@@ -1,6 +1,7 @@
-import { endSession } from '../../../lib/auth';
+import { endSession, getCurrentUser } from '../../../lib/auth';
 import { getCookie } from '../../../lib/cookies';
 import { apiRateLimit } from '../../../lib/middleware';
+import { logAudit, AuditAction } from '../../../lib/audit';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -19,7 +20,11 @@ export default async function handler(req, res) {
     const token = getCookie(req, 'pwnlab_token');
 
     if (token) {
+      const user = await getCurrentUser(token);
       await endSession(token);
+      if (user) {
+        await logAudit(AuditAction.LOGOUT, user.id, req);
+      }
     }
 
     res.setHeader(

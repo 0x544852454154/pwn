@@ -1,5 +1,6 @@
 import { getSupabaseServerClient } from '../../../lib/supabase-server';
 import { authRateLimit, sanitizeError } from '../../../lib/api-middleware';
+import { logAudit, AuditAction } from '../../../lib/audit';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -47,6 +48,8 @@ export default async function handler(req, res) {
     if (error) {
       return res.status(400).json({ error: 'Failed to create account. Please try again.' });
     }
+
+    await logAudit(AuditAction.SIGNUP, data.user.id, req, { username });
 
     return res.status(201).json({
       success: true,
