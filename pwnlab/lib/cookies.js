@@ -11,9 +11,9 @@ function parseCookies(cookieHeader) {
   return cookies;
 }
 
-function getCookie(req, name) {
+export function getCookie(req, name) {
   const cookies = parseCookies(req.headers.cookie || '');
   return cookies[name] || null;
 }
 
-module.exports = { getCookie, parseCookies };
+export { parseCookies };

@@ -1,40 +1,36 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { query, supabaseAdmin } = require('./db');
-require('dotenv').config({ path: '.env.local' });
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import { query, supabaseAdmin } from './db.js';
+import 'dotenv/config';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const PIN_HASH_ROUNDS = parseInt(process.env.PIN_HASH_ROUNDS || 10);
 const PIN_LENGTH = parseInt(process.env.PIN_LENGTH || 6);
 
-// Hash a PIN
-async function hashPin(pin) {
+export async function hashPin(pin) {
   return bcrypt.hash(pin, PIN_HASH_ROUNDS);
 }
 
-// Compare PIN with hash
-async function comparePin(pin, hash) {
+export async function comparePin(pin, hash) {
   return bcrypt.compare(pin, hash);
 }
 
-// Generate a random PIN
-function generateRandomPin(length = PIN_LENGTH) {
+export function generateRandomPin(length = PIN_LENGTH) {
   const min = Math.pow(10, length - 1);
   const max = Math.pow(10, length) - 1;
   return Math.floor(Math.random() * (max - min + 1) + min).toString();
 }
 
-// Create a session token
-function createToken(userId) {
+export function createToken(userId) {
   return jwt.sign(
-    { userId, iat: Math.floor(Date.now() / 1000), jti: require('crypto').randomBytes(16).toString('hex') },
+    { userId, iat: Math.floor(Date.now() / 1000), jti: crypto.randomBytes(16).toString('hex') },
     JWT_SECRET,
     { expiresIn: '24h' }
   );
 }
 
-// Verify a token
-function verifyToken(token) {
+export function verifyToken(token) {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (error) {
@@ -42,8 +38,7 @@ function verifyToken(token) {
   }
 }
 
-// Store session in database
-async function createSession(userId) {
+export async function createSession(userId) {
   const token = createToken(userId);
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
 
@@ -59,8 +54,7 @@ async function createSession(userId) {
   return token;
 }
 
-// Validate session token
-async function validateSession(token) {
+export async function validateSession(token) {
   const decoded = verifyToken(token);
   if (!decoded) return null;
 
@@ -80,15 +74,13 @@ async function validateSession(token) {
   return session;
 }
 
-// End session
-async function endSession(token) {
+export async function endSession(token) {
   await query('DELETE FROM sessions WHERE token = $1', [token]);
 }
 
-// Authenticate user with username and PIN
-async function authenticateUser(username, pin) {
+export async function authenticateUser(username, pin) {
   const normalizedUsername = username.trim().toLowerCase();
-  
+
   const result = await query(
     'SELECT id, pin_hash FROM users WHERE username = $1',
     [normalizedUsername]
@@ -109,9 +101,7 @@ async function authenticateUser(username, pin) {
   return { success: true, userId: user.id, token };
 }
 
-// Get current user from token (supports both custom JWT and Supabase Auth tokens)
-async function getCurrentUser(token) {
-  // First, try our own session validation
+export async function getCurrentUser(token) {
   const session = await validateSession(token);
   if (session) {
     const result = await query(
@@ -123,7 +113,6 @@ async function getCurrentUser(token) {
     }
   }
 
-  // If that fails, try Supabase Auth token
   if (supabaseAdmin) {
     try {
       const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
@@ -137,15 +126,13 @@ async function getCurrentUser(token) {
         }
       }
     } catch (err) {
-      // Token is not a valid Supabase token, continue
     }
   }
 
   return null;
 }
 
-// Check if user exists
-async function userExists(username) {
+export async function userExists(username) {
   const result = await query(
     'SELECT id FROM users WHERE username = $1',
     [username]
@@ -153,8 +140,7 @@ async function userExists(username) {
   return result.rows.length > 0;
 }
 
-// Create user (for Discord bot and web signup)
-async function createUser(username, pin, options = {}) {
+export async function createUser(username, pin, options = {}) {
   const normalizedUsername = username.toLowerCase().trim();
   const exists = await userExists(normalizedUsername);
   if (exists) {
@@ -167,7 +153,7 @@ async function createUser(username, pin, options = {}) {
 
   if (!userId) {
     const dummyEmail = `discord_${Date.now()}@pwnlab.local`;
-    
+
     const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
       email: dummyEmail,
       password: generateRandomPin(12),
@@ -198,8 +184,7 @@ async function createUser(username, pin, options = {}) {
   return { success: true, userId: user.id, username: user.username };
 }
 
-// Link Discord account
-async function linkDiscordAccount(userId, discordId, discordUsername) {
+export async function linkDiscordAccount(userId, discordId, discordUsername) {
   if (!supabaseAdmin) {
     return { user_id: userId };
   }
@@ -214,16 +199,14 @@ async function linkDiscordAccount(userId, discordId, discordUsername) {
     .single();
 
   if (error) {
-    console.error('[AUTH] Failed to link Discord account:', error);
+    console.error('[AUTH] Failed to link Discord account');
     return { user_id: userId };
   }
 
   return data || { user_id: userId };
 }
 
-// Get user by Discord ID
-async function getUserByDiscordId(discordId) {
-  // First get the user_id from discord_accounts
+export async function getUserByDiscordId(discordId) {
   const discordResult = await query(
     'SELECT user_id FROM discord_accounts WHERE discord_id = $1',
     [discordId]
@@ -233,7 +216,6 @@ async function getUserByDiscordId(discordId) {
     return null;
   }
 
-  // Then get the user details
   const userResult = await query(
     'SELECT id, username FROM users WHERE id = $1',
     [discordResult.rows[0].user_id]
@@ -242,8 +224,7 @@ async function getUserByDiscordId(discordId) {
   return userResult.rows[0] || null;
 }
 
-// Get user by username
-async function getUserByUsername(username) {
+export async function getUserByUsername(username) {
   const result = await query(
     'SELECT id, username, created_at FROM users WHERE username = $1',
     [username]
@@ -252,8 +233,7 @@ async function getUserByUsername(username) {
   return result.rows[0] || null;
 }
 
-// Update user PIN
-async function updateUserPin(userId, newPin) {
+export async function updateUserPin(userId, newPin) {
   const pinHash = await hashPin(newPin);
   const result = await query(
     'UPDATE users SET pin_hash = $1 WHERE id = $2',
@@ -261,22 +241,3 @@ async function updateUserPin(userId, newPin) {
   );
   return !result.error;
 }
-
-module.exports = {
-  hashPin,
-  comparePin,
-  generateRandomPin,
-  createToken,
-  verifyToken,
-  createSession,
-  validateSession,
-  endSession,
-  authenticateUser,
-  getCurrentUser,
-  userExists,
-  createUser,
-  updateUserPin,
-  linkDiscordAccount,
-  getUserByDiscordId,
-  getUserByUsername,
-};

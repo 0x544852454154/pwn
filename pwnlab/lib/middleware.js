@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 const rateLimitStore = new Map();
 const csrfTokens = new Map();
 
@@ -6,7 +8,7 @@ const RATE_LIMIT_MAX_REQUESTS = 100;
 const RATE_LIMIT_AUTH_MAX = 10;
 const RATE_LIMIT_PIN_RESET_MAX = 3;
 
-function getClientIp(req) {
+export function getClientIp(req) {
   const forwarded = req.headers['x-forwarded-for'];
   if (forwarded) {
     return forwarded.split(',')[0].trim();
@@ -53,26 +55,26 @@ function rateLimit(options = {}) {
   };
 }
 
-const authRateLimit = rateLimit({
+export const authRateLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: RATE_LIMIT_AUTH_MAX,
   keyPrefix: 'auth',
 });
 
-const pinResetRateLimit = rateLimit({
+export const pinResetRateLimit = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: RATE_LIMIT_PIN_RESET_MAX,
   keyPrefix: 'pinreset',
 });
 
-const apiRateLimit = rateLimit({
+export const apiRateLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: RATE_LIMIT_MAX_REQUESTS,
   keyPrefix: 'api',
 });
 
-function generateCsrfToken(sessionId) {
-  const token = require('crypto').randomBytes(32).toString('hex');
+export function generateCsrfToken(sessionId) {
+  const token = crypto.randomBytes(32).toString('hex');
   csrfTokens.set(token, {
     sessionId,
     expiresAt: Date.now() + 30 * 60 * 1000,
@@ -80,7 +82,7 @@ function generateCsrfToken(sessionId) {
   return token;
 }
 
-function validateCsrfToken(token, sessionId) {
+export function validateCsrfToken(token, sessionId) {
   if (!token || !csrfTokens.has(token)) {
     return false;
   }
@@ -116,13 +118,3 @@ function cleanupStores() {
 }
 
 setInterval(cleanupStores, 5 * 60 * 1000);
-
-module.exports = {
-  rateLimit,
-  authRateLimit,
-  pinResetRateLimit,
-  apiRateLimit,
-  generateCsrfToken,
-  validateCsrfToken,
-  getClientIp,
-};

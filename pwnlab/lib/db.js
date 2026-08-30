@@ -1,23 +1,10 @@
-require('dotenv').config({ path: '.env.local' });
-const adminModule = require('./supabase-admin');
+import 'dotenv/config';
+import * as adminModule from './supabase-admin.js';
+
 const supabaseAdmin = adminModule.supabaseAdmin || adminModule.default || adminModule;
 const isSupabaseConfigured = adminModule.isSupabaseConfigured || (() => Boolean(supabaseAdmin));
 
-/**
- * Supabase database adapter with backward-compatible query interface.
- *
- * For simple queries, continues to support:
- *   const result = await query('SELECT * FROM users WHERE id = $1', [1]);
- *   result.rows
- *   result.rowCount
- *
- * For advanced queries, use the Supabase builder directly:
- *   const { data, error } = await supabaseAdmin
- *     .from('users')
- *     .select('*')
- *     .eq('id', userId);
- */
-async function query(sql, params = []) {
+export async function query(sql, params = []) {
   if (!supabaseAdmin) {
     return { rows: [], rowCount: 0, error: { message: 'Supabase not configured' } };
   }
@@ -26,44 +13,35 @@ async function query(sql, params = []) {
   const upper = trimmed.toUpperCase();
 
   try {
-    // Handle SELECT queries
     if (upper.startsWith('SELECT')) {
       const result = await executeSelect(sql, params);
       return result;
     }
 
-    // Handle INSERT queries
     if (upper.startsWith('INSERT')) {
       const result = await executeInsert(sql, params);
       return result;
     }
 
-    // Handle UPDATE queries
     if (upper.startsWith('UPDATE')) {
       const result = await executeUpdate(sql, params);
       return result;
     }
 
-    // Handle DELETE queries
     if (upper.startsWith('DELETE')) {
       const result = await executeDelete(sql, params);
       return result;
     }
 
-    // For other queries, try raw SQL via rpc
     const { data, error } = await supabaseAdmin.rpc('exec_sql', { sql, params });
     if (error) throw error;
     return { rows: data || [], rowCount: data?.length || 0 };
   } catch (error) {
-    console.error('[DB] Query error:', error.message, 'SQL:', sql);
+    console.error('[DB] Query error:', error.message);
     return { rows: [], rowCount: 0, error };
   }
 }
 
-/**
- * Simple SQL parser for SELECT queries.
- * Supports: SELECT ... FROM table WHERE col = $N AND col = $N ...
- */
 async function executeSelect(sql, params) {
   const fromMatch = sql.match(/FROM\s+(\w+)/i);
   if (!fromMatch) {
@@ -73,11 +51,9 @@ async function executeSelect(sql, params) {
 
   let q = supabaseAdmin.from(table);
 
-  // Extract columns
   const selectMatch = sql.match(/SELECT\s+(.*?)\s+FROM/i);
   let columns = selectMatch ? selectMatch[1].trim() : '*';
-  
-  // Remove table aliases from column names (e.g., u.id -> id)
+
   if (columns !== '*') {
     columns = columns.split(',').map(col => {
       const trimmed = col.trim();
@@ -88,14 +64,13 @@ async function executeSelect(sql, params) {
       return trimmed;
     }).join(', ');
   }
-  
+
   if (columns !== '*') {
     q = q.select(columns);
   } else {
     q = q.select('*');
   }
 
-  // Parse WHERE clauses
   const whereMatch = sql.match(/WHERE\s+(.*?)(?:\s+ORDER|\s+LIMIT|\s+GROUP|\s+HAVING|\s*$)/i);
   if (whereMatch) {
     const whereClause = whereMatch[1];
@@ -106,7 +81,6 @@ async function executeSelect(sql, params) {
       paramIndices.push(parseInt(match[1]) - 1);
     }
 
-    // Split by AND/OR for simple conditions
     const conditions = whereClause.split(/\s+AND\s+/i);
     for (let i = 0; i < conditions.length; i++) {
       const condition = conditions[i].trim();
@@ -239,4 +213,4 @@ async function executeDelete(sql, params) {
   return { rows: data || [], rowCount: data?.length || 0 };
 }
 
-module.exports = { query, supabaseAdmin, isSupabaseConfigured };
+export { supabaseAdmin, isSupabaseConfigured };

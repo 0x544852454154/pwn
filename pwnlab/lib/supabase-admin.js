@@ -1,5 +1,5 @@
-const { createClient } = require('@supabase/supabase-js');
-const { config } = require('dotenv');
+import { createClient } from '@supabase/supabase-js';
+import { config } from 'dotenv';
 
 config({ path: '.env.local' });
 
@@ -13,7 +13,7 @@ if (!supabaseUrl || !supabaseServiceKey) {
   );
 }
 
-const supabaseAdmin = createClient(
+export const supabaseAdmin = createClient(
   supabaseUrl || 'http://placeholder.supabase.co',
   supabaseServiceKey || 'placeholder-key',
   {
@@ -24,11 +24,6 @@ const supabaseAdmin = createClient(
   }
 );
 
-const isSupabaseConfigured = () => {
+export const isSupabaseConfigured = () => {
   return Boolean(supabaseUrl && supabaseServiceKey);
-};
-
-module.exports = {
-  supabaseAdmin,
-  isSupabaseConfigured,
 };
