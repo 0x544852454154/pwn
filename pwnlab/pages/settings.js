@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import styles from '../styles/Login.module.css';
+import styles from '../styles/Settings.module.css';
+
+const TABS = [
+  { id: 'profile', label: 'profile', icon: '◎' },
+  { id: 'notifications', label: 'notifications', icon: '◉' },
+  { id: 'security', label: 'security', icon: '◆' },
+  { id: 'quick-links', label: 'quick links', icon: '↗' },
+];
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState(null);
@@ -10,6 +17,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('profile');
 
   const [bio, setBio] = useState('');
   const [emailNotifications, setEmailNotifications] = useState(true);
@@ -123,115 +131,168 @@ export default function SettingsPage() {
             <div className={styles.success}>{message}</div>
           )}
 
-          <div className={styles.sections}>
-            <section className={styles.section}>
-              <h2>profile</h2>
-              <form onSubmit={handleSaveSettings}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="bio">bio</label>
-                  <textarea
-                    id="bio"
-                    value={bio}
-                    onChange={(e) => setBio(e.target.value)}
-                    maxLength={500}
-                    rows={4}
-                  />
-                </div>
-                <div className={styles.checkboxGroup}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={publicProfile}
-                      onChange={(e) => setPublicProfile(e.target.checked)}
-                    />
-                    public profile
-                  </label>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={showDiscordStatus}
-                      onChange={(e) => setShowDiscordStatus(e.target.checked)}
-                    />
-                    show discord status
-                  </label>
-                </div>
-                <button type="submit" disabled={saving}>
-                  {saving ? 'saving...' : 'save profile →'}
+          <div className={styles.layout}>
+            <nav className={styles.sidebar}>
+              {TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  className={`${styles.sidebarItem} ${activeTab === tab.id ? styles.active : ''}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  <span className={styles.sidebarIcon}>{tab.icon}</span>
+                  {tab.label}
                 </button>
-              </form>
-            </section>
+              ))}
+            </nav>
 
-            <section className={styles.section}>
-              <h2>notifications</h2>
-              <form onSubmit={handleSaveSettings}>
-                <div className={styles.checkboxGroup}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={emailNotifications}
-                      onChange={(e) => setEmailNotifications(e.target.checked)}
-                    />
-                    email notifications
-                  </label>
-                </div>
-                <button type="submit" disabled={saving}>
-                  {saving ? 'saving...' : 'save notifications →'}
-                </button>
-              </form>
-            </section>
+            <div className={styles.content}>
+              {activeTab === 'profile' && (
+                <section className={styles.section}>
+                  <h2>profile</h2>
+                  <p className={styles.sectionDescription}>
+                    Manage your public profile information and visibility preferences.
+                  </p>
+                  <form onSubmit={handleSaveSettings}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="bio">bio</label>
+                      <textarea
+                        id="bio"
+                        value={bio}
+                        onChange={(e) => setBio(e.target.value)}
+                        maxLength={500}
+                        rows={4}
+                        placeholder="Describe your operator background, specialties, and interests..."
+                      />
+                    </div>
+                    <div className={styles.checkboxGroup}>
+                      <label className={styles.checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          checked={publicProfile}
+                          onChange={(e) => setPublicProfile(e.target.checked)}
+                        />
+                        <span className={styles.checkboxText}>
+                          <span className={styles.checkboxTitle}>public profile</span>
+                          <span className={styles.checkboxDescription}>
+                            Allow other operators to view your profile and statistics.
+                          </span>
+                        </span>
+                      </label>
+                      <label className={styles.checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          checked={showDiscordStatus}
+                          onChange={(e) => setShowDiscordStatus(e.target.checked)}
+                        />
+                        <span className={styles.checkboxText}>
+                          <span className={styles.checkboxTitle}>show discord status</span>
+                          <span className={styles.checkboxDescription}>
+                            Display your Discord presence, avatar, and activity on your profile.
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                    <button type="submit" disabled={saving}>
+                      {saving ? 'saving...' : 'save profile →'}
+                    </button>
+                  </form>
+                </section>
+              )}
 
-            <section className={styles.section}>
-              <h2>security</h2>
-              <form onSubmit={handleChangePin}>
-                {pinMessage && <div className={styles.success}>{pinMessage}</div>}
-                {pinError && (
-                  <div className={styles.error}>
-                    [ERROR]
-                    <br />
-                    {pinError}
-                  </div>
-                )}
-                <div className={styles.formGroup}>
-                  <label htmlFor="currentPin">current pin</label>
-                  <input
-                    id="currentPin"
-                    type="password"
-                    value={currentPin}
-                    onChange={(e) => setCurrentPin(e.target.value)}
-                    maxLength={6}
-                    pattern="\d{6}"
-                    required
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="newPin">new pin</label>
-                  <input
-                    id="newPin"
-                    type="password"
-                    value={newPin}
-                    onChange={(e) => setNewPin(e.target.value)}
-                    maxLength={6}
-                    pattern="\d{6}"
-                    required
-                  />
-                </div>
-                <button type="submit" disabled={changingPin}>
-                  {changingPin ? 'updating...' : 'change pin →'}
-                </button>
-              </form>
-            </section>
+              {activeTab === 'notifications' && (
+                <section className={styles.section}>
+                  <h2>notifications</h2>
+                  <p className={styles.sectionDescription}>
+                    Control how and when you receive alerts from the platform.
+                  </p>
+                  <form onSubmit={handleSaveSettings}>
+                    <div className={styles.checkboxGroup}>
+                      <label className={styles.checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          checked={emailNotifications}
+                          onChange={(e) => setEmailNotifications(e.target.checked)}
+                        />
+                        <span className={styles.checkboxText}>
+                          <span className={styles.checkboxTitle}>email notifications</span>
+                          <span className={styles.checkboxDescription}>
+                            Receive email alerts for first bloods, team invites, and event updates.
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                    <button type="submit" disabled={saving}>
+                      {saving ? 'saving...' : 'save notifications →'}
+                    </button>
+                  </form>
+                </section>
+              )}
 
-            <section className={styles.section}>
-              <h2>quick links</h2>
-              <nav className={styles.linkList}>
-                <Link href="/submissions" className={styles.link}>
-                  submission history ↗
-                </Link>
-                <Link href="/notifications" className={styles.link}>
-                  notifications ↗
-                </Link>
-              </nav>
-            </section>
+              {activeTab === 'security' && (
+                <section className={styles.section}>
+                  <h2>security</h2>
+                  <p className={styles.sectionDescription}>
+                    Manage your authentication credentials and session security.
+                  </p>
+                  <form onSubmit={handleChangePin}>
+                    {pinMessage && <div className={styles.success}>{pinMessage}</div>}
+                    {pinError && (
+                      <div className={styles.error}>
+                        [ERROR]
+                        <br />
+                        {pinError}
+                      </div>
+                    )}
+                    <div className={styles.formGroup}>
+                      <label htmlFor="currentPin">current pin</label>
+                      <input
+                        id="currentPin"
+                        type="password"
+                        value={currentPin}
+                        onChange={(e) => setCurrentPin(e.target.value)}
+                        maxLength={6}
+                        pattern="\d{6}"
+                        required
+                        placeholder="Enter your current 6-digit PIN"
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="newPin">new pin</label>
+                      <input
+                        id="newPin"
+                        type="password"
+                        value={newPin}
+                        onChange={(e) => setNewPin(e.target.value)}
+                        maxLength={6}
+                        pattern="\d{6}"
+                        required
+                        placeholder="Enter a new 6-digit PIN"
+                      />
+                    </div>
+                    <button type="submit" disabled={changingPin}>
+                      {changingPin ? 'updating...' : 'change pin →'}
+                    </button>
+                  </form>
+                </section>
+              )}
+
+              {activeTab === 'quick-links' && (
+                <section className={styles.section}>
+                  <h2>quick links</h2>
+                  <p className={styles.sectionDescription}>
+                    Jump to related sections of the platform.
+                  </p>
+                  <nav className={styles.linkList}>
+                    <Link href="/submissions" className={styles.link}>
+                      submission history ↗
+                    </Link>
+                    <Link href="/notifications" className={styles.link}>
+                      notifications ↗
+                    </Link>
+                  </nav>
+                </section>
+              )}
+            </div>
           </div>
         </div>
       </Layout>
