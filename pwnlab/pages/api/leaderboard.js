@@ -1,11 +1,12 @@
-const { supabaseAdmin } = require('../../lib/db');
-const { getCookie } = require('../../lib/cookies');
-const { getCurrentUser } = require('../../lib/auth');
-const { sanitizeError, getClientIp } = require('../../lib/api-middleware');
+import { supabaseAdmin } from '../../lib/db';
+import { getCookie } from '../../lib/cookies';
+import { getCurrentUser } from '../../lib/auth';
+import { sanitizeError, getClientIp } from '../../lib/api-middleware';
+
+import https from 'https';
 
 function fetchJSON(url, headers = {}, timeoutMs = 2500) {
   return new Promise((resolve) => {
-    const https = require('https');
     const req = https.get(url, { headers, timeout: timeoutMs }, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);

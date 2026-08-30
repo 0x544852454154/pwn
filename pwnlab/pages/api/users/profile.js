@@ -1,6 +1,6 @@
-const https = require('https');
-const { supabaseAdmin } = require('../../../lib/db');
-const { requireAuth, sanitizeError } = require('../../../lib/api-middleware');
+import https from 'https';
+import { supabaseAdmin } from '../../../lib/db';
+import { requireAuth, sanitizeError } from '../../../lib/api-middleware';
 
 function fetchJSON(url, headers = {}, timeoutMs = 3000) {
   return new Promise((resolve) => {

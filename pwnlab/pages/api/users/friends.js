@@ -1,5 +1,5 @@
-const { supabaseAdmin } = require('../../../lib/db');
-const { requireAuth, sanitizeError } = require('../../../lib/api-middleware');
+import { supabaseAdmin } from '../../../lib/db';
+import { requireAuth, sanitizeError } from '../../../lib/api-middleware';
 
 function parseProfileMeta(rawBio) {
   if (!rawBio) return { bio: '', banner_url: null, friends: [] };
