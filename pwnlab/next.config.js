@@ -7,6 +7,15 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
+  async redirects() {
+    return [
+      {
+        source: '/user/:username',
+        destination: '/:username',
+        permanent: true,
+      },
+    ];
+  },
   headers: async () => {
     const securityHeaders = [
       {
