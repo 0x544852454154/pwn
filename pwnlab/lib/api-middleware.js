@@ -1,6 +1,6 @@
-import { getCookie } from './cookies.js';
-import { getCurrentUser } from './auth.js';
-import { apiRateLimit, validateCsrfToken as validateCsrf } from './middleware.js';
+import { getCookie } from './cookies';
+import { getCurrentUser } from './auth';
+import { apiRateLimit, validateCsrfToken as validateCsrf } from './middleware';
 
 export async function requireAuth(req, res) {
   const rateLimitResult = await apiRateLimit(req, res);
@@ -75,4 +75,4 @@ export function sanitizeError(error) {
   return 'An internal error occurred';
 }
 
-export { getClientIp } from './middleware.js';
+export { getClientIp } from './middleware';

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import { query, supabaseAdmin } from './db.js';
+import { query, supabaseAdmin } from './db';
 import 'dotenv/config';
 
 const JWT_SECRET = process.env.JWT_SECRET;

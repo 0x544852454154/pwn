@@ -1,5 +1,5 @@
 import { createServerClient } from '@supabase/ssr';
-import { parseCookies } from './cookies.js';
+import { parseCookies } from './cookies';
 
 export function getSupabaseServerClient(req, res) {
   return createServerClient(
