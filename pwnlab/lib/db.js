@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import * as adminModule from './supabase-admin';
+import * as adminModule from './supabase-admin.js';
 
 const supabaseAdmin = adminModule.supabaseAdmin || adminModule.default || adminModule;
 const isSupabaseConfigured = adminModule.isSupabaseConfigured || (() => Boolean(supabaseAdmin));
