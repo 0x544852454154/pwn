@@ -2,8 +2,6 @@ const { Client } = require('discord.js');
 const { generateRandomPin, hashPin, createUser, linkDiscordAccount, getUserByDiscordId, updateUserPin, userExists } = require('../lib/auth');
 require('dotenv').config({ path: '.env.local' });
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://pwnlab.lol';
-
 const client = new Client({ intents: ['Guilds', 'GuildMessages', 'DirectMessages', 'MessageContent'] });
 
 client.once('clientReady', () => {
@@ -58,7 +56,7 @@ async function handleLogin(message) {
         });
       } else {
         await message.reply({
-          content: `✅ Account found. Your new PIN is: ||${newPin}||\nLog in at ${APP_URL}`,
+          content: `✅ Account found. Your new PIN is: ||${newPin}||`,
         });
       }
       return;
@@ -103,7 +101,7 @@ async function handleLogin(message) {
       });
     } else {
       await message.reply({
-        content: `✅ Account created, but I couldn't DM you.\nYour PIN is: ||${pin}||\nLog in at ${APP_URL}`,
+        content: `✅ Account created, but I couldn't DM you.\nYour PIN is: ||${pin}||`,
       });
     }
 
@@ -133,21 +131,11 @@ function formatAccountCreated(username, pin) {
     'pwnlab ACCOUNT',
     '============',
     '',
-    'ACCOUNT CREATED',
-    '',
-    `USERNAME`,
-    `${username}`,
-    '',
-    `INITIAL PIN`,
-    `${pin}`,
-    '',
-    '[ OPEN pwnlab ]',
-    '',
-    APP_URL,
+    `USERNAME: ${username}`,
+    `PIN: ${pin}`,
     '```',
     '',
-    '⚠️ **SECURE THIS PIN** - Do not share it with anyone.',
-    'Keep this message safe. Never post pins in public channels.'
+    '⚠️ **SECURE THIS PIN** - Do not share it with anyone.'
   ].join('\n');
 }
 
@@ -157,23 +145,11 @@ function formatAccountFound(username, newPin) {
     'pwnlab ACCOUNT',
     '============',
     '',
-    'ACCOUNT FOUND',
-    '',
-    `USERNAME`,
-    `${username}`,
-    '',
-    'NEW PIN',
-    `${newPin}`,
-    '',
-    'Use this PIN to access pwnlab.',
-    '',
-    '[ OPEN pwnlab ]',
-    '',
-    APP_URL,
+    `USERNAME: ${username}`,
+    `PIN: ${newPin}`,
     '```',
     '',
-    '⚠️ **SECURE THIS PIN** - Do not share it with anyone.',
-    'Keep this message safe. Never post pins in public channels.'
+    '⚠️ **SECURE THIS PIN** - Do not share it with anyone.'
   ].join('\n');
 }
 
