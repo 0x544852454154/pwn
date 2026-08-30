@@ -2,7 +2,14 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import { query, supabaseAdmin } from './db.js';
-import 'dotenv/config';
+import { config } from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+config({ path: join(__dirname, '..', '.env.local') });
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const PIN_HASH_ROUNDS = parseInt(process.env.PIN_HASH_ROUNDS || 10);
