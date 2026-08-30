@@ -4,11 +4,27 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import styles from '../styles/Settings.module.css';
 
-const TABS = [
-  { id: 'profile', label: 'profile', icon: '◎' },
-  { id: 'notifications', label: 'notifications', icon: '◉' },
-  { id: 'security', label: 'security', icon: '◆' },
-  { id: 'quick-links', label: 'quick links', icon: '↗' },
+const SECTIONS = [
+  {
+    id: 'profile',
+    label: 'profile',
+    description: 'Your public profile and visibility settings',
+  },
+  {
+    id: 'notifications',
+    label: 'notifications',
+    description: 'Email and push notification preferences',
+  },
+  {
+    id: 'security',
+    label: 'security',
+    description: 'PIN, password, and session management',
+  },
+  {
+    id: 'quick-links',
+    label: 'quick links',
+    description: 'Jump to other platform sections',
+  },
 ];
 
 export default function SettingsPage() {
@@ -17,7 +33,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState('profile');
+  const [openSection, setOpenSection] = useState('profile');
 
   const [bio, setBio] = useState('');
   const [emailNotifications, setEmailNotifications] = useState(true);
@@ -115,184 +131,179 @@ export default function SettingsPage() {
       <Layout requireAuth={true}>
         <div className={styles.container}>
           <div className={styles.header}>
-            <div className={styles.kicker}>operator console / settings</div>
             <h1>settings</h1>
           </div>
 
           {error && (
-            <div className={styles.error}>
-              [ERROR]
-              <br />
+            <div className={styles.alertError}>
               {error}
             </div>
           )}
 
           {message && (
-            <div className={styles.success}>{message}</div>
+            <div className={styles.alertSuccess}>{message}</div>
           )}
 
-          <div className={styles.layout}>
-            <nav className={styles.sidebar}>
-              {TABS.map((tab) => (
-                <button
-                  key={tab.id}
-                  className={`${styles.sidebarItem} ${activeTab === tab.id ? styles.active : ''}`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  <span className={styles.sidebarIcon}>{tab.icon}</span>
-                  {tab.label}
-                </button>
-              ))}
-            </nav>
+          <div className={styles.accordion}>
+            {SECTIONS.map((section) => {
+              const isOpen = openSection === section.id;
+              return (
+                <div key={section.id} className={styles.item}>
+                  <button
+                    type="button"
+                    className={styles.itemHeader}
+                    onClick={() => setOpenSection(isOpen ? null : section.id)}
+                    aria-expanded={isOpen}
+                  >
+                    <div className={styles.itemHeaderText}>
+                      <span className={styles.itemLabel}>{section.label}</span>
+                      <span className={styles.itemDescription}>{section.description}</span>
+                    </div>
+                    <span className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}>⌄</span>
+                  </button>
 
-            <div className={styles.content}>
-              {activeTab === 'profile' && (
-                <section className={styles.section}>
-                  <h2>profile</h2>
-                  <p className={styles.sectionDescription}>
-                    Manage your public profile information and visibility preferences.
-                  </p>
-                  <form onSubmit={handleSaveSettings}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="bio">bio</label>
-                      <textarea
-                        id="bio"
-                        value={bio}
-                        onChange={(e) => setBio(e.target.value)}
-                        maxLength={500}
-                        rows={4}
-                        placeholder="Describe your operator background, specialties, and interests..."
-                      />
-                    </div>
-                    <div className={styles.checkboxGroup}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          checked={publicProfile}
-                          onChange={(e) => setPublicProfile(e.target.checked)}
-                        />
-                        <span className={styles.checkboxText}>
-                          <span className={styles.checkboxTitle}>public profile</span>
-                          <span className={styles.checkboxDescription}>
-                            Allow other operators to view your profile and statistics.
-                          </span>
-                        </span>
-                      </label>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          checked={showDiscordStatus}
-                          onChange={(e) => setShowDiscordStatus(e.target.checked)}
-                        />
-                        <span className={styles.checkboxText}>
-                          <span className={styles.checkboxTitle}>show discord status</span>
-                          <span className={styles.checkboxDescription}>
-                            Display your Discord presence, avatar, and activity on your profile.
-                          </span>
-                        </span>
-                      </label>
-                    </div>
-                    <button type="submit" disabled={saving}>
-                      {saving ? 'saving...' : 'save profile →'}
-                    </button>
-                  </form>
-                </section>
-              )}
+                  {isOpen && (
+                    <div className={styles.itemBody}>
+                      {section.id === 'profile' && (
+                        <form onSubmit={handleSaveSettings}>
+                          <div className={styles.field}>
+                            <label className={styles.fieldLabel} htmlFor="bio">bio</label>
+                            <textarea
+                              id="bio"
+                              value={bio}
+                              onChange={(e) => setBio(e.target.value)}
+                              maxLength={500}
+                              rows={3}
+                              className={styles.textarea}
+                              placeholder="Tell other operators about yourself..."
+                            />
+                          </div>
 
-              {activeTab === 'notifications' && (
-                <section className={styles.section}>
-                  <h2>notifications</h2>
-                  <p className={styles.sectionDescription}>
-                    Control how and when you receive alerts from the platform.
-                  </p>
-                  <form onSubmit={handleSaveSettings}>
-                    <div className={styles.checkboxGroup}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          checked={emailNotifications}
-                          onChange={(e) => setEmailNotifications(e.target.checked)}
-                        />
-                        <span className={styles.checkboxText}>
-                          <span className={styles.checkboxTitle}>email notifications</span>
-                          <span className={styles.checkboxDescription}>
-                            Receive email alerts for first bloods, team invites, and event updates.
-                          </span>
-                        </span>
-                      </label>
-                    </div>
-                    <button type="submit" disabled={saving}>
-                      {saving ? 'saving...' : 'save notifications →'}
-                    </button>
-                  </form>
-                </section>
-              )}
+                          <div className={styles.rows}>
+                            <label className={styles.row}>
+                              <input
+                                type="checkbox"
+                                className={styles.toggle}
+                                checked={publicProfile}
+                                onChange={(e) => setPublicProfile(e.target.checked)}
+                              />
+                              <span className={styles.rowText}>
+                                <span className={styles.rowTitle}>public profile</span>
+                                <span className={styles.rowDescription}>
+                                  Let others see your profile and stats
+                                </span>
+                              </span>
+                            </label>
 
-              {activeTab === 'security' && (
-                <section className={styles.section}>
-                  <h2>security</h2>
-                  <p className={styles.sectionDescription}>
-                    Manage your authentication credentials and session security.
-                  </p>
-                  <form onSubmit={handleChangePin}>
-                    {pinMessage && <div className={styles.success}>{pinMessage}</div>}
-                    {pinError && (
-                      <div className={styles.error}>
-                        [ERROR]
-                        <br />
-                        {pinError}
-                      </div>
-                    )}
-                    <div className={styles.formGroup}>
-                      <label htmlFor="currentPin">current pin</label>
-                      <input
-                        id="currentPin"
-                        type="password"
-                        value={currentPin}
-                        onChange={(e) => setCurrentPin(e.target.value)}
-                        maxLength={6}
-                        pattern="\d{6}"
-                        required
-                        placeholder="Enter your current 6-digit PIN"
-                      />
-                    </div>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="newPin">new pin</label>
-                      <input
-                        id="newPin"
-                        type="password"
-                        value={newPin}
-                        onChange={(e) => setNewPin(e.target.value)}
-                        maxLength={6}
-                        pattern="\d{6}"
-                        required
-                        placeholder="Enter a new 6-digit PIN"
-                      />
-                    </div>
-                    <button type="submit" disabled={changingPin}>
-                      {changingPin ? 'updating...' : 'change pin →'}
-                    </button>
-                  </form>
-                </section>
-              )}
+                            <label className={styles.row}>
+                              <input
+                                type="checkbox"
+                                className={styles.toggle}
+                                checked={showDiscordStatus}
+                                onChange={(e) => setShowDiscordStatus(e.target.checked)}
+                              />
+                              <span className={styles.rowText}>
+                                <span className={styles.rowTitle}>show discord status</span>
+                                <span className={styles.rowDescription}>
+                                  Display Discord avatar and presence
+                                </span>
+                              </span>
+                            </label>
+                          </div>
 
-              {activeTab === 'quick-links' && (
-                <section className={styles.section}>
-                  <h2>quick links</h2>
-                  <p className={styles.sectionDescription}>
-                    Jump to related sections of the platform.
-                  </p>
-                  <nav className={styles.linkList}>
-                    <Link href="/submissions" className={styles.link}>
-                      submission history ↗
-                    </Link>
-                    <Link href="/notifications" className={styles.link}>
-                      notifications ↗
-                    </Link>
-                  </nav>
-                </section>
-              )}
-            </div>
+                          <button type="submit" disabled={saving} className={styles.primaryBtn}>
+                            {saving ? 'saving...' : 'save changes'}
+                          </button>
+                        </form>
+                      )}
+
+                      {section.id === 'notifications' && (
+                        <form onSubmit={handleSaveSettings}>
+                          <div className={styles.rows}>
+                            <label className={styles.row}>
+                              <input
+                                type="checkbox"
+                                className={styles.toggle}
+                                checked={emailNotifications}
+                                onChange={(e) => setEmailNotifications(e.target.checked)}
+                              />
+                              <span className={styles.rowText}>
+                                <span className={styles.rowTitle}>email notifications</span>
+                                <span className={styles.rowDescription}>
+                                  Alerts for first bloods, team invites, and events
+                                </span>
+                              </span>
+                            </label>
+                          </div>
+
+                          <button type="submit" disabled={saving} className={styles.primaryBtn}>
+                            {saving ? 'saving...' : 'save changes'}
+                          </button>
+                        </form>
+                      )}
+
+                      {section.id === 'security' && (
+                        <form onSubmit={handleChangePin} className={styles.securityForm}>
+                          {pinMessage && (
+                            <div className={styles.alertSuccess}>{pinMessage}</div>
+                          )}
+                          {pinError && (
+                            <div className={styles.alertError}>{pinError}</div>
+                          )}
+
+                          <div className={styles.field}>
+                            <label className={styles.fieldLabel} htmlFor="currentPin">current pin</label>
+                            <input
+                              id="currentPin"
+                              type="password"
+                              value={currentPin}
+                              onChange={(e) => setCurrentPin(e.target.value)}
+                              maxLength={6}
+                              pattern="\d{6}"
+                              required
+                              className={styles.input}
+                              placeholder="Enter current 6-digit PIN"
+                            />
+                          </div>
+
+                          <div className={styles.field}>
+                            <label className={styles.fieldLabel} htmlFor="newPin">new pin</label>
+                            <input
+                              id="newPin"
+                              type="password"
+                              value={newPin}
+                              onChange={(e) => setNewPin(e.target.value)}
+                              maxLength={6}
+                              pattern="\d{6}"
+                              required
+                              className={styles.input}
+                              placeholder="Enter new 6-digit PIN"
+                            />
+                          </div>
+
+                          <button type="submit" disabled={changingPin} className={styles.primaryBtn}>
+                            {changingPin ? 'updating...' : 'update pin'}
+                          </button>
+                        </form>
+                      )}
+
+                      {section.id === 'quick-links' && (
+                        <nav className={styles.links}>
+                          <Link href="/submissions" className={styles.link}>
+                            submission history
+                            <span className={styles.linkArrow}>→</span>
+                          </Link>
+                          <Link href="/notifications" className={styles.link}>
+                            notifications
+                            <span className={styles.linkArrow}>→</span>
+                          </Link>
+                        </nav>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </Layout>
