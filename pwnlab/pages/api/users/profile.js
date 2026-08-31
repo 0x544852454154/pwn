@@ -120,15 +120,17 @@ export default async function handler(req, res) {
        submissionsRes,
        allCompletionsRes,
         teamMemberRes,
-        currentUserProfileRes
+        currentUserProfileRes,
+        usersRes
       ] = await Promise.all([
        supabaseAdmin.from('profiles').select('bio').eq('user_id', profileUser.id).single(),
        supabaseAdmin.from('discord_accounts').select('discord_id, username').eq('user_id', profileUser.id).single(),
        supabaseAdmin.from('challenge_completions').select('points_earned, challenge:challenges(category:challenge_categories(name))').eq('user_id', profileUser.id),
        supabaseAdmin.from('challenge_submissions').select('is_correct').eq('user_id', profileUser.id),
        supabaseAdmin.from('challenge_completions').select('user_id, points_earned'),
-       supabaseAdmin.from('team_members').select('team:teams(id, name)').eq('user_id', profileUser.id).maybeSingle(),
-      supabaseAdmin.from('profiles').select('bio').eq('user_id', user.id).single()
+        supabaseAdmin.from('team_members').select('team:teams(id, name)').eq('user_id', profileUser.id).maybeSingle(),
+        supabaseAdmin.from('profiles').select('bio').eq('user_id', user.id).single(),
+        supabaseAdmin.from('users').select('id, username')
     ]);
 
     let currentStreak = 0;
@@ -179,12 +181,20 @@ export default async function handler(req, res) {
       .map(entry => entry[0]);
 
     const userScores = {};
+    const allUsers = usersRes.data || [];
+    for (const u of allUsers) {
+      userScores[u.id] = 0;
+    }
     for (const row of (allCompletionsRes.data || [])) {
       userScores[row.user_id] = (userScores[row.user_id] || 0) + (row.points_earned || 0);
     }
     let rank = 1;
-    for (const [uid, score] of Object.entries(userScores)) {
-      if (uid !== profileUser.id && score > totalPoints) {
+    for (const u of allUsers) {
+      if (u.id === profileUser.id) continue;
+      const otherScore = userScores[u.id] || 0;
+      if (otherScore > totalPoints) {
+        rank++;
+      } else if (otherScore === totalPoints && u.username.localeCompare(profileUser.username) < 0) {
         rank++;
       }
     }

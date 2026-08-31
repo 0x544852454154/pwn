@@ -14,7 +14,8 @@ export default async function handler(req, res) {
       completionsRes,
       submissionsRes,
       challengesRes,
-      allCompletionsRes
+      allCompletionsRes,
+      usersRes
     ] = await Promise.all([
       supabaseAdmin
         .from('challenge_completions')
@@ -31,7 +32,10 @@ export default async function handler(req, res) {
         .in('visibility', ['PUBLIC', 'TEAM ONLY']),
       supabaseAdmin
         .from('challenge_completions')
-        .select('user_id, points_earned')
+        .select('user_id, points_earned'),
+      supabaseAdmin
+        .from('users')
+        .select('id, username')
     ]);
 
     let currentStreak = 0;
@@ -72,12 +76,21 @@ export default async function handler(req, res) {
       : 0;
 
     const userScores = {};
+    const allUsers = usersRes.data || [];
+    for (const u of allUsers) {
+      userScores[u.id] = 0;
+    }
     for (const row of (allCompletionsRes.data || [])) {
       userScores[row.user_id] = (userScores[row.user_id] || 0) + (row.points_earned || 0);
     }
+
     let rank = 1;
-    for (const [uid, score] of Object.entries(userScores)) {
-      if (uid !== user.id && score > totalPoints) {
+    for (const u of allUsers) {
+      if (u.id === user.id) continue;
+      const otherScore = userScores[u.id] || 0;
+      if (otherScore > totalPoints) {
+        rank++;
+      } else if (otherScore === totalPoints && u.username.localeCompare(user.username) < 0) {
         rank++;
       }
     }
