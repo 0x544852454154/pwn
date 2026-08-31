@@ -25,7 +25,21 @@ export default async function handler(req, res) {
 
       const { data, count, error } = await query;
 
-      if (error) throw error;
+      if (error) {
+        if (error.message?.includes('does not exist') || error.code === '42P01') {
+          console.warn('[API] Writeups table does not exist yet');
+          return res.status(200).json({
+            writeups: [],
+            pagination: {
+              page: pageNum,
+              limit: limitVal,
+              total: 0,
+              pages: 1
+            }
+          });
+        }
+        throw error;
+      }
 
       return res.status(200).json({
         writeups: (data || []).map(w => ({
@@ -86,7 +100,12 @@ export default async function handler(req, res) {
         .select('id, title, content, visibility, created_at, updated_at')
         .single();
 
-      if (error) throw error;
+      if (error) {
+        if (error.message?.includes('does not exist') || error.code === '42P01') {
+          return res.status(503).json({ error: 'Writeups feature is not yet available. Please try again later.' });
+        }
+        throw error;
+      }
 
       return res.status(201).json({ writeup });
     } catch (error) {

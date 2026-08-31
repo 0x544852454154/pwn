@@ -264,6 +264,36 @@ CREATE TABLE IF NOT EXISTS public.audit_log (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- Writeups table
+CREATE TABLE IF NOT EXISTS public.writeups (
+  id SERIAL PRIMARY KEY,
+  user_id UUID REFERENCES public.users(id) ON DELETE CASCADE,
+  challenge_id INTEGER REFERENCES public.challenges(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  visibility VARCHAR(20) DEFAULT 'PUBLIC',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_writeups_user_id ON public.writeups(user_id);
+CREATE INDEX idx_writeups_challenge_id ON public.writeups(challenge_id);
+
+-- Notifications table
+CREATE TABLE IF NOT EXISTS public.notifications (
+  id SERIAL PRIMARY KEY,
+  user_id UUID REFERENCES public.users(id) ON DELETE CASCADE,
+  type VARCHAR(50) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  message TEXT,
+  data JSONB,
+  is_read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_notifications_user_id ON public.notifications(user_id);
+CREATE INDEX idx_notifications_created_at ON public.notifications(created_at DESC);
+
 -- =============================================
 -- TRIGGERS
 -- =============================================
@@ -462,10 +492,48 @@ CREATE POLICY "No public access to audit log" ON public.audit_log
   FOR ALL USING (false);
 
 -- =============================================
+-- BACKFILL: Add columns for existing databases
+-- =============================================
+
+-- Challenges table: add first_blood columns if they don't exist
+ALTER TABLE public.challenges ADD COLUMN IF NOT EXISTS first_blood_user_id UUID REFERENCES public.users(id) ON DELETE SET NULL;
+ALTER TABLE public.challenges ADD COLUMN IF NOT EXISTS first_blood_at TIMESTAMPTZ;
+
+-- Profiles table: add streak and metadata columns if they don't exist
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS banner_url TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS specialties TEXT[];
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS current_streak INTEGER DEFAULT 0;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS longest_streak INTEGER DEFAULT 0;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS last_solve_at TIMESTAMPTZ;
+
+-- Create writeups and notifications tables if they don't exist
+CREATE TABLE IF NOT EXISTS public.writeups (
+  id SERIAL PRIMARY KEY,
+  user_id UUID REFERENCES public.users(id) ON DELETE CASCADE,
+  challenge_id INTEGER REFERENCES public.challenges(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  visibility VARCHAR(20) DEFAULT 'PUBLIC',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS public.notifications (
+  id SERIAL PRIMARY KEY,
+  user_id UUID REFERENCES public.users(id) ON DELETE CASCADE,
+  type VARCHAR(50) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  message TEXT,
+  data JSONB,
+  is_read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- =============================================
 -- SEED DATA
 -- =============================================
 
-INSERT INTO public.challenge_categories (name, slug, description, icon) VALUES
+INSERT INTO public.challenge_categories (name, slug, description, icon) VALUES>
   ('LINUX', 'linux', 'Linux command line and system administration', 'terminal'),
   ('NETWORKING', 'networking', 'Network protocols and analysis', 'network'),
   ('WEB', 'web', 'Web application security', 'globe'),
