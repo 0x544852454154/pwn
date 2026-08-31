@@ -14,8 +14,7 @@ export default async function handler(req, res) {
       completionsRes,
       submissionsRes,
       challengesRes,
-      allCompletionsRes,
-      profileRes
+      allCompletionsRes
     ] = await Promise.all([
       supabaseAdmin
         .from('challenge_completions')
@@ -32,17 +31,24 @@ export default async function handler(req, res) {
         .in('visibility', ['PUBLIC', 'TEAM ONLY']),
       supabaseAdmin
         .from('challenge_completions')
-        .select('user_id, points_earned'),
-      supabaseAdmin
+        .select('user_id, points_earned')
+    ]);
+
+    let currentStreak = 0;
+    let longestStreak = 0;
+    try {
+      const { data: profileData, error: profileErr } = await supabaseAdmin
         .from('profiles')
         .select('current_streak, longest_streak')
         .eq('user_id', user.id)
-        .single()
-    ]);
-
-    const profile = profileRes.data || {};
-    const currentStreak = profile.current_streak || 0;
-    const longestStreak = profile.longest_streak || 0;
+        .single();
+      if (!profileErr && profileData) {
+        currentStreak = profileData.current_streak || 0;
+        longestStreak = profileData.longest_streak || 0;
+      }
+    } catch (e) {
+      // columns may not exist yet; default to 0
+    }
 
     const completions = completionsRes.data || [];
     const totalCompleted = completions.length;

@@ -23,17 +23,31 @@ export default async function handler(req, res) {
       .eq('id', challengeId)
       .single();
 
-    if (challError || !c) {
+    let challengeData = c;
+    let selectError = challError;
+
+    if (challError && challError.message && challError.message.includes('first_blood')) {
+      const retrySelect = 'id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id)';
+      const retry = await supabaseAdmin
+        .from('challenges')
+        .select(retrySelect)
+        .eq('id', challengeId)
+        .single();
+      challengeData = retry.data;
+      selectError = retry.error;
+    }
+
+    if (selectError || !challengeData) {
       return res.status(404).json({ error: 'Challenge not found' });
     }
 
-    const solves = c.completions?.length || 0;
-    const isCompleted = c.completions?.some((comp) => comp.user_id === user.id) || false;
+    const solves = challengeData.completions?.length || 0;
+    const isCompleted = challengeData.completions?.some((comp) => comp.user_id === user.id) || false;
 
-    const firstBlood = c.first_blood_user_id ? {
-      userId: c.first_blood_user_id,
+    const firstBlood = challengeData.first_blood_user_id ? {
+      userId: challengeData.first_blood_user_id,
       username: null,
-      timestamp: c.first_blood_at
+      timestamp: challengeData.first_blood_at
     } : null;
 
     const [objectivesRes, hintsRes] = await Promise.all([
@@ -52,12 +66,12 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       challenge: {
-        id: c.id,
-        name: c.name,
-        description: c.description,
-        difficulty: c.difficulty,
-        points: c.points,
-        estimated_time: c.estimated_time,
+         id: challengeData.id,
+         name: challengeData.name,
+         description: challengeData.description,
+         difficulty: challengeData.difficulty,
+         points: challengeData.points,
+         estimated_time: challengeData.estimated_time,
         category: c.category?.name || 'GENERAL',
         solves,
         is_completed: isCompleted,
