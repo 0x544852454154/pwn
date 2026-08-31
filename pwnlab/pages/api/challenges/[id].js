@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid challenge ID' });
     }
 
-    const { data: c, error: challError } = await supabaseAdmin
+      const { data: c, error: challError } = await supabaseAdmin
       .from('challenges')
       .select('id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id), first_blood_user_id, first_blood_at')
       .eq('id', challengeId)
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     let challengeData = c;
     let selectError = challError;
 
-    if (challError && challError.message && challError.message.includes('first_blood')) {
+    if (challError) {
       const retrySelect = 'id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id)';
       const retry = await supabaseAdmin
         .from('challenges')
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
          difficulty: challengeData.difficulty,
          points: challengeData.points,
          estimated_time: challengeData.estimated_time,
-        category: c.category?.name || 'GENERAL',
+         category: challengeData.category?.name || 'GENERAL',
         solves,
         is_completed: isCompleted,
         first_blood: firstBlood,
