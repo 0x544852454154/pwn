@@ -64,15 +64,7 @@ export default function ChallengeDetailPage() {
     }
   }, [id]);
 
-  useEffect(() => {
-    if (id) {
-      fetchChallenge();
-      fetchNote();
-      fetchMachines();
-    }
-  }, [id, fetchChallenge, fetchNote, fetchMachines]);
-
-  async function fetchMachines() {
+  const fetchMachines = useCallback(async () => {
     if (!id) return;
     setMachinesLoading(true);
     try {
@@ -86,7 +78,15 @@ export default function ChallengeDetailPage() {
     } finally {
       setMachinesLoading(false);
     }
-  }
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      fetchChallenge();
+      fetchNote();
+      fetchMachines();
+    }
+  }, [id, fetchChallenge, fetchNote, fetchMachines]);
 
   async function startMachine(machineId) {
     setMachineActionLoading(prev => ({ ...prev, [machineId]: true }));
@@ -289,23 +289,6 @@ export default function ChallengeDetailPage() {
               onClose={() => setShowTerminal(false)}
             />
           )}
-
-          <div className={styles.tabs}>
-            <button
-              type="button"
-              className={activeTab === 'briefing' ? styles.tabActive : styles.tab}
-              onClick={() => setActiveTab('briefing')}
-            >
-              briefing
-            </button>
-            <button
-              type="button"
-              className={activeTab === 'writeups' ? styles.tabActive : styles.tab}
-              onClick={() => setActiveTab('writeups')}
-            >
-              writeups
-            </button>
-          </div>
 
           <div className={styles.tabs}>
             <button

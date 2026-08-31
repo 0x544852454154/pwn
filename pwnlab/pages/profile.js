@@ -6,8 +6,6 @@ import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { SkeletonStats, SkeletonList } from '../components/Skeleton';
 import styles from '../styles/Profile.module.css';
-import { supabaseAdmin } from '../lib/db';
-import { fetchDiscordUser } from '../lib/discord-presence';
 
 export default function ProfilePage() {
   const router = useRouter();

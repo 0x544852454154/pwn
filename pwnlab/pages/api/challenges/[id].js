@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
     const { data: c, error: challError } = await supabaseAdmin
       .from('challenges')
-      .select('id, name, description, difficulty, points, estimated_time, storage_path, category:challenge_categories(name), completions:challenge_completions(id, user_id), first_blood_user_id, first_blood_at')
+      .select('id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id), first_blood_user_id, first_blood_at')
       .eq('id', challengeId)
       .single();
 

@@ -123,7 +123,7 @@ export default async function handler(req, res) {
        currentUserProfileRes,
        profileStreakRes
      ] = await Promise.all([
-       supabaseAdmin.from('profiles').select('bio, rank_title').eq('user_id', profileUser.id).single(),
+       supabaseAdmin.from('profiles').select('bio').eq('user_id', profileUser.id).single(),
        supabaseAdmin.from('discord_accounts').select('discord_id, username').eq('user_id', profileUser.id).single(),
        supabaseAdmin.from('challenge_completions').select('points_earned, challenge:challenges(category:challenge_categories(name))').eq('user_id', profileUser.id),
        supabaseAdmin.from('challenge_submissions').select('is_correct').eq('user_id', profileUser.id),

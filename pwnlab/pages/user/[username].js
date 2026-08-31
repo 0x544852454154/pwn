@@ -4,8 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
 import styles from '../../styles/Profile.module.css';
-import { supabaseAdmin } from '../../lib/db';
-import { fetchDiscordUser } from '../../lib/discord-presence';
 
 function parseProfileMeta(rawBio) {
   if (!rawBio) return { bio: '', banner_url: null, friends: [] };
@@ -23,6 +21,8 @@ function parseProfileMeta(rawBio) {
 }
 
 export async function getServerSideProps(context) {
+  const { supabaseAdmin } = await import('../../lib/db');
+  const { fetchDiscordUser } = await import('../../lib/discord-presence');
   const { username } = context.params;
   const targetUsername = (username || '').trim().toLowerCase();
 
@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
     }
 
     const [profileRes, discordRes, completionsRes, submissionsRes, allCompletionsRes, teamMemberRes] = await Promise.all([
-      supabaseAdmin.from('profiles').select('bio, rank_title').eq('user_id', user.id).single(),
+      supabaseAdmin.from('profiles').select('bio').eq('user_id', user.id).single(),
       supabaseAdmin.from('discord_accounts').select('discord_id, username').eq('user_id', user.id).single(),
       supabaseAdmin.from('challenge_completions').select('points_earned, challenge:challenges(category:challenge_categories(name))').eq('user_id', user.id),
       supabaseAdmin.from('challenge_submissions').select('is_correct').eq('user_id', user.id),
