@@ -72,25 +72,52 @@
 }
 
 .navLink {
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
+  position: relative;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
   color: #686868;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  transition: color var(--transition-fast);
+  border-radius: 8px;
+  transition: all var(--transition-fast);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .navLink:hover,
 .navLink.active {
   color: var(--white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navLink::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  background: #1a1a1a;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.navLink:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .userAvatar {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -101,6 +128,33 @@
   letter-spacing: 0.07em;
   white-space: nowrap;
   text-decoration: none;
+}
+
+.userAvatar::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1a1a1a;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.userAvatar:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .userAvatar:hover {
@@ -132,21 +186,18 @@
 
 .logoutBtn,
 .loginLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 8px 13px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
   color: #cfcfcf;
   text-decoration: none;
   background: #121212;
   border: 1px solid #303030;
-  border-radius: 13px 16px 12px 15px;
-  font: 500 0.62rem var(--font-mono);
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s ease;
-  white-space: nowrap;
+  transition: all var(--transition-fast);
+  position: relative;
 }
 
 .logoutBtn:hover,
@@ -155,6 +206,62 @@
   background: #ddd;
   border-color: #ddd;
   transform: translateY(-2px);
+}
+
+.logoutBtn::after,
+.loginLink::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  background: #1a1a1a;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.logoutBtn:hover::after,
+.loginLink:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.logoutBtn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  background: #1a1a1a;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.logoutBtn:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .status {
@@ -424,6 +531,33 @@
   color: var(--white);
   border-color: var(--border);
   background: var(--surface-2);
+}
+
+.notifBell::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1a1a1a;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.notifBell:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .notifBadge {

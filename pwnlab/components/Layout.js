@@ -156,58 +156,58 @@ export default function Layout({ children, requireAuth = false }) {
                   <Link
                     href="/dashboard"
                     className={router.pathname === '/dashboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="dashboard"
                   >
                     <NavIcon name="dashboard" />
-                    dashboard
                   </Link>
                   <Link
                     href="/challenges"
                     className={router.pathname.startsWith('/challenge') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="challenges"
                   >
                     <NavIcon name="challenges" />
-                    challenges
                   </Link>
                   <Link
                     href="/leaderboard"
                     className={router.pathname === '/leaderboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="leaderboard"
                   >
                     <NavIcon name="leaderboard" />
-                    leaderboard
                   </Link>
                   <Link
                     href="/teams"
                     className={router.pathname.startsWith('/team') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="teams"
                   >
                     <NavIcon name="teams" />
-                    teams
                   </Link>
                   <Link
                     href="/events"
                     className={router.pathname.startsWith('/events') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="events"
                   >
                     <NavIcon name="events" />
-                    events
                   </Link>
                   <Link
                     href="/notes"
                     className={router.pathname === '/notes' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="notes"
                   >
                     <NavIcon name="notes" />
-                    notes
                   </Link>
                   <Link
                     href="/writeups"
                     className={router.pathname.startsWith('/writeups') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="writeups"
                   >
                     <NavIcon name="writeups" />
-                    writeups
                   </Link>
                   <Link
                     href="/activity"
                     className={router.pathname === '/activity' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                    data-tooltip="activity"
                   >
                     <NavIcon name="activity" />
-                    activity
                   </Link>
                 </nav>
               </>
@@ -217,23 +217,22 @@ export default function Layout({ children, requireAuth = false }) {
           {user ? (
             <div className={styles.navRight}>
               <NotificationBell />
-              <Link href="/profile" className={styles.userAvatar}>
+              <Link href="/profile" className={styles.userAvatar} data-tooltip={user.username}>
                 <span className={styles.avatarInitial}>
                   {user.username?.substring(0, 1).toUpperCase() || '•'}
                 </span>
                 <span className={styles.usernameText}>{user.username}</span>
               </Link>
-              <Link href="/settings" className={styles.navLink}>
+              <Link href="/settings" className={styles.navLink} data-tooltip="settings">
                 <NavIcon name="settings" />
-                settings
               </Link>
               <button
                 onClick={handleLogout}
                 className={styles.logoutBtn}
                 aria-label="Logout"
+                data-tooltip="logout"
               >
                 <NavIcon name="logout" />
-                logout
               </button>
             </div>
           ) : (
@@ -242,7 +241,7 @@ export default function Layout({ children, requireAuth = false }) {
                 <i></i>
                 system in development
               </div>
-              <Link href="/login" className={styles.loginLink}>
+              <Link href="/login" className={styles.loginLink} data-tooltip="login">
                 login
               </Link>
             </div>
@@ -352,6 +351,7 @@ function NotificationBell({ user }) {
         className={styles.notifBell}
         onClick={() => setOpen(!open)}
         aria-label="Notifications"
+        data-tooltip="notifications"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
