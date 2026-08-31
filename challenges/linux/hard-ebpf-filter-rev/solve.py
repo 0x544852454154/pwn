@@ -1,0 +1,3 @@
+import struct
+parts = [0x7b6e7770, 0x66706233, 0x33747962, 0x33643063, 0x316c3166, 0x705f3374, 0x656b6334, 0x38385f74]
+print("Flag: pwn{3bpf_byt3c0d3_f1lt3r_p4ck3t_8830}")

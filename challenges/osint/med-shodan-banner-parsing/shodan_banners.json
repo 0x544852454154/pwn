@@ -1,0 +1,14 @@
+[
+  {
+    "ip_str": "198.51.100.42",
+    "port": 443,
+    "ssl": {
+      "cert": {
+        "subject": {
+          "CN": "scada.grid.operator.internal"
+        },
+        "subjectAltName": "DNS:flag-pwn-sh0d4n-b4nn3r-c3rt-f1ng3rpr1nt-9920.operator.internal"
+      }
+    }
+  }
+]

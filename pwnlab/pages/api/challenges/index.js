@@ -17,8 +17,21 @@ export default async function handler(req, res) {
 
     let queryBuilder = supabaseAdmin
       .from('challenges')
-      .select('id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id)', { count: 'exact' })
+      .select('id, name, description, difficulty, points, estimated_time, category_id, category:challenge_categories(name), completions:challenge_completions(id, user_id)', { count: 'exact' })
       .in('visibility', ['PUBLIC', 'TEAM ONLY']);
+
+    if (category) {
+      const cleanCat = category.trim();
+      const { data: catData } = await supabaseAdmin
+        .from('challenge_categories')
+        .select('id')
+        .ilike('name', cleanCat)
+        .maybeSingle();
+
+      if (catData?.id) {
+        queryBuilder = queryBuilder.eq('category_id', catData.id);
+      }
+    }
 
     if (difficulty) {
       const validDifficulties = ['EASY', 'MEDIUM', 'HARD', 'INSANE'];
@@ -40,7 +53,7 @@ export default async function handler(req, res) {
     const { data: rawChallenges, count: totalCount, error } = await queryBuilder;
 
     if (error) {
-      console.error('[API] Challenges query error');
+      console.error('[API] Challenges query error', error);
       return res.status(500).json({ error: 'Failed to fetch challenges' });
     }
 
@@ -60,20 +73,13 @@ export default async function handler(req, res) {
       };
     });
 
-    if (category) {
-      const sanitizedCategory = category.replace(/[^a-zA-Z]/g, '').toUpperCase().substring(0, 20);
-      challenges = challenges.filter(
-        (c) => c.category.toUpperCase() === sanitizedCategory
-      );
-    }
-
     if (status === 'completed') {
       challenges = challenges.filter((c) => c.is_completed);
     } else if (status === 'not-completed') {
       challenges = challenges.filter((c) => !c.is_completed);
     }
 
-    const total = totalCount || challenges.length;
+    const total = totalCount !== null && totalCount !== undefined ? totalCount : challenges.length;
 
     return res.status(200).json({
       challenges,

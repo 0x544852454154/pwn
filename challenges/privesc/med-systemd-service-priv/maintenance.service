@@ -1,0 +1,6 @@
+[Unit]
+Description=Daily Maintenance
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/bin/cleanup.sh

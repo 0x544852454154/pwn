@@ -1,0 +1,10 @@
+{
+  "devices": {
+    "hostroot": {
+      "path": "/mnt/root",
+      "source": "/",
+      "type": "disk",
+      "recursive": "true"
+    }
+  }
+}

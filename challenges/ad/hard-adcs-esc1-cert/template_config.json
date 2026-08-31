@@ -1,0 +1,8 @@
+{
+  "template_name": "UserAuthentication_v2",
+  "flags": [
+    "ENROLLEE_SUPPLIES_SUBJECT",
+    "CLIENT_AUTHENTICATION"
+  ],
+  "authorized_enrollment": "Domain Users"
+}

@@ -1,0 +1,1 @@
+operator ALL=(ALL) NOPASSWD: /usr/bin/base64, /usr/bin/find

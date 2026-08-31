@@ -1,0 +1,24 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/status": {
+      "get": {
+        "summary": "Health check"
+      }
+    },
+    "/api/v2/internal/debug-export": {
+      "get": {
+        "summary": "Internal diagnostics",
+        "parameters": [
+          {
+            "name": "X-Debug-Auth",
+            "in": "header",
+            "schema": {
+              "default": "cHdue3N3NGdnM3JfMHAzbjRwMV9kM2J1Z19rM3lfODE5Mn0="
+            }
+          }
+        ]
+      }
+    }
+  }
+}
