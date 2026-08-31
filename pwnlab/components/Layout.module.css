@@ -38,12 +38,7 @@
   height: 30px;
   display: grid;
   place-items: center;
-  border: 1px solid #3b3b3b;
-  border-radius: 11px 8px 12px 9px;
   color: #eee;
-  background: #151515;
-  font-weight: 600;
-  text-transform: lowercase;
 }
 
 .brand span:last-child {
@@ -71,6 +66,9 @@
   white-space: nowrap;
   transition: color var(--transition-fast);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .navLink:hover,
@@ -78,7 +76,10 @@
   color: var(--white);
 }
 
-.username {
+.userAvatar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.64rem;
   color: var(--text);
@@ -88,8 +89,21 @@
   text-decoration: none;
 }
 
-.username:hover {
+.userAvatar:hover {
   color: var(--white);
+}
+
+.avatarInitial {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  background: #1a1a1a;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #aaa;
 }
 
 .logoutBtn,

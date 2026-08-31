@@ -3,6 +3,23 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
 
+function NavIcon({ name }) {
+  const icons = {
+    dashboard: 'M3 3v2h2V3H3zm16 0h-2v2h2zM3 7v2h2V7H3zm16 0h-2v2h2zM3 11v2h2v-2H3zm16 0h-2v2h2zM3 15v2h2v-2H3zm2 0v-2h2v2H5zm14-2h-2v2h2zm-4 0v2h-2v-2h2zm4 4v2h-2v-2h2zm-4 0v2h-4v-2h2v-2H9v2zm2-6V7h-2v2h2zm0 4h-2v-2h2v2z',
+    challenges: 'M12 2L4 5v6c0 5 4 9 8 10 1.82-.56 3.44-1.5 4.66-2.66L12 10l4-2V5c0-1.1-.9-2-2-2h-2zM7 14c-2.36 2.54-3.66 5.7-3.66 9h7.32c-.34-.86-.58-1.76-.66-2.68-.08-.92.05-1.85.34-2.73L7 14z',
+    leaderboard: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27z',
+    teams: 'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 9.3 12 9.3zm0 2.4c-3.2 0-5.8 2.6-5.8 5.8v2.4h11.6v-2.4c0-3.2-2.6-5.8-5.8-5.8z',
+    notes: 'M13 3a2 2 0 0 0-4 0v2h4V3zm-6 9a6 6 0 1 1 12 0v5a2 2 0 0 1-2 2h-1.5a.5.5 0 0 0-.5.5 1.5 1.5 0 1 1-3 0 .5.5 0 0 0-.5-.5H7a2 2 0 0 1-2-2V12z',
+    writeups: 'M4 4h16v2H4V4zm0 6h16v2H4v-2zm0 6h10v2H4v-2z',
+    activity: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15H7v-6h3v6zm5-9.5h-3V15h-2V7h5v4.5z',
+    events: 'M9 2h6v2H9zM4 7h16v2H4zM7 11h2v8H7zm6 0h2v8h-2z',
+    settings: 'M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z',
+    logout: 'M5 3h2v2H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h2v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H7V7c0-1.1-.9-2-2-2H5zm7 0h2v2h-2V3zm-4 4h10v12H8V7zm-2 2v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1z'
+  };
+  const path = icons[name] || '';
+  return path ? <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" opacity="0.7"><path d={path} /></svg> : null;
+}
+
 export default function Layout({ children, requireAuth = false }) {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -112,7 +129,15 @@ export default function Layout({ children, requireAuth = false }) {
       <div className={styles.shell}>
         <header className={styles.topbar}>
           <Link href="/" className={styles.brand}>
-            <span className={styles.brandMark}>p</span>
+            <span className={styles.brandMark}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" opacity="0.8"/>
+                <path d="M3 8l9 8 9-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M7 12l5 4 5-4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="8" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+                <circle cx="16" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+              </svg>
+            </span>
             <span>pwnlab</span>
             <span>/ {sectionName}</span>
           </Link>
@@ -123,54 +148,65 @@ export default function Layout({ children, requireAuth = false }) {
                 href="/dashboard"
                 className={router.pathname === '/dashboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="dashboard" />
                 dashboard
               </Link>
               <Link
                 href="/challenges"
                 className={router.pathname.startsWith('/challenge') ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="challenges" />
                 challenges
               </Link>
               <Link
                 href="/leaderboard"
                 className={router.pathname === '/leaderboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="leaderboard" />
                 leaderboard
               </Link>
               <Link
                 href="/teams"
                 className={router.pathname.startsWith('/team') ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="teams" />
                 teams
               </Link>
               <Link
                 href="/events"
                 className={router.pathname.startsWith('/events') ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="events" />
                 events
               </Link>
               <Link
                 href="/notes"
                 className={router.pathname === '/notes' ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="notes" />
                 notes
               </Link>
               <Link
                 href="/writeups"
                 className={router.pathname.startsWith('/writeups') ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="writeups" />
                 writeups
               </Link>
               <Link
                 href="/activity"
                 className={router.pathname === '/activity' ? styles.navLink + ' ' + styles.active : styles.navLink}
               >
+                <NavIcon name="activity" />
                 activity
               </Link>
-              <NotificationBell />
-              <Link href="/profile" className={styles.username}>
-                {user.username}
-              </Link>
+               <NotificationBell />
+               <Link href="/profile" className={styles.userAvatar}>
+                 <span className={styles.avatarInitial}>
+                   {user.username?.substring(0, 1).toUpperCase() || '•'}
+                 </span>
+                 <span className={styles.usernameText}>{user.username}</span>
+               </Link>
               <Link href="/settings" className={styles.navLink}>
                 settings
               </Link>
