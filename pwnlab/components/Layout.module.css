@@ -17,11 +17,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px 0 4px;
+  padding: 0 8px;
   border-bottom: 1px solid var(--border-soft);
   flex-shrink: 0;
 }
 
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 .brand {
   display: flex;
   align-items: center;
@@ -49,11 +54,20 @@
   display: flex;
   align-items: center;
   gap: 18px;
+  margin-left: auto;
   overflow-x: auto;
   scrollbar-width: none;
 }
 
-.navRight::-webkit-scrollbar {
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.navLinks::-webkit-scrollbar {
   display: none;
 }
 
@@ -104,6 +118,16 @@
   font-size: 0.7rem;
   font-weight: 600;
   color: #aaa;
+}
+
+.usernameText {
+  display: none;
+}
+
+@media (min-width: 761px) {
+  .usernameText {
+    display: block;
+  }
 }
 
 .logoutBtn,
@@ -233,11 +257,64 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: var(--bg);
+}
+
+.loadingTriangle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.triangle,
+.triangle2,
+.triangle3 {
+  width: 0;
+  height: 0;
+  border-left: 80px solid transparent;
+  border-right: 80px solid transparent;
+}
+
+.triangle {
+  border-bottom: 140px solid var(--border-strong);
+  animation: pulse-tri 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 188, 212, 0.3));
+}
+
+.triangle2 {
+  border-bottom: 140px solid var(--border-strong);
+  opacity: 0.5;
+  animation: pulse-tri 2s ease-in-out 0.3s infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 188, 212, 0.2));
+}
+
+.triangle3 {
+  border-bottom: 140px solid var(--border-strong);
+  opacity: 0.2;
+  animation: pulse-tri 2s ease-in-out 0.6s infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 188, 212, 0.1));
+}
+
+@keyframes pulse-tri {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+  50% { transform: scale(1.05) rotate(0.5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+}
+
+.loadingText {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: var(--quiet);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+  animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 @media (max-width: 760px) {

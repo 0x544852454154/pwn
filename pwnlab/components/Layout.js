@@ -112,7 +112,14 @@ export default function Layout({ children, requireAuth = false }) {
   if (requireAuth && loading) {
     return (
       <div className={styles.layout}>
-        <div className={styles.loading}>initializing...</div>
+        <div className={styles.loading}>
+          <div className={styles.loadingTriangle}>
+            <div className={styles.triangle}></div>
+            <div className={styles.triangle2}></div>
+            <div className={styles.triangle3}></div>
+            <span className={styles.loadingText}>initializing...</span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -128,86 +135,96 @@ export default function Layout({ children, requireAuth = false }) {
     <div className={styles.layout}>
       <div className={styles.shell}>
         <header className={styles.topbar}>
-          <Link href="/" className={styles.brand}>
-            <span className={styles.brandMark}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" opacity="0.8"/>
-                <path d="M3 8l9 8 9-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M7 12l5 4 5-4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="8" cy="10" r="1" fill="currentColor" opacity="0.6"/>
-                <circle cx="16" cy="10" r="1" fill="currentColor" opacity="0.6"/>
-              </svg>
-            </span>
-            <span>pwnlab</span>
-            <span>/ {sectionName}</span>
-          </Link>
+          <div className={styles.navLeft}>
+            <Link href="/" className={styles.brand}>
+              <span className={styles.brandMark}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" opacity="0.8"/>
+                  <path d="M3 8l9 8 9-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M7 12l5 4 5-4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="8" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+                  <circle cx="16" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+                </svg>
+              </span>
+              <span>pwnlab</span>
+              <span>/ {sectionName}</span>
+            </Link>
+
+            {user ? (
+              <>
+                <nav className={styles.navLinks}>
+                  <Link
+                    href="/dashboard"
+                    className={router.pathname === '/dashboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="dashboard" />
+                    dashboard
+                  </Link>
+                  <Link
+                    href="/challenges"
+                    className={router.pathname.startsWith('/challenge') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="challenges" />
+                    challenges
+                  </Link>
+                  <Link
+                    href="/leaderboard"
+                    className={router.pathname === '/leaderboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="leaderboard" />
+                    leaderboard
+                  </Link>
+                  <Link
+                    href="/teams"
+                    className={router.pathname.startsWith('/team') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="teams" />
+                    teams
+                  </Link>
+                  <Link
+                    href="/events"
+                    className={router.pathname.startsWith('/events') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="events" />
+                    events
+                  </Link>
+                  <Link
+                    href="/notes"
+                    className={router.pathname === '/notes' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="notes" />
+                    notes
+                  </Link>
+                  <Link
+                    href="/writeups"
+                    className={router.pathname.startsWith('/writeups') ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="writeups" />
+                    writeups
+                  </Link>
+                  <Link
+                    href="/activity"
+                    className={router.pathname === '/activity' ? styles.navLink + ' ' + styles.active : styles.navLink}
+                  >
+                    <NavIcon name="activity" />
+                    activity
+                  </Link>
+                </nav>
+              </>
+            ) : null}
+          </div>
 
           {user ? (
             <div className={styles.navRight}>
-              <Link
-                href="/dashboard"
-                className={router.pathname === '/dashboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="dashboard" />
-                dashboard
+              <NotificationBell />
+              <Link href="/profile" className={styles.userAvatar}>
+                <span className={styles.avatarInitial}>
+                  {user.username?.substring(0, 1).toUpperCase() || '•'}
+                </span>
+                <span className={styles.usernameText}>{user.username}</span>
               </Link>
-              <Link
-                href="/challenges"
-                className={router.pathname.startsWith('/challenge') ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="challenges" />
-                challenges
-              </Link>
-              <Link
-                href="/leaderboard"
-                className={router.pathname === '/leaderboard' ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="leaderboard" />
-                leaderboard
-              </Link>
-              <Link
-                href="/teams"
-                className={router.pathname.startsWith('/team') ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="teams" />
-                teams
-              </Link>
-              <Link
-                href="/events"
-                className={router.pathname.startsWith('/events') ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="events" />
-                events
-              </Link>
-              <Link
-                href="/notes"
-                className={router.pathname === '/notes' ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="notes" />
-                notes
-              </Link>
-              <Link
-                href="/writeups"
-                className={router.pathname.startsWith('/writeups') ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="writeups" />
-                writeups
-              </Link>
-              <Link
-                href="/activity"
-                className={router.pathname === '/activity' ? styles.navLink + ' ' + styles.active : styles.navLink}
-              >
-                <NavIcon name="activity" />
-                activity
-              </Link>
-               <NotificationBell />
-               <Link href="/profile" className={styles.userAvatar}>
-                 <span className={styles.avatarInitial}>
-                   {user.username?.substring(0, 1).toUpperCase() || '•'}
-                 </span>
-                 <span className={styles.usernameText}>{user.username}</span>
-               </Link>
               <Link href="/settings" className={styles.navLink}>
+                <NavIcon name="settings" />
                 settings
               </Link>
               <button
@@ -215,6 +232,7 @@ export default function Layout({ children, requireAuth = false }) {
                 className={styles.logoutBtn}
                 aria-label="Logout"
               >
+                <NavIcon name="logout" />
                 logout
               </button>
             </div>
