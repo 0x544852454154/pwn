@@ -63,8 +63,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  overflow: visible;
 }
 
 .navLinks::-webkit-scrollbar {
@@ -81,6 +80,7 @@
   border-radius: 8px;
   transition: all var(--transition-fast);
   text-decoration: none;
+  overflow: visible;
 }
 
 .navLink:hover,
@@ -128,6 +128,7 @@
   letter-spacing: 0.07em;
   white-space: nowrap;
   text-decoration: none;
+  overflow: visible;
 }
 
 .userAvatar::after {
@@ -174,6 +175,15 @@
   color: #aaa;
 }
 
+.avatarImg {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  object-fit: cover;
+  display: block;
+}
+
 .usernameText {
   display: none;
 }
@@ -198,6 +208,7 @@
   cursor: pointer;
   transition: all var(--transition-fast);
   position: relative;
+  overflow: visible;
 }
 
 .logoutBtn:hover,
@@ -525,6 +536,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
+  overflow: visible;
 }
 
 .notifBell:hover {

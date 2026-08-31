@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
 
 function NavIcon({ name }) {
   const icons = {
-    dashboard: 'M3 3v2h2V3H3zm16 0h-2v2h2zM3 7v2h2V7H3zm16 0h-2v2h2zM3 11v2h2v-2H3zm16 0h-2v2h2zM3 15v2h2v-2H3zm2 0v-2h2v2H5zm14-2h-2v2h2zm-4 0v2h-2v-2h2zm4 4v2h-2v-2h2zm-4 0v2h-4v-2h2v-2H9v2zm2-6V7h-2v2h2zm0 4h-2v-2h2v2z',
-    challenges: 'M12 2L4 5v6c0 5 4 9 8 10 1.82-.56 3.44-1.5 4.66-2.66L12 10l4-2V5c0-1.1-.9-2-2-2h-2zM7 14c-2.36 2.54-3.66 5.7-3.66 9h7.32c-.34-.86-.58-1.76-.66-2.68-.08-.92.05-1.85.34-2.73L7 14z',
+    dashboard: 'M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm8-2h8v8h-8v-8zm2 2v4h4v-4h-4z',
+    challenges: 'M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 10.41L12 14l1.06 1.41L13.41 15.5l-.53.53L12 16.53l-1.41-1.06-.53-.53L10.59 15.5l1.06-1.06.53.53zM12 11L7 8.09V5.5L12 3.27l5 2.23V8.09L12 11z',
     leaderboard: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27z',
     teams: 'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 9.3 12 9.3zm0 2.4c-3.2 0-5.8 2.6-5.8 5.8v2.4h11.6v-2.4c0-3.2-2.6-5.8-5.8-5.8z',
     notes: 'M13 3a2 2 0 0 0-4 0v2h4V3zm-6 9a6 6 0 1 1 12 0v5a2 2 0 0 1-2 2h-1.5a.5.5 0 0 0-.5.5 1.5 1.5 0 1 1-3 0 .5.5 0 0 0-.5-.5H7a2 2 0 0 1-2-2V12z',
     writeups: 'M4 4h16v2H4V4zm0 6h16v2H4v-2zm0 6h10v2H4v-2z',
-    activity: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15H7v-6h3v6zm5-9.5h-3V15h-2V7h5v4.5z',
+    activity: 'M22 12h-4l-3 9L9 3l-3 9H2',
     events: 'M9 2h6v2H9zM4 7h16v2H4zM7 11h2v8H7zm6 0h2v8h-2z',
-    settings: 'M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z',
+    settings: 'M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63a.49.49 0 0 0 .12-.61l-2-3.46a.49.49 0 0 0-.59-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.49.49 0 0 0 14 2h-4a.49.49 0 0 0-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1a.49.49 0 0 0-.59.22l-2 3.46a.49.49 0 0 0 .12.61l2.11 1.63c-.04.34-.07.67-.07 1 0 .33.03.66.07.97l-2.11 1.63a.49.49 0 0 0-.12.61l2 3.46c.12.2.37.29.59.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.05.24.25.42.49.42h4a.49.49 0 0 0 .49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1.01c.22.08.47 0 .59-.22l2-3.46a.49.49 0 0 0-.12-.61l-2.11-1.63z',
     logout: 'M5 3h2v2H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h2v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H7V7c0-1.1-.9-2-2-2H5zm7 0h2v2h-2V3zm-4 4h10v12H8V7zm-2 2v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1z'
   };
   const path = icons[name] || '';
@@ -23,6 +24,7 @@ function NavIcon({ name }) {
 export default function Layout({ children, requireAuth = false }) {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
   const [loading, setLoading] = useState(true);
   const [announcement, setAnnouncement] = useState(null);
   const [dismissedAnnouncements, setDismissedAnnouncements] = useState([]);
@@ -33,8 +35,10 @@ export default function Layout({ children, requireAuth = false }) {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
+        setAvatarUrl(data.avatarUrl || null);
       } else {
         setUser(null);
+        setAvatarUrl(null);
         if (requireAuth) {
           router.push('/login');
         }
@@ -42,6 +46,7 @@ export default function Layout({ children, requireAuth = false }) {
     } catch (error) {
       console.error('Auth check failed:', error);
       setUser(null);
+      setAvatarUrl(null);
       if (requireAuth) {
         router.push('/login');
       }
@@ -218,9 +223,20 @@ export default function Layout({ children, requireAuth = false }) {
             <div className={styles.navRight}>
               <NotificationBell />
               <Link href="/profile" className={styles.userAvatar} data-tooltip={user.username}>
-                <span className={styles.avatarInitial}>
-                  {user.username?.substring(0, 1).toUpperCase() || '•'}
-                </span>
+                {avatarUrl ? (
+                  <Image
+                    src={avatarUrl}
+                    alt={user.username}
+                    width={28}
+                    height={28}
+                    unoptimized
+                    className={styles.avatarImg}
+                  />
+                ) : (
+                  <span className={styles.avatarInitial}>
+                    {user.username?.substring(0, 1).toUpperCase() || '•'}
+                  </span>
+                )}
                 <span className={styles.usernameText}>{user.username}</span>
               </Link>
               <Link href="/settings" className={styles.navLink} data-tooltip="settings">

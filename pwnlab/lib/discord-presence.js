@@ -25,13 +25,13 @@ function fetchJSON(url, headers = {}, timeoutMs = 3000) {
   });
 }
 
-function getDiscordBannerUrl(discordId, bannerHash) {
+export function getDiscordBannerUrl(discordId, bannerHash) {
   if (!bannerHash) return null;
   const ext = bannerHash.startsWith('a_') ? 'gif' : 'png';
   return `https://cdn.discordapp.com/banners/${discordId}/${bannerHash}.${ext}?size=600`;
 }
 
-function getDiscordAvatarUrl(discordId, avatarHash) {
+export function getDiscordAvatarUrl(discordId, avatarHash) {
   if (!avatarHash) {
     const defaultIndex = discordId ? (BigInt(discordId) >> 22n) % 6n : 0n;
     return `https://cdn.discordapp.com/embed/avatars/${defaultIndex}.png`;

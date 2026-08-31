@@ -1,6 +1,7 @@
 import { getCurrentUser } from '../../../lib/auth';
 import { getCookie } from '../../../lib/cookies';
 import { apiRateLimit } from '../../../lib/api-middleware';
+import { supabaseAdmin } from '../../../lib/db';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -28,7 +29,23 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Invalid session' });
     }
 
-    return res.status(200).json({ user });
+    let avatarUrl = null;
+    try {
+      const { data: discordAcc } = await supabaseAdmin
+        .from('discord_accounts')
+        .select('discord_id')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (discordAcc?.discord_id) {
+        const { getDiscordAvatarUrl } = await import('../../../lib/discord-presence');
+        avatarUrl = getDiscordAvatarUrl(discordAcc.discord_id, null);
+      }
+    } catch (e) {
+      // Discord not linked
+    }
+
+    return res.status(200).json({ user, avatarUrl });
   } catch (error) {
     console.error('[API] Auth check error:', error);
     return res.status(500).json({ error: 'Internal server error' });
