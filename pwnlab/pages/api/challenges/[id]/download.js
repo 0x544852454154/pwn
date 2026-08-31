@@ -5,6 +5,7 @@ import path, { join, resolve } from 'path';
 import AdmZip from 'adm-zip';
 
 const CHALLENGE_FILES_ROOT = '/home/misery/pwnlab/challenges';
+const STORAGE_BUCKET = 'challenge-files';
 
 function collectFiles(dir, zipPrefix = '') {
   const files = [];
@@ -23,6 +24,17 @@ function collectFiles(dir, zipPrefix = '') {
     }
   }
   return files;
+}
+
+async function downloadFromStorage(supabase, storagePath) {
+  const { data, error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .download(storagePath);
+
+  if (error) throw error;
+
+  const buffer = Buffer.from(await data.arrayBuffer());
+  return buffer;
 }
 
 export default async function handler(req, res) {
@@ -52,34 +64,55 @@ export default async function handler(req, res) {
     }
 
     const folderPath = challenge.storage_path;
-    if (!folderPath || typeof folderPath !== 'string') {
-      return res.status(404).json({ error: 'No files available for this challenge' });
-    }
-
     const rootResolved = resolve(CHALLENGE_FILES_ROOT);
-    const targetResolved = resolve(rootResolved, folderPath);
 
-    if (!targetResolved.startsWith(rootResolved)) {
-      return res.status(403).json({ error: 'Access forbidden' });
+    let files = [];
+
+    const localPath = folderPath
+      ? resolve(rootResolved, folderPath)
+      : null;
+
+    if (localPath && localPath.startsWith(rootResolved) && existsSync(localPath)) {
+      files = collectFiles(localPath, folderPath);
+    } else {
+      const { data: fileRows, error: fileErr } = await supabaseAdmin
+        .from('challenge_files')
+        .select('filename, storage_path')
+        .eq('challenge_id', challengeId)
+        .order('id');
+
+      if (fileErr || !fileRows || fileRows.length === 0) {
+        if (localPath && existsSync(localPath)) {
+          files = collectFiles(localPath, folderPath);
+        }
+      } else {
+        for (const fileRow of fileRows) {
+          try {
+            const content = await downloadFromStorage(supabaseAdmin, fileRow.storage_path);
+            files.push({ path: null, zipPath: fileRow.storage_path, content });
+          } catch (err) {
+            console.warn(`[API] Failed to download ${fileRow.storage_path}:`, err.message);
+          }
+        }
+      }
     }
 
-    if (!existsSync(targetResolved)) {
-      return res.status(404).json({ error: 'Challenge file directory does not exist' });
-    }
-
-    const files = collectFiles(targetResolved);
     if (files.length === 0) {
-      return res.status(404).json({ error: 'No files available in challenge package' });
+      return res.status(404).json({ error: 'No files available for this challenge' });
     }
 
     const zip = new AdmZip();
     for (const file of files) {
-      const fileResolved = resolve(file.path);
-      if (!fileResolved.startsWith(rootResolved)) {
-        continue;
+      if (file.content) {
+        zip.addFile(file.zipPath, file.content);
+      } else {
+        const fileResolved = resolve(file.path);
+        if (!fileResolved.startsWith(rootResolved)) {
+          continue;
+        }
+        const content = readFileSync(file.path);
+        zip.addFile(file.zipPath, content);
       }
-      const content = readFileSync(file.path);
-      zip.addFile(file.zipPath, content);
     }
 
     const zipBuffer = zip.toBuffer();
