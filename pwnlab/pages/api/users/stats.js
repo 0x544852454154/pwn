@@ -32,7 +32,12 @@ export default async function handler(req, res) {
         .in('visibility', ['PUBLIC', 'TEAM ONLY']),
       supabaseAdmin
         .from('challenge_completions')
-        .select('user_id, points_earned')
+        .select('user_id, points_earned'),
+      supabaseAdmin
+        .from('profiles')
+        .select('current_streak, longest_streak')
+        .eq('user_id', user.id)
+        .single()
     ]);
 
     const profile = profileRes.data || {};

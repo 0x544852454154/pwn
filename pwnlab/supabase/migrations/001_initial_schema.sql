@@ -70,10 +70,12 @@ CREATE TABLE IF NOT EXISTS public.challenges (
   flag VARCHAR(255) NOT NULL,
   creator_id UUID REFERENCES public.users(id) ON DELETE SET NULL,
   visibility challenge_visibility DEFAULT 'PUBLIC',
-  storage_path TEXT,
-  is_dynamic_scoring BOOLEAN DEFAULT FALSE,
-  min_points INTEGER,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
+   storage_path TEXT,
+   is_dynamic_scoring BOOLEAN DEFAULT FALSE,
+   min_points INTEGER,
+   first_blood_user_id UUID REFERENCES public.users(id) ON DELETE SET NULL,
+   first_blood_at TIMESTAMPTZ,
+   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -130,8 +132,13 @@ CREATE TABLE IF NOT EXISTS public.profiles (
   bio TEXT,
   total_points INTEGER DEFAULT 0,
   challenges_solved INTEGER DEFAULT 0,
-  rank_title VARCHAR(50),
-  created_at TIMESTAMPTZ DEFAULT NOW(),
+   rank_title VARCHAR(50),
+   banner_url TEXT,
+   specialties TEXT[],
+   current_streak INTEGER DEFAULT 0,
+   longest_streak INTEGER DEFAULT 0,
+   last_solve_at TIMESTAMPTZ,
+   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
