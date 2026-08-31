@@ -40,10 +40,6 @@ export default function LeaderboardPage() {
     fetchLeaderboard();
   }, [fetchLeaderboard]);
 
-  useEffect(() => {
-    fetchLeaderboard();
-  }, [fetchLeaderboard]);
-
   async function handleToggleFriend(username, currentIsFriend) {
     if (!username) return;
     setActionLoading((prev) => ({ ...prev, [username]: true }));

@@ -25,6 +25,12 @@ function fetchJSON(url, headers = {}, timeoutMs = 3000) {
   });
 }
 
+function getDiscordBannerUrl(discordId, bannerHash) {
+  if (!bannerHash) return null;
+  const ext = bannerHash.startsWith('a_') ? 'gif' : 'png';
+  return `https://cdn.discordapp.com/banners/${discordId}/${bannerHash}.${ext}?size=600`;
+}
+
 function getDiscordAvatarUrl(discordId, avatarHash) {
   if (!avatarHash) {
     const defaultIndex = discordId ? (BigInt(discordId) >> 22n) % 6n : 0n;
@@ -42,6 +48,7 @@ export async function fetchDiscordUser(discordId, botToken = null) {
     username: null,
     global_name: null,
     avatarUrl: getDiscordAvatarUrl(discordId, null),
+    bannerUrl: getDiscordBannerUrl(discordId, null),
     status: 'offline',
     custom_status: null,
     custom_status_emoji: null,
@@ -57,6 +64,7 @@ export async function fetchDiscordUser(discordId, botToken = null) {
     result.username = u.username || result.username;
     result.global_name = u.global_name || u.display_name || u.username || result.global_name;
     result.avatarUrl = getDiscordAvatarUrl(discordId, u.avatar);
+    result.bannerUrl = getDiscordBannerUrl(discordId, u.banner);
     result.status = d.discord_status || 'offline';
 
     const customActivity = d.activities ? d.activities.find(a => a.type === 4 || a.id === 'custom') : null;
@@ -85,6 +93,7 @@ export async function fetchDiscordUser(discordId, botToken = null) {
       result.username = u.username || result.username;
       result.global_name = u.global_name || u.display_name || u.username || result.global_name;
       result.avatarUrl = getDiscordAvatarUrl(discordId, u.avatar);
+      result.bannerUrl = getDiscordBannerUrl(discordId, u.banner);
       return result;
     }
   }
