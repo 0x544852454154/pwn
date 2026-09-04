@@ -1,17 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const { supabaseAdmin } = require('../lib/supabase-admin');
-const { easyChallenges, mediumChallenges } = require('./challenges-data-part1');
-const { hardChallenges, insaneChallenges } = require('./challenges-data-part2');
+const { part1Challenges } = require('./challenges-part1');
+const { part2Challenges } = require('./challenges-part2');
+const { part3Challenges } = require('./challenges-part3');
+const { part4Challenges } = require('./challenges-part4');
 require('dotenv').config({ path: '.env.local' });
 
 const ROOT = '/home/misery/pwnlab/challenges';
 
 const allChallenges = [
-  ...easyChallenges,
-  ...mediumChallenges,
-  ...hardChallenges,
-  ...insaneChallenges,
+  ...part1Challenges,
+  ...part2Challenges,
+  ...part3Challenges,
+  ...part4Challenges,
 ];
 
 async function run() {
@@ -24,6 +26,7 @@ async function run() {
     fs.mkdirSync(dir, { recursive: true });
     for (const [filename, content] of Object.entries(chall.files)) {
       const filePath = path.join(dir, filename);
+      fs.mkdirSync(path.dirname(filePath), { recursive: true });
       fs.writeFileSync(filePath, content);
     }
     console.log(`  ✓ Files created for [${chall.difficulty}] ${chall.name} (${chall.storage_path})`);
@@ -54,7 +57,7 @@ async function run() {
   await supabaseAdmin.from('challenges').delete().neq('id', 0);
 
   // 4. Insert each challenge
-  console.log('\nInserting 20 challenges into Supabase...');
+  console.log(`\nInserting ${allChallenges.length} challenges into Supabase...`);
   for (const [idx, chall] of allChallenges.entries()) {
     const catId = catMap[chall.category.toUpperCase()] || catMap['WEB'];
 
@@ -115,7 +118,7 @@ async function run() {
     console.log(`  [#${challId}] ${chall.difficulty} | ${chall.category} | ${chall.name} (${chall.points} pts)`);
   }
 
-  console.log('\n✅ All 20 challenges seeded successfully!');
+  console.log(`\n✅ All ${allChallenges.length} challenges seeded successfully!`);
 }
 
 run().catch(err => {
