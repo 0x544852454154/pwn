@@ -123,6 +123,9 @@ export default async function handler(req, res) {
       .eq('challenge_id', challId)
       .maybeSingle();
 
+    // Count completed solutions for this challenge (any user). The first one
+    // (by completed_at) is the first-blood winner. We use the completions
+    // table so no dedicated column on `challenges` is required.
     const { count: priorSolvesCount } = await supabaseAdmin
       .from('challenge_completions')
       .select('id', { count: 'exact', head: true })
@@ -141,45 +144,45 @@ export default async function handler(req, res) {
           points_earned: pointsEarned,
         });
 
-      const challengeUpdates = {};
-      if (isFirstBlood) {
-        challengeUpdates.first_blood_user_id = user.id;
-        challengeUpdates.first_blood_at = new Date().toISOString();
-      }
-      if (Object.keys(challengeUpdates).length > 0) {
-        await supabaseAdmin.from('challenges').update(challengeUpdates).eq('id', challId);
-      }
+      // first-blood: the challenge table has no first_blood_* columns in this
+      // instance, so the winner is derived at read time from the completions
+      // table (earliest completed_at). We persist the notification so the user
+      // sees the toast and pressing "X" only dismisses the notification.
+      try {
+        const { data: profile } = await supabaseAdmin
+          .from('users')
+          .select('last_solve_at, current_streak, longest_streak')
+          .eq('id', user.id)
+          .single();
 
-      const { data: profile } = await supabaseAdmin
-        .from('profiles')
-        .select('last_solve_at, current_streak, longest_streak')
-        .eq('user_id', user.id)
-        .single();
+        const now = new Date();
+        let newStreak = (profile?.current_streak || 0) + 1;
+        let longestStreak = profile?.longest_streak || 0;
 
-      const now = new Date();
-      let newStreak = (profile?.current_streak || 0) + 1;
-      let longestStreak = profile?.longest_streak || 0;
-
-      if (profile?.last_solve_at) {
-        const lastSolve = new Date(profile.last_solve_at);
-        const hoursDiff = (now - lastSolve) / (1000 * 60 * 60);
-        if (hoursDiff > 48) {
-          newStreak = 1;
+        if (profile?.last_solve_at) {
+          const lastSolve = new Date(profile.last_solve_at);
+          const hoursDiff = (now - lastSolve) / (1000 * 60 * 60);
+          if (hoursDiff > 48) {
+            newStreak = 1;
+          }
         }
-      }
 
-      if (newStreak > longestStreak) {
-        longestStreak = newStreak;
-      }
+        if (newStreak > longestStreak) {
+          longestStreak = newStreak;
+        }
 
-      await supabaseAdmin
-        .from('profiles')
-        .update({
-          current_streak: newStreak,
-          longest_streak: longestStreak,
-          last_solve_at: now.toISOString()
-        })
-        .eq('user_id', user.id);
+        // Only update streak columns that actually exist (graceful if absent)
+        const updates = { last_solve_at: now.toISOString() };
+        const known = profile || {};
+        if ('current_streak' in known) {
+          updates.current_streak = newStreak;
+          updates.longest_streak = longestStreak;
+        }
+        await supabaseAdmin.from('users').update(updates).eq('id', user.id);
+      } catch (profileErr) {
+        // Streak tracking is best-effort; do not block the solve.
+        console.warn('[API] streak update skipped:', profileErr.message);
+      }
 
       await supabaseAdmin
         .from('activity_log')
@@ -196,8 +199,8 @@ export default async function handler(req, res) {
           user_id: user.id,
           type: 'FIRST_BLOOD',
           title: 'FIRST BLOOD!',
-          message: `You were the first to solve ${challenge.name}!`,
-          data: { challengeId: challId, challengeName: challenge.name }
+          message: `You were the first to solve ${challenge.name} (+${pointsEarned} pts)!`,
+          data: { challengeId: challId, challengeName: challenge.name },
         });
       }
     }

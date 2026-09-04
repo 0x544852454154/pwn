@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
       const { data: c, error: challError } = await supabaseAdmin
       .from('challenges')
-      .select('id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id), first_blood_user_id, first_blood_at')
+      .select('id, name, description, difficulty, points, estimated_time, category:challenge_categories(name)')
       .eq('id', challengeId)
       .single();
 
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     let selectError = challError;
 
     if (challError) {
-      const retrySelect = 'id, name, description, difficulty, points, estimated_time, category:challenge_categories(name), completions:challenge_completions(id, user_id)';
+      const retrySelect = 'id, name, description, difficulty, points, estimated_time, category:challenge_categories(name)';
       const retry = await supabaseAdmin
         .from('challenges')
         .select(retrySelect)
@@ -41,14 +41,26 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'Challenge not found' });
     }
 
-    const solves = challengeData.completions?.length || 0;
-    const isCompleted = challengeData.completions?.some((comp) => comp.user_id === user.id) || false;
+    // Fetch completion history separately (avoids nested-select coercion issues).
+    const { data: completions, error: compError } = await supabaseAdmin
+      .from('challenge_completions')
+      .select('user_id, completed_at')
+      .eq('challenge_id', challengeId)
+      .order('completed_at', { ascending: true });
 
-    const firstBlood = challengeData.first_blood_user_id ? {
-      userId: challengeData.first_blood_user_id,
-      username: null,
-      timestamp: challengeData.first_blood_at
-    } : null;
+    const solves = (completions || []).length;
+    const isCompleted = (completions || []).some((comp) => comp.user_id === user.id);
+
+    // Derive first blood from the completions table (earliest completed_at),
+    // since the challenge row has no first_blood_* columns in this instance.
+    let firstBlood = null;
+    if (completions && completions.length > 0 && completions[0].completed_at) {
+      firstBlood = {
+        userId: completions[0].user_id,
+        username: null,
+        timestamp: completions[0].completed_at,
+      };
+    }
 
     const [objectivesRes, hintsRes] = await Promise.all([
       supabaseAdmin.from('challenge_objectives').select('id, objective').eq('challenge_id', challengeId).order('order_num', { ascending: true }),
