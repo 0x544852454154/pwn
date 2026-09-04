@@ -14,11 +14,15 @@ fs.mkdirSync(WORK_ROOT, { recursive: true });
 
 const ALLOWED_COMMANDS = new Set([
   'ls', 'cat', 'file', 'strings', 'hexdump', 'xxd',
-  'python3', 'gcc', 'grep', 'base64', 'wc', 'head', 'tail',
+  'python3', 'pip3', 'gcc', 'grep', 'base64', 'wc', 'head', 'tail',
   'pwd', 'echo', 'find', 'sort', 'uniq', 'diff', 'md5sum',
   'sha256sum', 'tar', 'gzip', 'gunzip', 'zip', 'unzip',
-  'curl', 'wget', 'nc', 'nmap', 'ping', 'traceroute',
-  'openssl', 'jq', 'awk', 'sed', 'cut', 'tr'
+  'curl', 'wget', 'nmap', 'ping',
+  'openssl', 'jq', 'awk', 'sed', 'cut', 'tr',
+  // Binary / forensic inspection
+  'objdump', 'readelf', 'nm', 'tshark', 'tcpdump', 'sqlite3',
+  // Convenience math
+  'python3'
 ]);
 
 const MAX_COMMAND_LENGTH = 500;

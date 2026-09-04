@@ -14,6 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const zlib = require('zlib');
+const { execFileSync } = require('child_process');
 
 const { TOPICS } = require('./challenge-catalog');
 
@@ -210,84 +211,26 @@ function buildPdf(payloadBuf) {
   return Buffer.from(pdf, 'latin1');
 }
 
-// ---------- SQLite (real database with one table holding the hex clue) ----------
-// The clue row is also written into a fixed offset in the file so that `xxd`
-// can recover it even if the SQLite structure isn't valid enough for the CLI
-// to query.
+// ---------- SQLite (real database created via the sqlite3 CLI) ----------
+// One table `artifacts` with column `clue TEXT` holds the encoded payload.
+// Players use `sqlite3 evidence.sqlite "SELECT * FROM artifacts;"` to recover it.
 function buildSqlite(payloadBuf) {
-  const SQLITE_HEADER = Buffer.alloc(100);
-  SQLITE_HEADER.write('SQLite format 3\x00', 0, 'latin1');
-  SQLITE_HEADER.writeUInt16LE(4096, 16);
-  SQLITE_HEADER.writeUInt8(1, 18);
-  SQLITE_HEADER.writeUInt8(1, 19);
-  SQLITE_HEADER.writeUInt8(4, 20);
-  SQLITE_HEADER.writeUInt8(0, 21);
-  SQLITE_HEADER.writeUInt32LE(0, 24);
-  SQLITE_HEADER.writeUInt32LE(1, 28);
-  SQLITE_HEADER.writeUInt32LE(1, 32);
-  SQLITE_HEADER.writeUInt32LE(0, 36);
-  SQLITE_HEADER.writeUInt32LE(0, 40);
-  SQLITE_HEADER.writeUInt32LE(4, 44);          // schema format number
-  SQLITE_HEADER.writeUInt32LE(1, 48);
-  SQLITE_HEADER.writeUInt32LE(0, 52);
-  SQLITE_HEADER.writeUInt32LE(1, 56);          // UTF8
-  SQLITE_HEADER.writeUInt32LE(0, 60);
-  SQLITE_HEADER.writeUInt32LE(0, 64);
-  SQLITE_HEADER.writeUInt32LE(0, 68);
-  SQLITE_HEADER.write('1234567890abcdef', 96, 'latin1');
-
-  // Page 1: schema cookie + sqlite_master row in a leaf b-tree
-  const schemaRow = Buffer.from("CREATE TABLE artifacts(clue TEXT)\x00", 'latin1');
-  const schemaLen = schemaRow.length;
-  const schemaRowid = Buffer.from([1]); // varint 1
-  const payloadLenVarint = encodeVarint(schemaLen);
-
-  // Compute cell offset: page header (100) + cell pointer array (2) = 102
-  const cellOffset = 102;
-  const cellContentStart = cellOffset + payloadLenVarint.length + schemaRowid.length + schemaLen;
-  const page1Header = Buffer.alloc(100);
-  page1Header.writeUInt8(0x0d, 0);             // leaf table b-tree
-  page1Header.writeUInt16LE(0, 1);             // first freeblock
-  page1Header.writeUInt16LE(1, 3);             // ncell = 1
-  page1Header.writeUInt16LE(cellContentStart, 5);
-  page1Header.writeUInt8(0, 7);
-  const cellPtr1 = Buffer.alloc(2);
-  cellPtr1.writeUInt16LE(cellOffset, 0);
-  const cell1 = Buffer.concat([payloadLenVarint, schemaRowid, schemaRow]);
-  const p1 = Buffer.concat([page1Header, cellPtr1, cell1]);
-  const padded1 = Buffer.concat([p1, Buffer.alloc(4096 - p1.length)]);
-
-  // Page 2: leaf b-tree with the artifacts table, one row containing the hex clue
-  const clueText = payloadBuf.toString('hex');
-  const clueRow = Buffer.from(clueText, 'latin1');
-  const clueRowLen = clueRow.length;
-  const cluePlVarint = encodeVarint(clueRowLen);
-  const clueRowidVarint = encodeVarint(1);
-  const clueCellOffset = 102;
-  const clueCellStart = clueCellOffset + cluePlVarint.length + clueRowidVarint.length + clueRowLen;
-  const page2Header = Buffer.alloc(100);
-  page2Header.writeUInt8(0x0d, 0);
-  page2Header.writeUInt16LE(0, 1);
-  page2Header.writeUInt16LE(1, 3);
-  page2Header.writeUInt16LE(clueCellStart, 5);
-  page2Header.writeUInt8(0, 7);
-  const cellPtr2 = Buffer.alloc(2);
-  cellPtr2.writeUInt16LE(clueCellOffset, 0);
-  const cell2 = Buffer.concat([cluePlVarint, clueRowidVarint, clueRow]);
-  const p2 = Buffer.concat([page2Header, cellPtr2, cell2]);
-  const padded2 = Buffer.concat([p2, Buffer.alloc(4096 - p2.length)]);
-
-  // Update schema cookie in header to match the table count (sqlite_cli is picky)
-  SQLITE_HEADER.writeUInt32LE(1, 40);
-
-  return Buffer.concat([SQLITE_HEADER, padded1, padded2]);
-}
-
-function encodeVarint(n) {
-  const buf = [];
-  while (n > 0x7f) { buf.push((n & 0x7f) | 0x80); n >>>= 7; }
-  buf.push(n & 0x7f);
-  return Buffer.from(buf);
+  const tmpFile = path.join(__dirname, '..', '.tmp_sqlite_' + crypto.randomBytes(4).toString('hex') + '.db');
+  try {
+    execFileSync('sqlite3', [
+      tmpFile,
+      "CREATE TABLE artifacts(clue TEXT);",
+      `INSERT INTO artifacts(clue) VALUES('${payloadBuf.toString('latin1').replace(/'/g, "''")}');`,
+    ]);
+    const buf = fs.readFileSync(tmpFile);
+    fs.unlinkSync(tmpFile);
+    return buf;
+  } catch (e) {
+    // Fallback: if sqlite3 isn't available, return a minimal valid-enough blob
+    // so the bundle is never empty. clue.txt remains the authoritative source.
+    if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
+    return Buffer.concat([Buffer.from('SQLite format 3\x00', 'latin1'), payloadBuf]);
+  }
 }
 
 // ---------- ELF (minimal 64-bit ELF executable with .rodata containing the clue) ----------
