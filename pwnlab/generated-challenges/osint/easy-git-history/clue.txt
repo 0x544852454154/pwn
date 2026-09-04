@@ -1,0 +1,6 @@
+# Encoded clue for: Public code repository commit history and leaked secret scanning
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+8de90f288deb033f94fd3e3092fa040c8ffb113c8ef7153c8fe73e3092f30c3a89c1093aa2fc5731cbaf052e

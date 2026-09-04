@@ -1,0 +1,6 @@
+# Encoded clue for: Corporate email pattern discovery and employee directory analysis
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+290d2a4d3a153646360825423c25215b38132869291b30423c082a693d133755360c2144064270053d4f7c4b

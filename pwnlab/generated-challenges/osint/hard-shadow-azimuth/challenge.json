@@ -1,0 +1,32 @@
+{
+  "name": "Satellite imagery analysis with sun shadow azimuth calculation for geolocation",
+  "category": "OSINT",
+  "difficulty": "HARD",
+  "topic": "Satellite imagery analysis with sun shadow azimuth calculation for geolocation",
+  "points": 400,
+  "estimated_time": 70,
+  "flag": "pwn{satellite_imagery_analysis_with__e4c02d}",
+  "storage_path": "osint/hard-shadow-azimuth",
+  "primary_artifact": "recon_image.png",
+  "description": "Satellite imagery analysis with sun shadow azimuth calculation for geolocation -- a hard-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Satellite imagery analysis with sun shadow azimuth calculation for geolocation\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

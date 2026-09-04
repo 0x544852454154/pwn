@@ -1,0 +1,32 @@
+{
+  "name": "PDF format stream analysis with hidden JavaScript payload",
+  "category": "FORENSICS",
+  "difficulty": "MEDIUM",
+  "topic": "PDF format stream analysis with hidden JavaScript payload",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{pdf_format_stream_analysis_with__985406}",
+  "storage_path": "forensics/med-pdf-javascript",
+  "primary_artifact": "evidence.sqlite",
+  "description": "PDF format stream analysis with hidden JavaScript payload -- a medium-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"PDF format stream analysis with hidden JavaScript payload\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

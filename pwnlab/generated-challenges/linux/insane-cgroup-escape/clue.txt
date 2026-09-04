@@ -1,0 +1,6 @@
+# Encoded clue for: Namespace breakout via cgroups release_agent
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+b0f7992caea7c84bbf9bda64b8abdb73ae9bc87dbb9bdd61a2afc871bfa6f671aea5d967a8a9c87ab6aade64

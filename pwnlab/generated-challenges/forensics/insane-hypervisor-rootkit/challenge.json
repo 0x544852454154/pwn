@@ -1,0 +1,32 @@
+{
+  "name": "Hypervisor memory snapshot introspection detecting rootkit hypercall hooks",
+  "category": "FORENSICS",
+  "difficulty": "INSANE",
+  "topic": "Hypervisor memory snapshot introspection detecting rootkit hypercall hooks",
+  "points": 750,
+  "estimated_time": 180,
+  "flag": "pwn{hypervisor_memory_snapshot_intro_f9cadd}",
+  "storage_path": "forensics/insane-hypervisor-rootkit",
+  "primary_artifact": "evidence.sqlite",
+  "description": "Hypervisor memory snapshot introspection detecting rootkit hypercall hooks -- a insane-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Hypervisor memory snapshot introspection detecting rootkit hypercall hooks\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

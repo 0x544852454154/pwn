@@ -1,0 +1,6 @@
+# Encoded clue for: SROP (Sigreturn Oriented Programming) binary exploitation
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4b504837327976302b74414839667a484b7550683153726f79733871372f444f4c4f50782f796a302b736371352f6a4e422b656a6b573632724e303d

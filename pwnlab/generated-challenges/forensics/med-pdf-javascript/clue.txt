@@ -1,0 +1,6 @@
+# Encoded clue for: PDF format stream analysis with hidden JavaScript payload
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+9cLfbvXR10rj2sN45MHuZvHH1HTo6tB75NnIZuzG7mLswdlK2oyJILGFh2g=

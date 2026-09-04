@@ -1,0 +1,32 @@
+{
+  "name": "Custom virtual machine interpreter bytecode disassembly",
+  "category": "REVERSE ENGINEERING",
+  "difficulty": "HARD",
+  "topic": "Custom virtual machine interpreter bytecode disassembly",
+  "points": 400,
+  "estimated_time": 70,
+  "flag": "pwn{custom_virtual_machine_interpret_84ee75}",
+  "storage_path": "rev/hard-custom-vm",
+  "primary_artifact": "target.elf",
+  "description": "Custom virtual machine interpreter bytecode disassembly -- a hard-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Custom virtual machine interpreter bytecode disassembly\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

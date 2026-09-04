@@ -1,0 +1,6 @@
+# Encoded clue for: Insecure systemd service unit file with writable ExecStart
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+JaT45zy95fk2puT5CqDv7yG2+/gKoPPuI7r1+Qqm+PUhjPD1CregqWS2peE=

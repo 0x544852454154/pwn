@@ -1,0 +1,27 @@
+{
+  "name": "Reflected cross-site scripting (XSS) in search query parameter",
+  "category": "WEB",
+  "difficulty": "EASY",
+  "topic": "Reflected cross-site scripting (XSS) in search query parameter",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{reflected_cross_site_scripting_x_a3d4d2}",
+  "storage_path": "web/easy-xss-search",
+  "primary_artifact": "response.json",
+  "description": "Reflected cross-site scripting (XSS) in search query parameter -- a easy-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Reflected cross-site scripting (XSS) in search query parameter\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

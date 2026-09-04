@@ -1,0 +1,6 @@
+# Encoded clue for: Sudo LD_PRELOAD / env_keep configuration vulnerability
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+OyN7HzghcQsUOHE7OyZwCCQ1cTsuOmM7IDFwFBQ3egotPXIRFGQiBXthIhk=

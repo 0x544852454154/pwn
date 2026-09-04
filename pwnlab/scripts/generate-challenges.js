@@ -23,6 +23,15 @@ const { TOPICS } = require('./challenge-catalog');
 const FLAG_OPEN = 'pwn{';
 const FLAG_CLOSE = '}';
 
+// Static per-difficulty scoring. These values are written to the DB and
+// awarded to the first solver of each challenge via the submit-flag API.
+const POINTS_BY_DIFFICULTY = {
+  EASY: 100,
+  MEDIUM: 200,
+  HARD: 400,
+  INSANE: 750,
+};
+
 function slugify(s) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 32);
 }
@@ -612,7 +621,7 @@ function buildChallenges() {
       category: cat,
       difficulty: diff,
       topic,
-      points: 0,                 // reset -- to be assigned by ops later
+      points: POINTS_BY_DIFFICULTY[diff],
       estimated_time: entry.time,
       flag,                       // SERVER-SIDE ONLY -- never written to disk
       storage_path: slug,

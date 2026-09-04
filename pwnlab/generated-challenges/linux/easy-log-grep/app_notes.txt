@@ -1,0 +1,3 @@
+Vulnerability class: Hidden file permissions and grep filtering in /var/log
+Operator note: the scheduled task references a binary artifact that does not
+belong to the original package. Recover it, decode it, and submit the flag.

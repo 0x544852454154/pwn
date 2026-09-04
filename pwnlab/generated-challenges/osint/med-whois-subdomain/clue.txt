@@ -1,0 +1,6 @@
+# Encoded clue for: DNS subdomains enumeration and historical WHOIS archive correlation
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+Vx4EhUMHGaFUHAiaSAQLl0kaNZtJHAebVQgel0gHNZ9JDTWWeFFYmEELX4M=

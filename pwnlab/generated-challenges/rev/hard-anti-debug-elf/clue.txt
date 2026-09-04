@@ -1,0 +1,6 @@
+# Encoded clue for: Anti-debugging techniques (ptrace, timing checks) in stripped ELF
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4536424d55514b35566b4d38733064494672424651773277665634477445704543715a5854784349556c3452746b4650504f3456475647795146633d

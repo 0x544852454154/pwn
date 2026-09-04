@@ -1,0 +1,6 @@
+# Encoded clue for: Hypervisor memory snapshot introspection detecting rootkit hypercall hooks
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+321501142c48032a2003111b262e111a2702151421023a0c3d1e0810222e171a3c1813072a011c1d341f1205

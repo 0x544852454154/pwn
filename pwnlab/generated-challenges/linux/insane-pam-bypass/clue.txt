@@ -1,0 +1,6 @@
+# Encoded clue for: Custom PAM module authentication bypass exploit
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+08969fac1090cbc21bccc6e914c0c6e91bc6c7e900c2f0f819d6cbf218fcc2fc05fcc2f201d0dafe0ecdd8ed

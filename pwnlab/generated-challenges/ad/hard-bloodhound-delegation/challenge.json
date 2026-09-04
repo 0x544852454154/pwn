@@ -1,0 +1,32 @@
+{
+  "name": "BloodHound graph analysis identifying unconstrained Kerberos delegation path",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "HARD",
+  "topic": "BloodHound graph analysis identifying unconstrained Kerberos delegation path",
+  "points": 400,
+  "estimated_time": 70,
+  "flag": "pwn{bloodhound_graph_analysis_identi_933778}",
+  "storage_path": "ad/hard-bloodhound-delegation",
+  "primary_artifact": "ticket.json",
+  "description": "BloodHound graph analysis identifying unconstrained Kerberos delegation path -- a hard-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"BloodHound graph analysis identifying unconstrained Kerberos delegation path\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

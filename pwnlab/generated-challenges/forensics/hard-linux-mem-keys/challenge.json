@@ -1,0 +1,32 @@
+{
+  "name": "Linux memory analysis with custom kernel profile to extract encryption keys",
+  "category": "FORENSICS",
+  "difficulty": "HARD",
+  "topic": "Linux memory analysis with custom kernel profile to extract encryption keys",
+  "points": 400,
+  "estimated_time": 60,
+  "flag": "pwn{linux_memory_analysis_with_custo_38d0b4}",
+  "storage_path": "forensics/hard-linux-mem-keys",
+  "primary_artifact": "evidence.sqlite",
+  "description": "Linux memory analysis with custom kernel profile to extract encryption keys -- a hard-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Linux memory analysis with custom kernel profile to extract encryption keys\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

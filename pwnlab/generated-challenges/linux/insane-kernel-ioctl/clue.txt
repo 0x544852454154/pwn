@@ -1,0 +1,6 @@
+# Encoded clue for: Kernel module IOCTL character device vulnerability
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+0eb8fde612e3af8116e4c4ac16f4f8bf01e1f3bd2cecefbd1ce9c4bb1ff5ffb11edff7bb1df2feb508eeecae

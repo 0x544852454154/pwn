@@ -1,0 +1,2 @@
+linpeas output indicates: Insecure systemd service unit file with writable ExecStart
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

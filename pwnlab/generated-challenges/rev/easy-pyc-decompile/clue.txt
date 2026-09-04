@@ -1,0 +1,6 @@
+# Encoded clue for: Python bytecode (.pyc) decompilation and control flow recovery
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+e6c89c3de6c6862ef9d1ad24efcb9725f9db9719e6c69119f2da9129fbcf9b2af7cb9b29c989cb74a2dcc23b

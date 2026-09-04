@@ -1,0 +1,5 @@
+# recovered from /etc -- Docker socket group membership root container escape
+# (this dump does not contain the flag, but it does point to the next step)
+host=ops-jumpbox
+service=backup-runner
+hint=medium

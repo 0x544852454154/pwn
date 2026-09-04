@@ -1,0 +1,6 @@
+# Encoded clue for: SUID binary with relative PATH environment variable hijacking
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+490b4ae54a094dfa661e4df0580e5dc14e1550f6660e41f258084de85c2354ff4d147bfb664840af0c4f1ce3

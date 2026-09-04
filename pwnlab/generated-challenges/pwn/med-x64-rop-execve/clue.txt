@@ -1,0 +1,6 @@
+# Encoded clue for: ROP chain on x86-64 binary to execute execve syscall
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+/U++9P9XoNDuULHm42e/4dJA6LnSDuTQ71G+7v9Bj/viZ7X30lvovesM4fI=

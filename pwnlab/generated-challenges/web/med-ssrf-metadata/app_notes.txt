@@ -1,0 +1,2 @@
+Vulnerability class: Server-side request forgery (SSRF) to cloud instance metadata endpoint
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

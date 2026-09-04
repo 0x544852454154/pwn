@@ -1,0 +1,6 @@
+# Encoded clue for: Extracting EXIF geolocation metadata from reconnaissance photograph
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+ce333f56db3c255fdf272544d0230e48c62d3772d9213e41d1273059d72b3f72d321254ce176601f88263750

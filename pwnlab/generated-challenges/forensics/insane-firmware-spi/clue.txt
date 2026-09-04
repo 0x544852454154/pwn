@@ -1,0 +1,6 @@
+# Encoded clue for: Firmware SPI flash dump reverse engineering with compressed squashfs extraction
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+df5da9a89b0ead95fd0fb8b8c71caeb8fd1aa6bfc635a3b9c306ad95cb1ab895c718aabdcf18a2acd904bcba

@@ -1,0 +1,3692 @@
+[
+  {
+    "name": "Cron environment variable token extraction",
+    "category": "LINUX",
+    "difficulty": "EASY",
+    "topic": "Cron environment variable token extraction",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{cron_environment_variable_token__49e2ff}",
+    "storage_path": "linux/easy-cron-env",
+    "primary_artifact": "artifact.bin",
+    "description": "Cron environment variable token extraction -- a easy-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Cron environment variable token extraction\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Hidden file permissions and grep filtering in /var/log",
+    "category": "LINUX",
+    "difficulty": "EASY",
+    "topic": "Hidden file permissions and grep filtering in /var/log",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{hidden_file_permissions_and_grep_ee3431}",
+    "storage_path": "linux/easy-log-grep",
+    "primary_artifact": "artifact.bin",
+    "description": "Hidden file permissions and grep filtering in /var/log -- a easy-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Hidden file permissions and grep filtering in /var/log\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Base64 encoded string in bash history",
+    "category": "LINUX",
+    "difficulty": "EASY",
+    "topic": "Base64 encoded string in bash history",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{base64_encoded_string_in_bash_hi_f7ef0f}",
+    "storage_path": "linux/easy-bash-history",
+    "primary_artifact": "artifact.bin",
+    "description": "Base64 encoded string in bash history -- a easy-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Base64 encoded string in bash history\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "SUID find exec command injection",
+    "category": "LINUX",
+    "difficulty": "MEDIUM",
+    "topic": "SUID find exec command injection",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{suid_find_exec_command_injection_b0323f}",
+    "storage_path": "linux/med-suid-find",
+    "primary_artifact": "artifact.bin",
+    "description": "SUID find exec command injection -- a medium-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"SUID find exec command injection\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Wildcard tar privilege escalation exploit",
+    "category": "LINUX",
+    "difficulty": "MEDIUM",
+    "topic": "Wildcard tar privilege escalation exploit",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{wildcard_tar_privilege_escalatio_79f74b}",
+    "storage_path": "linux/med-tar-wildcard",
+    "primary_artifact": "artifact.bin",
+    "description": "Wildcard tar privilege escalation exploit -- a medium-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Wildcard tar privilege escalation exploit\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Insecure sudo permissions on python script with library hijacking",
+    "category": "LINUX",
+    "difficulty": "MEDIUM",
+    "topic": "Insecure sudo permissions on python script with library hijacking",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{insecure_sudo_permissions_on_pyt_e33016}",
+    "storage_path": "linux/med-sudo-hijack",
+    "primary_artifact": "artifact.bin",
+    "description": "Insecure sudo permissions on python script with library hijacking -- a medium-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Insecure sudo permissions on python script with library hijacking\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Custom shared library LD_PRELOAD injection in daemon",
+    "category": "LINUX",
+    "difficulty": "HARD",
+    "topic": "Custom shared library LD_PRELOAD injection in daemon",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{custom_shared_library_ld_preload_13b97f}",
+    "storage_path": "linux/hard-preload",
+    "primary_artifact": "artifact.bin",
+    "description": "Custom shared library LD_PRELOAD injection in daemon -- a hard-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Custom shared library LD_PRELOAD injection in daemon\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Linux capabilities cap_setuid exploitation",
+    "category": "LINUX",
+    "difficulty": "HARD",
+    "topic": "Linux capabilities cap_setuid exploitation",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{linux_capabilities_cap_setuid_ex_3342af}",
+    "storage_path": "linux/hard-capabilities",
+    "primary_artifact": "artifact.bin",
+    "description": "Linux capabilities cap_setuid exploitation -- a hard-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Linux capabilities cap_setuid exploitation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Insecure NFS root squashing misconfiguration",
+    "category": "LINUX",
+    "difficulty": "HARD",
+    "topic": "Insecure NFS root squashing misconfiguration",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{insecure_nfs_root_squashing_misc_70d4d2}",
+    "storage_path": "linux/hard-nfs-squash",
+    "primary_artifact": "artifact.bin",
+    "description": "Insecure NFS root squashing misconfiguration -- a hard-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Insecure NFS root squashing misconfiguration\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Kernel module IOCTL character device vulnerability",
+    "category": "LINUX",
+    "difficulty": "INSANE",
+    "topic": "Kernel module IOCTL character device vulnerability",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{kernel_module_ioctl_character_de_4ca8f8}",
+    "storage_path": "linux/insane-kernel-ioctl",
+    "primary_artifact": "artifact.bin",
+    "description": "Kernel module IOCTL character device vulnerability -- a insane-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Kernel module IOCTL character device vulnerability\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Namespace breakout via cgroups release_agent",
+    "category": "LINUX",
+    "difficulty": "INSANE",
+    "topic": "Namespace breakout via cgroups release_agent",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{namespace_breakout_via_cgroups_r_acc803}",
+    "storage_path": "linux/insane-cgroup-escape",
+    "primary_artifact": "artifact.bin",
+    "description": "Namespace breakout via cgroups release_agent -- a insane-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Namespace breakout via cgroups release_agent\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Custom PAM module authentication bypass exploit",
+    "category": "LINUX",
+    "difficulty": "INSANE",
+    "topic": "Custom PAM module authentication bypass exploit",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{custom_pam_module_authentication_d3e105}",
+    "storage_path": "linux/insane-pam-bypass",
+    "primary_artifact": "artifact.bin",
+    "description": "Custom PAM module authentication bypass exploit -- a insane-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Custom PAM module authentication bypass exploit\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "DNS query exfiltration artifact analysis",
+    "category": "NETWORKING",
+    "difficulty": "EASY",
+    "topic": "DNS query exfiltration artifact analysis",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{dns_query_exfiltration_artifact__5c6512}",
+    "storage_path": "net/easy-dns-exfil",
+    "primary_artifact": "capture.pcap",
+    "description": "DNS query exfiltration artifact analysis -- a easy-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"DNS query exfiltration artifact analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "HTTP basic authentication header interception",
+    "category": "NETWORKING",
+    "difficulty": "EASY",
+    "topic": "HTTP basic authentication header interception",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{http_basic_authentication_header_4c29e6}",
+    "storage_path": "net/easy-http-auth",
+    "primary_artifact": "capture.pcap",
+    "description": "HTTP basic authentication header interception -- a easy-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"HTTP basic authentication header interception\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "ICMP echo request data carving",
+    "category": "NETWORKING",
+    "difficulty": "EASY",
+    "topic": "ICMP echo request data carving",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{icmp_echo_request_data_carving_ec4ee7}",
+    "storage_path": "net/easy-icmp-carve",
+    "primary_artifact": "capture.pcap",
+    "description": "ICMP echo request data carving -- a easy-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"ICMP echo request data carving\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "TLS SNI anomaly and covert TCP flag signaling",
+    "category": "NETWORKING",
+    "difficulty": "MEDIUM",
+    "topic": "TLS SNI anomaly and covert TCP flag signaling",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{tls_sni_anomaly_and_covert_tcp_f_427aa1}",
+    "storage_path": "net/med-tls-sni",
+    "primary_artifact": "capture.pcap",
+    "description": "TLS SNI anomaly and covert TCP flag signaling -- a medium-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"TLS SNI anomaly and covert TCP flag signaling\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Modbus industrial SCADA traffic manipulation",
+    "category": "NETWORKING",
+    "difficulty": "MEDIUM",
+    "topic": "Modbus industrial SCADA traffic manipulation",
+    "points": 200,
+    "estimated_time": 40,
+    "flag": "pwn{modbus_industrial_scada_traffic__810d3d}",
+    "storage_path": "net/med-scada-modbus",
+    "primary_artifact": "capture.pcap",
+    "description": "Modbus industrial SCADA traffic manipulation -- a medium-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Modbus industrial SCADA traffic manipulation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Kerberos pre-authentication AS-REQ hash extraction from PCAP",
+    "category": "NETWORKING",
+    "difficulty": "MEDIUM",
+    "topic": "Kerberos pre-authentication AS-REQ hash extraction from PCAP",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{kerberos_pre_authentication_as_r_1a05bb}",
+    "storage_path": "net/med-asreq-pcap",
+    "primary_artifact": "capture.pcap",
+    "description": "Kerberos pre-authentication AS-REQ hash extraction from PCAP -- a medium-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Kerberos pre-authentication AS-REQ hash extraction from PCAP\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "BGP route hijacking and forged routing advertisements",
+    "category": "NETWORKING",
+    "difficulty": "HARD",
+    "topic": "BGP route hijacking and forged routing advertisements",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{bgp_route_hijacking_and_forged_r_6c78bf}",
+    "storage_path": "net/hard-bgp-hijack",
+    "primary_artifact": "capture.pcap",
+    "description": "BGP route hijacking and forged routing advertisements -- a hard-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"BGP route hijacking and forged routing advertisements\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "QUIC protocol stream multiplexing covert channel",
+    "category": "NETWORKING",
+    "difficulty": "HARD",
+    "topic": "QUIC protocol stream multiplexing covert channel",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{quic_protocol_stream_multiplexin_4ed126}",
+    "storage_path": "net/hard-quic-stream",
+    "primary_artifact": "capture.pcap",
+    "description": "QUIC protocol stream multiplexing covert channel -- a hard-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"QUIC protocol stream multiplexing covert channel\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Custom proprietary binary network protocol reverse engineering",
+    "category": "NETWORKING",
+    "difficulty": "HARD",
+    "topic": "Custom proprietary binary network protocol reverse engineering",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{custom_proprietary_binary_networ_308c20}",
+    "storage_path": "net/hard-custom-proto",
+    "primary_artifact": "capture.pcap",
+    "description": "Custom proprietary binary network protocol reverse engineering -- a hard-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Custom proprietary binary network protocol reverse engineering\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "DNS over HTTPS covert C2 channel traffic analysis with statistical fingerprinting",
+    "category": "NETWORKING",
+    "difficulty": "INSANE",
+    "topic": "DNS over HTTPS covert C2 channel traffic analysis with statistical fingerprinting",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{dns_over_https_covert_c2_channel_25a0bc}",
+    "storage_path": "net/insane-doh-channel",
+    "primary_artifact": "capture.pcap",
+    "description": "DNS over HTTPS covert C2 channel traffic analysis with statistical fingerprinting -- a insane-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"DNS over HTTPS covert C2 channel traffic analysis with statistical fingerprinting\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Zero-window TCP sequence number steganography covert data reconstruction",
+    "category": "NETWORKING",
+    "difficulty": "INSANE",
+    "topic": "Zero-window TCP sequence number steganography covert data reconstruction",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{zero_window_tcp_sequence_number__dc6633}",
+    "storage_path": "net/insane-tcp-stego",
+    "primary_artifact": "capture.pcap",
+    "description": "Zero-window TCP sequence number steganography covert data reconstruction -- a insane-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Zero-window TCP sequence number steganography covert data reconstruction\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "WPA3 SAE Dragonfly handshake offline timing attack artifact",
+    "category": "NETWORKING",
+    "difficulty": "INSANE",
+    "topic": "WPA3 SAE Dragonfly handshake offline timing attack artifact",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{wpa3_sae_dragonfly_handshake_off_b0ea3a}",
+    "storage_path": "net/insane-wpa3-sae",
+    "primary_artifact": "capture.pcap",
+    "description": "WPA3 SAE Dragonfly handshake offline timing attack artifact -- a insane-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"WPA3 SAE Dragonfly handshake offline timing attack artifact\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Insecure direct object reference (IDOR) on profile export endpoint",
+    "category": "WEB",
+    "difficulty": "EASY",
+    "topic": "Insecure direct object reference (IDOR) on profile export endpoint",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{insecure_direct_object_reference_c0312a}",
+    "storage_path": "web/easy-idor-export",
+    "primary_artifact": "response.json",
+    "description": "Insecure direct object reference (IDOR) on profile export endpoint -- a easy-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Insecure direct object reference (IDOR) on profile export endpoint\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Reflected cross-site scripting (XSS) in search query parameter",
+    "category": "WEB",
+    "difficulty": "EASY",
+    "topic": "Reflected cross-site scripting (XSS) in search query parameter",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{reflected_cross_site_scripting_x_a3d4d2}",
+    "storage_path": "web/easy-xss-search",
+    "primary_artifact": "response.json",
+    "description": "Reflected cross-site scripting (XSS) in search query parameter -- a easy-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Reflected cross-site scripting (XSS) in search query parameter\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "SQL injection authentication bypass in login form",
+    "category": "WEB",
+    "difficulty": "EASY",
+    "topic": "SQL injection authentication bypass in login form",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{sql_injection_authentication_byp_669392}",
+    "storage_path": "web/easy-sqli-login",
+    "primary_artifact": "response.json",
+    "description": "SQL injection authentication bypass in login form -- a easy-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"SQL injection authentication bypass in login form\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "JWT algorithm confusion (HS256 vs RS256) public key signature spoofing",
+    "category": "WEB",
+    "difficulty": "MEDIUM",
+    "topic": "JWT algorithm confusion (HS256 vs RS256) public key signature spoofing",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{jwt_algorithm_confusion_hs256_vs_4baf3a}",
+    "storage_path": "web/med-jwt-confusion",
+    "primary_artifact": "response.json",
+    "description": "JWT algorithm confusion (HS256 vs RS256) public key signature spoofing -- a medium-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"JWT algorithm confusion (HS256 vs RS256) public key signature spoofing\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Server-side request forgery (SSRF) to cloud instance metadata endpoint",
+    "category": "WEB",
+    "difficulty": "MEDIUM",
+    "topic": "Server-side request forgery (SSRF) to cloud instance metadata endpoint",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{server_side_request_forgery_ssrf_f89ef2}",
+    "storage_path": "web/med-ssrf-metadata",
+    "primary_artifact": "response.json",
+    "description": "Server-side request forgery (SSRF) to cloud instance metadata endpoint -- a medium-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Server-side request forgery (SSRF) to cloud instance metadata endpoint\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Path traversal and local file inclusion (LFI) via unvalidated template parameter",
+    "category": "WEB",
+    "difficulty": "MEDIUM",
+    "topic": "Path traversal and local file inclusion (LFI) via unvalidated template parameter",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{path_traversal_and_local_file_in_9a6cce}",
+    "storage_path": "web/med-lfi-traversal",
+    "primary_artifact": "response.json",
+    "description": "Path traversal and local file inclusion (LFI) via unvalidated template parameter -- a medium-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Path traversal and local file inclusion (LFI) via unvalidated template parameter\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Python pickle insecure deserialization RCE via session cookie",
+    "category": "WEB",
+    "difficulty": "HARD",
+    "topic": "Python pickle insecure deserialization RCE via session cookie",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{python_pickle_insecure_deseriali_7efb3c}",
+    "storage_path": "web/hard-pickle-deser",
+    "primary_artifact": "response.json",
+    "description": "Python pickle insecure deserialization RCE via session cookie -- a hard-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Python pickle insecure deserialization RCE via session cookie\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Prototype pollution leading to remote code execution in Node.js backend",
+    "category": "WEB",
+    "difficulty": "HARD",
+    "topic": "Prototype pollution leading to remote code execution in Node.js backend",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{prototype_pollution_leading_to_r_6192c0}",
+    "storage_path": "web/hard-proto-pollution",
+    "primary_artifact": "response.json",
+    "description": "Prototype pollution leading to remote code execution in Node.js backend -- a hard-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Prototype pollution leading to remote code execution in Node.js backend\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Server-side template injection (SSTI) in Jinja2 with sandbox bypass",
+    "category": "WEB",
+    "difficulty": "HARD",
+    "topic": "Server-side template injection (SSTI) in Jinja2 with sandbox bypass",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{server_side_template_injection_s_d73c99}",
+    "storage_path": "web/hard-jinja-ssti",
+    "primary_artifact": "response.json",
+    "description": "Server-side template injection (SSTI) in Jinja2 with sandbox bypass -- a hard-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Server-side template injection (SSTI) in Jinja2 with sandbox bypass\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Blind boolean-based SQL injection with time delay and character-by-character extraction over WebSocket",
+    "category": "WEB",
+    "difficulty": "INSANE",
+    "topic": "Blind boolean-based SQL injection with time delay and character-by-character extraction over WebSocket",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{blind_boolean_based_sql_injectio_749f9c}",
+    "storage_path": "web/insane-blind-sqli",
+    "primary_artifact": "response.json",
+    "description": "Blind boolean-based SQL injection with time delay and character-by-character extraction over WebSocket -- a insane-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Blind boolean-based SQL injection with time delay and character-by-character extraction over WebSocket\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "PHP Phar deserialization exploit chain with custom POP gadgets",
+    "category": "WEB",
+    "difficulty": "INSANE",
+    "topic": "PHP Phar deserialization exploit chain with custom POP gadgets",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{php_phar_deserialization_exploit_2b7530}",
+    "storage_path": "web/insane-phar-pop",
+    "primary_artifact": "response.json",
+    "description": "PHP Phar deserialization exploit chain with custom POP gadgets -- a insane-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"PHP Phar deserialization exploit chain with custom POP gadgets\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "HTTP/2 request smuggling desync attack bypassing WAF authentication filter",
+    "category": "WEB",
+    "difficulty": "INSANE",
+    "topic": "HTTP/2 request smuggling desync attack bypassing WAF authentication filter",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{http_2_request_smuggling_desync__a4c9a4}",
+    "storage_path": "web/insane-h2-smuggle",
+    "primary_artifact": "response.json",
+    "description": "HTTP/2 request smuggling desync attack bypassing WAF authentication filter -- a insane-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"HTTP/2 request smuggling desync attack bypassing WAF authentication filter\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Multi-stage Caesar shift and Vigenere cipher decoding",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "EASY",
+    "topic": "Multi-stage Caesar shift and Vigenere cipher decoding",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{multi_stage_caesar_shift_and_vig_a07b2f}",
+    "storage_path": "crypto/easy-vigenere-caesar",
+    "primary_artifact": "ciphertext.bin",
+    "description": "Multi-stage Caesar shift and Vigenere cipher decoding -- a easy-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Multi-stage Caesar shift and Vigenere cipher decoding\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "XOR cipher with known repeating key length",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "EASY",
+    "topic": "XOR cipher with known repeating key length",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{xor_cipher_with_known_repeating__62dea9}",
+    "storage_path": "crypto/easy-repeating-xor",
+    "primary_artifact": "ciphertext.bin",
+    "description": "XOR cipher with known repeating key length -- a easy-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"XOR cipher with known repeating key length\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Base58 and Base85 layered encoding with checksum",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "EASY",
+    "topic": "Base58 and Base85 layered encoding with checksum",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{base58_and_base85_layered_encodi_3b34b3}",
+    "storage_path": "crypto/easy-base58-layered",
+    "primary_artifact": "ciphertext.bin",
+    "description": "Base58 and Base85 layered encoding with checksum -- a easy-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Base58 and Base85 layered encoding with checksum\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "RSA with low public exponent e=3 Coppersmith small root attack",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "MEDIUM",
+    "topic": "RSA with low public exponent e=3 Coppersmith small root attack",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{rsa_with_low_public_exponent_e_3_ba53fc}",
+    "storage_path": "crypto/med-rsa-low-e",
+    "primary_artifact": "ciphertext.bin",
+    "description": "RSA with low public exponent e=3 Coppersmith small root attack -- a medium-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"RSA with low public exponent e=3 Coppersmith small root attack\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "AES-ECB mode block manipulation and oracle padding leak",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "MEDIUM",
+    "topic": "AES-ECB mode block manipulation and oracle padding leak",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{aes_ecb_mode_block_manipulation__65286d}",
+    "storage_path": "crypto/med-aes-ecb-oracle",
+    "primary_artifact": "ciphertext.bin",
+    "description": "AES-ECB mode block manipulation and oracle padding leak -- a medium-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"AES-ECB mode block manipulation and oracle padding leak\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Diffie-Hellman weak prime generator discrete log attack",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "MEDIUM",
+    "topic": "Diffie-Hellman weak prime generator discrete log attack",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{diffie_hellman_weak_prime_genera_70bf15}",
+    "storage_path": "crypto/med-dh-weak-prime",
+    "primary_artifact": "ciphertext.bin",
+    "description": "Diffie-Hellman weak prime generator discrete log attack -- a medium-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Diffie-Hellman weak prime generator discrete log attack\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "AES-CBC bit-flipping attack modifying encrypted token payloads",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "HARD",
+    "topic": "AES-CBC bit-flipping attack modifying encrypted token payloads",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{aes_cbc_bit_flipping_attack_modi_4fc07b}",
+    "storage_path": "crypto/hard-aes-cbc-flip",
+    "primary_artifact": "ciphertext.bin",
+    "description": "AES-CBC bit-flipping attack modifying encrypted token payloads -- a hard-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"AES-CBC bit-flipping attack modifying encrypted token payloads\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "ECDSA nonce reuse private key recovery",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "HARD",
+    "topic": "ECDSA nonce reuse private key recovery",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{ecdsa_nonce_reuse_private_key_re_e3ad17}",
+    "storage_path": "crypto/hard-ecdsa-nonce",
+    "primary_artifact": "ciphertext.bin",
+    "description": "ECDSA nonce reuse private key recovery -- a hard-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"ECDSA nonce reuse private key recovery\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "RSA Wiener continued fractions attack on small private exponent d",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "HARD",
+    "topic": "RSA Wiener continued fractions attack on small private exponent d",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{rsa_wiener_continued_fractions_a_adb63a}",
+    "storage_path": "crypto/hard-rsa-wiener",
+    "primary_artifact": "ciphertext.bin",
+    "description": "RSA Wiener continued fractions attack on small private exponent d -- a hard-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"RSA Wiener continued fractions attack on small private exponent d\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Lattice-based cryptography LLL reduction on knapsack cryptosystem",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "INSANE",
+    "topic": "Lattice-based cryptography LLL reduction on knapsack cryptosystem",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{lattice_based_cryptography_lll_r_edde5a}",
+    "storage_path": "crypto/insane-lll-knapsack",
+    "primary_artifact": "ciphertext.bin",
+    "description": "Lattice-based cryptography LLL reduction on knapsack cryptosystem -- a insane-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Lattice-based cryptography LLL reduction on knapsack cryptosystem\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Fault injection simulation on AES round key scheduling",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "INSANE",
+    "topic": "Fault injection simulation on AES round key scheduling",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{fault_injection_simulation_on_ae_33424d}",
+    "storage_path": "crypto/insane-aes-fault",
+    "primary_artifact": "ciphertext.bin",
+    "description": "Fault injection simulation on AES round key scheduling -- a insane-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Fault injection simulation on AES round key scheduling\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Bleichenbacher RSA PKCS#1 v1.5 padding oracle adaptive attack",
+    "category": "CRYPTOGRAPHY",
+    "difficulty": "INSANE",
+    "topic": "Bleichenbacher RSA PKCS#1 v1.5 padding oracle adaptive attack",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{bleichenbacher_rsa_pkcs_1_v1_5_p_f02a53}",
+    "storage_path": "crypto/insane-bleichenbacher",
+    "primary_artifact": "ciphertext.bin",
+    "description": "Bleichenbacher RSA PKCS#1 v1.5 padding oracle adaptive attack -- a insane-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Bleichenbacher RSA PKCS#1 v1.5 padding oracle adaptive attack\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Hidden deleted file recovery from ext4 filesystem image",
+    "category": "FORENSICS",
+    "difficulty": "EASY",
+    "topic": "Hidden deleted file recovery from ext4 filesystem image",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{hidden_deleted_file_recovery_fro_b445c8}",
+    "storage_path": "forensics/easy-ext4-carve",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Hidden deleted file recovery from ext4 filesystem image -- a easy-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Hidden deleted file recovery from ext4 filesystem image\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Windows Event Log (EVTX) logon artifact analysis",
+    "category": "FORENSICS",
+    "difficulty": "EASY",
+    "topic": "Windows Event Log (EVTX) logon artifact analysis",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{windows_event_log_evtx_logon_art_81f7d3}",
+    "storage_path": "forensics/easy-evtx-logon",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Windows Event Log (EVTX) logon artifact analysis -- a easy-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Windows Event Log (EVTX) logon artifact analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Browser history and SQLite download database inspection",
+    "category": "FORENSICS",
+    "difficulty": "EASY",
+    "topic": "Browser history and SQLite download database inspection",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{browser_history_and_sqlite_downl_b17b09}",
+    "storage_path": "forensics/easy-browser-sqlite",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Browser history and SQLite download database inspection -- a easy-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Browser history and SQLite download database inspection\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Volatility memory dump analysis extracting injected DLL",
+    "category": "FORENSICS",
+    "difficulty": "MEDIUM",
+    "topic": "Volatility memory dump analysis extracting injected DLL",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{volatility_memory_dump_analysis__a21a05}",
+    "storage_path": "forensics/med-volatility-dll",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Volatility memory dump analysis extracting injected DLL -- a medium-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Volatility memory dump analysis extracting injected DLL\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation",
+    "category": "FORENSICS",
+    "difficulty": "MEDIUM",
+    "topic": "Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{master_file_table_mft_and_ntfs_u_66f35c}",
+    "storage_path": "forensics/med-mft-timestomp",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation -- a medium-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "PDF format stream analysis with hidden JavaScript payload",
+    "category": "FORENSICS",
+    "difficulty": "MEDIUM",
+    "topic": "PDF format stream analysis with hidden JavaScript payload",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{pdf_format_stream_analysis_with__985406}",
+    "storage_path": "forensics/med-pdf-javascript",
+    "primary_artifact": "evidence.sqlite",
+    "description": "PDF format stream analysis with hidden JavaScript payload -- a medium-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"PDF format stream analysis with hidden JavaScript payload\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Linux memory analysis with custom kernel profile to extract encryption keys",
+    "category": "FORENSICS",
+    "difficulty": "HARD",
+    "topic": "Linux memory analysis with custom kernel profile to extract encryption keys",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{linux_memory_analysis_with_custo_38d0b4}",
+    "storage_path": "forensics/hard-linux-mem-keys",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Linux memory analysis with custom kernel profile to extract encryption keys -- a hard-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Linux memory analysis with custom kernel profile to extract encryption keys\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "USB device insertion forensics with Windows Registry shellbags and shimcache",
+    "category": "FORENSICS",
+    "difficulty": "HARD",
+    "topic": "USB device insertion forensics with Windows Registry shellbags and shimcache",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{usb_device_insertion_forensics_w_6dcdd4}",
+    "storage_path": "forensics/hard-usb-shimcache",
+    "primary_artifact": "evidence.sqlite",
+    "description": "USB device insertion forensics with Windows Registry shellbags and shimcache -- a hard-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"USB device insertion forensics with Windows Registry shellbags and shimcache\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Network packet capture combined with SSL keylogfile decryption",
+    "category": "FORENSICS",
+    "difficulty": "HARD",
+    "topic": "Network packet capture combined with SSL keylogfile decryption",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{network_packet_capture_combined__88da96}",
+    "storage_path": "forensics/hard-tls-pcap-decrypt",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Network packet capture combined with SSL keylogfile decryption -- a hard-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Network packet capture combined with SSL keylogfile decryption\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Ransomware memory artifact extraction to recover ephemeral Salsa20 key",
+    "category": "FORENSICS",
+    "difficulty": "INSANE",
+    "topic": "Ransomware memory artifact extraction to recover ephemeral Salsa20 key",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{ransomware_memory_artifact_extra_3e32a9}",
+    "storage_path": "forensics/insane-salsa20-mem",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Ransomware memory artifact extraction to recover ephemeral Salsa20 key -- a insane-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Ransomware memory artifact extraction to recover ephemeral Salsa20 key\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Firmware SPI flash dump reverse engineering with compressed squashfs extraction",
+    "category": "FORENSICS",
+    "difficulty": "INSANE",
+    "topic": "Firmware SPI flash dump reverse engineering with compressed squashfs extraction",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{firmware_spi_flash_dump_reverse__fd9bb7}",
+    "storage_path": "forensics/insane-firmware-spi",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Firmware SPI flash dump reverse engineering with compressed squashfs extraction -- a insane-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Firmware SPI flash dump reverse engineering with compressed squashfs extraction\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Hypervisor memory snapshot introspection detecting rootkit hypercall hooks",
+    "category": "FORENSICS",
+    "difficulty": "INSANE",
+    "topic": "Hypervisor memory snapshot introspection detecting rootkit hypercall hooks",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{hypervisor_memory_snapshot_intro_f9cadd}",
+    "storage_path": "forensics/insane-hypervisor-rootkit",
+    "primary_artifact": "evidence.sqlite",
+    "description": "Hypervisor memory snapshot introspection detecting rootkit hypercall hooks -- a insane-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Hypervisor memory snapshot introspection detecting rootkit hypercall hooks\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Extracting EXIF geolocation metadata from reconnaissance photograph",
+    "category": "OSINT",
+    "difficulty": "EASY",
+    "topic": "Extracting EXIF geolocation metadata from reconnaissance photograph",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{extracting_exif_geolocation_meta_2126bf}",
+    "storage_path": "osint/easy-exif-geoloc",
+    "primary_artifact": "recon_image.png",
+    "description": "Extracting EXIF geolocation metadata from reconnaissance photograph -- a easy-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Extracting EXIF geolocation metadata from reconnaissance photograph\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Corporate email pattern discovery and employee directory analysis",
+    "category": "OSINT",
+    "difficulty": "EASY",
+    "topic": "Corporate email pattern discovery and employee directory analysis",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{corporate_email_pattern_discover_843d58}",
+    "storage_path": "osint/easy-corp-email",
+    "primary_artifact": "recon_image.png",
+    "description": "Corporate email pattern discovery and employee directory analysis -- a easy-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Corporate email pattern discovery and employee directory analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Public code repository commit history and leaked secret scanning",
+    "category": "OSINT",
+    "difficulty": "EASY",
+    "topic": "Public code repository commit history and leaked secret scanning",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{public_code_repository_commit_hi_b6b61d}",
+    "storage_path": "osint/easy-git-history",
+    "primary_artifact": "recon_image.png",
+    "description": "Public code repository commit history and leaked secret scanning -- a easy-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Public code repository commit history and leaked secret scanning\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "DNS subdomains enumeration and historical WHOIS archive correlation",
+    "category": "OSINT",
+    "difficulty": "MEDIUM",
+    "topic": "DNS subdomains enumeration and historical WHOIS archive correlation",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{dns_subdomains_enumeration_and_h_82ffb5}",
+    "storage_path": "osint/med-whois-subdomain",
+    "primary_artifact": "recon_image.png",
+    "description": "DNS subdomains enumeration and historical WHOIS archive correlation -- a medium-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"DNS subdomains enumeration and historical WHOIS archive correlation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "PGP public key server fingerprint and key signing graph investigation",
+    "category": "OSINT",
+    "difficulty": "MEDIUM",
+    "topic": "PGP public key server fingerprint and key signing graph investigation",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{pgp_public_key_server_fingerprin_425627}",
+    "storage_path": "osint/med-pgp-graph",
+    "primary_artifact": "recon_image.png",
+    "description": "PGP public key server fingerprint and key signing graph investigation -- a medium-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"PGP public key server fingerprint and key signing graph investigation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Social media cross-platform handle correlation and timeline analysis",
+    "category": "OSINT",
+    "difficulty": "MEDIUM",
+    "topic": "Social media cross-platform handle correlation and timeline analysis",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{social_media_cross_platform_hand_92c199}",
+    "storage_path": "osint/med-handle-recon",
+    "primary_artifact": "recon_image.png",
+    "description": "Social media cross-platform handle correlation and timeline analysis -- a medium-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Social media cross-platform handle correlation and timeline analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Certificate Transparency log analysis identifying staging infrastructure",
+    "category": "OSINT",
+    "difficulty": "HARD",
+    "topic": "Certificate Transparency log analysis identifying staging infrastructure",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{certificate_transparency_log_ana_4e878b}",
+    "storage_path": "osint/hard-ct-logs",
+    "primary_artifact": "recon_image.png",
+    "description": "Certificate Transparency log analysis identifying staging infrastructure -- a hard-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Certificate Transparency log analysis identifying staging infrastructure\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Satellite imagery analysis with sun shadow azimuth calculation for geolocation",
+    "category": "OSINT",
+    "difficulty": "HARD",
+    "topic": "Satellite imagery analysis with sun shadow azimuth calculation for geolocation",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{satellite_imagery_analysis_with__e4c02d}",
+    "storage_path": "osint/hard-shadow-azimuth",
+    "primary_artifact": "recon_image.png",
+    "description": "Satellite imagery analysis with sun shadow azimuth calculation for geolocation -- a hard-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Satellite imagery analysis with sun shadow azimuth calculation for geolocation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Leaked pastebin and darknet onion forum pseudonym tracking",
+    "category": "OSINT",
+    "difficulty": "HARD",
+    "topic": "Leaked pastebin and darknet onion forum pseudonym tracking",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{leaked_pastebin_and_darknet_onio_52e92f}",
+    "storage_path": "osint/hard-onion-tracking",
+    "primary_artifact": "recon_image.png",
+    "description": "Leaked pastebin and darknet onion forum pseudonym tracking -- a hard-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Leaked pastebin and darknet onion forum pseudonym tracking\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Blockchain cryptocurrency transaction graph clustering and mixing service de-anonymization",
+    "category": "OSINT",
+    "difficulty": "INSANE",
+    "topic": "Blockchain cryptocurrency transaction graph clustering and mixing service de-anonymization",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{blockchain_cryptocurrency_transa_928b0b}",
+    "storage_path": "osint/insane-crypto-cluster",
+    "primary_artifact": "recon_image.png",
+    "description": "Blockchain cryptocurrency transaction graph clustering and mixing service de-anonymization -- a insane-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Blockchain cryptocurrency transaction graph clustering and mixing service de-anonymization\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Autonomous System Number (ASN) BGP peering and DNS sinkhole infrastructure mapping",
+    "category": "OSINT",
+    "difficulty": "INSANE",
+    "topic": "Autonomous System Number (ASN) BGP peering and DNS sinkhole infrastructure mapping",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{autonomous_system_number_asn_bgp_e30d1f}",
+    "storage_path": "osint/insane-asn-sinkhole",
+    "primary_artifact": "recon_image.png",
+    "description": "Autonomous System Number (ASN) BGP peering and DNS sinkhole infrastructure mapping -- a insane-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Autonomous System Number (ASN) BGP peering and DNS sinkhole infrastructure mapping\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Multi-source threat intelligence correlation of adversary APT C2 clusters",
+    "category": "OSINT",
+    "difficulty": "INSANE",
+    "topic": "Multi-source threat intelligence correlation of adversary APT C2 clusters",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{multi_source_threat_intelligence_e7cdeb}",
+    "storage_path": "osint/insane-apt-infra",
+    "primary_artifact": "recon_image.png",
+    "description": "Multi-source threat intelligence correlation of adversary APT C2 clusters -- a insane-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Multi-source threat intelligence correlation of adversary APT C2 clusters\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Disassembling simple C binary with hardcoded string transformation",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "EASY",
+    "topic": "Disassembling simple C binary with hardcoded string transformation",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{disassembling_simple_c_binary_wi_867456}",
+    "storage_path": "rev/easy-string-transform",
+    "primary_artifact": "target.elf",
+    "description": "Disassembling simple C binary with hardcoded string transformation -- a easy-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Disassembling simple C binary with hardcoded string transformation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Python bytecode (.pyc) decompilation and control flow recovery",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "EASY",
+    "topic": "Python bytecode (.pyc) decompilation and control flow recovery",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{python_bytecode_pyc_decompilatio_6924c0}",
+    "storage_path": "rev/easy-pyc-decompile",
+    "primary_artifact": "target.elf",
+    "description": "Python bytecode (.pyc) decompilation and control flow recovery -- a easy-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Python bytecode (.pyc) decompilation and control flow recovery\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Obfuscated JavaScript crackme key validation function",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "EASY",
+    "topic": "Obfuscated JavaScript crackme key validation function",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{obfuscated_javascript_crackme_ke_1d9859}",
+    "storage_path": "rev/easy-js-obf-crackme",
+    "primary_artifact": "target.elf",
+    "description": "Obfuscated JavaScript crackme key validation function -- a easy-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Obfuscated JavaScript crackme key validation function\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "x86-64 binary with custom byte substitution and XOR validation table",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "MEDIUM",
+    "topic": "x86-64 binary with custom byte substitution and XOR validation table",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{x86_64_binary_with_custom_byte_s_9d20f0}",
+    "storage_path": "rev/med-xor-table",
+    "primary_artifact": "target.elf",
+    "description": "x86-64 binary with custom byte substitution and XOR validation table -- a medium-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"x86-64 binary with custom byte substitution and XOR validation table\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Golang compiled binary symbol recovery and routine analysis",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "MEDIUM",
+    "topic": "Golang compiled binary symbol recovery and routine analysis",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{golang_compiled_binary_symbol_re_9129a4}",
+    "storage_path": "rev/med-golang-symbols",
+    "primary_artifact": "target.elf",
+    "description": "Golang compiled binary symbol recovery and routine analysis -- a medium-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Golang compiled binary symbol recovery and routine analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Android APK DEX reverse engineering and native JNI library analysis",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "MEDIUM",
+    "topic": "Android APK DEX reverse engineering and native JNI library analysis",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{android_apk_dex_reverse_engineer_719b74}",
+    "storage_path": "rev/med-apk-jni",
+    "primary_artifact": "target.elf",
+    "description": "Android APK DEX reverse engineering and native JNI library analysis -- a medium-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Android APK DEX reverse engineering and native JNI library analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Anti-debugging techniques (ptrace, timing checks) in stripped ELF",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "HARD",
+    "topic": "Anti-debugging techniques (ptrace, timing checks) in stripped ELF",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{anti_debugging_techniques_ptrace_9732eb}",
+    "storage_path": "rev/hard-anti-debug-elf",
+    "primary_artifact": "target.elf",
+    "description": "Anti-debugging techniques (ptrace, timing checks) in stripped ELF -- a hard-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Anti-debugging techniques (ptrace, timing checks) in stripped ELF\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Custom virtual machine interpreter bytecode disassembly",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "HARD",
+    "topic": "Custom virtual machine interpreter bytecode disassembly",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{custom_virtual_machine_interpret_84ee75}",
+    "storage_path": "rev/hard-custom-vm",
+    "primary_artifact": "target.elf",
+    "description": "Custom virtual machine interpreter bytecode disassembly -- a hard-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Custom virtual machine interpreter bytecode disassembly\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "C++ binary with virtual method table obfuscation and template metaprogramming",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "HARD",
+    "topic": "C++ binary with virtual method table obfuscation and template metaprogramming",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{c_binary_with_virtual_method_tab_989298}",
+    "storage_path": "rev/hard-cpp-vtable-obf",
+    "primary_artifact": "target.elf",
+    "description": "C++ binary with virtual method table obfuscation and template metaprogramming -- a hard-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"C++ binary with virtual method table obfuscation and template metaprogramming\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "OLLVM control flow flattening with opaque predicates and instruction substitution",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "INSANE",
+    "topic": "OLLVM control flow flattening with opaque predicates and instruction substitution",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{ollvm_control_flow_flattening_wi_f99220}",
+    "storage_path": "rev/insane-ollvm-flatten",
+    "primary_artifact": "target.elf",
+    "description": "OLLVM control flow flattening with opaque predicates and instruction substitution -- a insane-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"OLLVM control flow flattening with opaque predicates and instruction substitution\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Windows kernel driver (.sys) reverse engineering with IOCTL reversing",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "INSANE",
+    "topic": "Windows kernel driver (.sys) reverse engineering with IOCTL reversing",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{windows_kernel_driver_sys_revers_a2d22a}",
+    "storage_path": "rev/insane-win-driver-ioctl",
+    "primary_artifact": "target.elf",
+    "description": "Windows kernel driver (.sys) reverse engineering with IOCTL reversing -- a insane-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Windows kernel driver (.sys) reverse engineering with IOCTL reversing\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Obfuscated WebAssembly (Wasm) cryptographic key verification module",
+    "category": "REVERSE ENGINEERING",
+    "difficulty": "INSANE",
+    "topic": "Obfuscated WebAssembly (Wasm) cryptographic key verification module",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{obfuscated_webassembly_wasm_cryp_dbb1c2}",
+    "storage_path": "rev/insane-wasm-crypto-vm",
+    "primary_artifact": "target.elf",
+    "description": "Obfuscated WebAssembly (Wasm) cryptographic key verification module -- a insane-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Obfuscated WebAssembly (Wasm) cryptographic key verification module\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Classic 32-bit stack buffer overflow redirecting to win function",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "EASY",
+    "topic": "Classic 32-bit stack buffer overflow redirecting to win function",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{classic_32_bit_stack_buffer_over_91ba11}",
+    "storage_path": "pwn/easy-bof-win-func",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Classic 32-bit stack buffer overflow redirecting to win function -- a easy-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Classic 32-bit stack buffer overflow redirecting to win function\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Integer overflow leading to out-of-bounds array access",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "EASY",
+    "topic": "Integer overflow leading to out-of-bounds array access",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{integer_overflow_leading_to_out__beeaf6}",
+    "storage_path": "pwn/easy-integer-overflow",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Integer overflow leading to out-of-bounds array access -- a easy-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Integer overflow leading to out-of-bounds array access\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Format string vulnerability leaking stack values",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "EASY",
+    "topic": "Format string vulnerability leaking stack values",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{format_string_vulnerability_leak_8ac315}",
+    "storage_path": "pwn/easy-fmt-str-leak",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Format string vulnerability leaking stack values -- a easy-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Format string vulnerability leaking stack values\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Ret2libc exploit bypassing NX with system and /bin/sh arguments",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "MEDIUM",
+    "topic": "Ret2libc exploit bypassing NX with system and /bin/sh arguments",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{ret2libc_exploit_bypassing_nx_wi_e4317e}",
+    "storage_path": "pwn/med-ret2libc-nx",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Ret2libc exploit bypassing NX with system and /bin/sh arguments -- a medium-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Ret2libc exploit bypassing NX with system and /bin/sh arguments\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Format string vulnerability overwriting GOT entry with target address",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "MEDIUM",
+    "topic": "Format string vulnerability overwriting GOT entry with target address",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{format_string_vulnerability_over_c29b3f}",
+    "storage_path": "pwn/med-fmt-str-got-write",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Format string vulnerability overwriting GOT entry with target address -- a medium-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Format string vulnerability overwriting GOT entry with target address\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "ROP chain on x86-64 binary to execute execve syscall",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "MEDIUM",
+    "topic": "ROP chain on x86-64 binary to execute execve syscall",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{rop_chain_on_x86_64_binary_to_ex_c82f41}",
+    "storage_path": "pwn/med-x64-rop-execve",
+    "primary_artifact": "vuln_service.elf",
+    "description": "ROP chain on x86-64 binary to execute execve syscall -- a medium-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"ROP chain on x86-64 binary to execute execve syscall\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Heap exploitation: fastbin dup and tcache poisoning leading to arbitrary write",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "HARD",
+    "topic": "Heap exploitation: fastbin dup and tcache poisoning leading to arbitrary write",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{heap_exploitation_fastbin_dup_an_50f116}",
+    "storage_path": "pwn/hard-tcache-poison",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Heap exploitation: fastbin dup and tcache poisoning leading to arbitrary write -- a hard-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Heap exploitation: fastbin dup and tcache poisoning leading to arbitrary write\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "SROP (Sigreturn Oriented Programming) binary exploitation",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "HARD",
+    "topic": "SROP (Sigreturn Oriented Programming) binary exploitation",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{srop_sigreturn_oriented_programm_a61609}",
+    "storage_path": "pwn/hard-srop-syscall",
+    "primary_artifact": "vuln_service.elf",
+    "description": "SROP (Sigreturn Oriented Programming) binary exploitation -- a hard-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"SROP (Sigreturn Oriented Programming) binary exploitation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Ret2csu exploitation technique on PIE-disabled binaries",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "HARD",
+    "topic": "Ret2csu exploitation technique on PIE-disabled binaries",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{ret2csu_exploitation_technique_o_185c0e}",
+    "storage_path": "pwn/hard-ret2csu-pie",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Ret2csu exploitation technique on PIE-disabled binaries -- a hard-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Ret2csu exploitation technique on PIE-disabled binaries\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Modern glibc 2.35+ heap exploitation (house of apple / FSOP stdout vtable hijacking)",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "INSANE",
+    "topic": "Modern glibc 2.35+ heap exploitation (house of apple / FSOP stdout vtable hijacking)",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{modern_glibc_2_35_heap_exploitat_8de840}",
+    "storage_path": "pwn/insane-fsop-stdout",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Modern glibc 2.35+ heap exploitation (house of apple / FSOP stdout vtable hijacking) -- a insane-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Modern glibc 2.35+ heap exploitation (house of apple / FSOP stdout vtable hijacking)\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Blind ROP (BROP) over network service without binary source",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "INSANE",
+    "topic": "Blind ROP (BROP) over network service without binary source",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{blind_rop_brop_over_network_serv_bbb12f}",
+    "storage_path": "pwn/insane-brop-remote",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Blind ROP (BROP) over network service without binary source -- a insane-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Blind ROP (BROP) over network service without binary source\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Linux kernel exploitation: slab out-of-bounds write to modify cred structure",
+    "category": "BINARY EXPLOITATION",
+    "difficulty": "INSANE",
+    "topic": "Linux kernel exploitation: slab out-of-bounds write to modify cred structure",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{linux_kernel_exploitation_slab_o_46b817}",
+    "storage_path": "pwn/insane-kernel-slab-oob",
+    "primary_artifact": "vuln_service.elf",
+    "description": "Linux kernel exploitation: slab out-of-bounds write to modify cred structure -- a insane-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Linux kernel exploitation: slab out-of-bounds write to modify cred structure\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "SUID binary with relative PATH environment variable hijacking",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "EASY",
+    "topic": "SUID binary with relative PATH environment variable hijacking",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{suid_binary_with_relative_path_e_4d1538}",
+    "storage_path": "privesc/easy-suid-path",
+    "primary_artifact": "config_dump.bin",
+    "description": "SUID binary with relative PATH environment variable hijacking -- a easy-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"SUID binary with relative PATH environment variable hijacking\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "World-writable /etc/passwd file enabling new root user creation",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "EASY",
+    "topic": "World-writable /etc/passwd file enabling new root user creation",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{world_writable_etc_passwd_file_e_c327d6}",
+    "storage_path": "privesc/easy-passwd-writable",
+    "primary_artifact": "config_dump.bin",
+    "description": "World-writable /etc/passwd file enabling new root user creation -- a easy-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"World-writable /etc/passwd file enabling new root user creation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Insecure cron job script executing writable files in /tmp",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "EASY",
+    "topic": "Insecure cron job script executing writable files in /tmp",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{insecure_cron_job_script_executi_7a9d84}",
+    "storage_path": "privesc/easy-cron-tmp-script",
+    "primary_artifact": "config_dump.bin",
+    "description": "Insecure cron job script executing writable files in /tmp -- a easy-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Insecure cron job script executing writable files in /tmp\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Insecure systemd service unit file with writable ExecStart",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "MEDIUM",
+    "topic": "Insecure systemd service unit file with writable ExecStart",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{insecure_systemd_service_unit_fi_d651e3}",
+    "storage_path": "privesc/med-systemd-unit",
+    "primary_artifact": "config_dump.bin",
+    "description": "Insecure systemd service unit file with writable ExecStart -- a medium-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Insecure systemd service unit file with writable ExecStart\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Sudo LD_PRELOAD / env_keep configuration vulnerability",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "MEDIUM",
+    "topic": "Sudo LD_PRELOAD / env_keep configuration vulnerability",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{sudo_ld_preload_env_keep_configu_07a057}",
+    "storage_path": "privesc/med-sudo-preload",
+    "primary_artifact": "config_dump.bin",
+    "description": "Sudo LD_PRELOAD / env_keep configuration vulnerability -- a medium-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Sudo LD_PRELOAD / env_keep configuration vulnerability\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Docker socket group membership root container escape",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "MEDIUM",
+    "topic": "Docker socket group membership root container escape",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{docker_socket_group_membership_r_c071fb}",
+    "storage_path": "privesc/med-docker-socket",
+    "primary_artifact": "config_dump.bin",
+    "description": "Docker socket group membership root container escape -- a medium-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Docker socket group membership root container escape\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "HARD",
+    "topic": "Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{dirty_pipe_cve_2022_0847_page_ca_7fbd70}",
+    "storage_path": "privesc/hard-dirtypipe-cache",
+    "primary_artifact": "config_dump.bin",
+    "description": "Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis -- a hard-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "HARD",
+    "topic": "Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{windows_token_impersonation_seim_2f7d4d}",
+    "storage_path": "privesc/hard-seimpersonate",
+    "primary_artifact": "config_dump.bin",
+    "description": "Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style) -- a hard-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Polkit (PwnKit CVE-2021-4034) pkexec local privilege escalation",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "HARD",
+    "topic": "Polkit (PwnKit CVE-2021-4034) pkexec local privilege escalation",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{polkit_pwnkit_cve_2021_4034_pkex_a07783}",
+    "storage_path": "privesc/hard-pwnkit-pkexec",
+    "primary_artifact": "config_dump.bin",
+    "description": "Polkit (PwnKit CVE-2021-4034) pkexec local privilege escalation -- a hard-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Polkit (PwnKit CVE-2021-4034) pkexec local privilege escalation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Linux eBPF verifier flaw privilege escalation",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "INSANE",
+    "topic": "Linux eBPF verifier flaw privilege escalation",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{linux_ebpf_verifier_flaw_privile_7c0390}",
+    "storage_path": "privesc/insane-ebpf-verifier",
+    "primary_artifact": "config_dump.bin",
+    "description": "Linux eBPF verifier flaw privilege escalation -- a insane-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Linux eBPF verifier flaw privilege escalation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Windows kernel pool corruption via vulnerable third-party driver",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "INSANE",
+    "topic": "Windows kernel pool corruption via vulnerable third-party driver",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{windows_kernel_pool_corruption_v_f67908}",
+    "storage_path": "privesc/insane-win-pool-corrupt",
+    "primary_artifact": "config_dump.bin",
+    "description": "Windows kernel pool corruption via vulnerable third-party driver -- a insane-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Windows kernel pool corruption via vulnerable third-party driver\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Hardware rowhammer simulation memory bitflip privilege escalation",
+    "category": "PRIVILEGE ESCALATION",
+    "difficulty": "INSANE",
+    "topic": "Hardware rowhammer simulation memory bitflip privilege escalation",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{hardware_rowhammer_simulation_me_fc6935}",
+    "storage_path": "privesc/insane-rowhammer-bitflip",
+    "primary_artifact": "config_dump.bin",
+    "description": "Hardware rowhammer simulation memory bitflip privilege escalation -- a insane-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Hardware rowhammer simulation memory bitflip privilege escalation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Anonymous LDAP binding enumeration and user account extraction",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "EASY",
+    "topic": "Anonymous LDAP binding enumeration and user account extraction",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{anonymous_ldap_binding_enumerati_8de89a}",
+    "storage_path": "ad/easy-ldap-anon-enum",
+    "primary_artifact": "ticket.json",
+    "description": "Anonymous LDAP binding enumeration and user account extraction -- a easy-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Anonymous LDAP binding enumeration and user account extraction\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Password spray log analysis identifying compromised user credentials",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "EASY",
+    "topic": "Password spray log analysis identifying compromised user credentials",
+    "points": 100,
+    "estimated_time": 15,
+    "flag": "pwn{password_spray_log_analysis_iden_3f4fc7}",
+    "storage_path": "ad/easy-pass-spray-log",
+    "primary_artifact": "ticket.json",
+    "description": "Password spray log analysis identifying compromised user credentials -- a easy-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Password spray log analysis identifying compromised user credentials\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Group Policy Preference (GPP) cpassword decryption from SYSVOL share",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "EASY",
+    "topic": "Group Policy Preference (GPP) cpassword decryption from SYSVOL share",
+    "points": 100,
+    "estimated_time": 10,
+    "flag": "pwn{group_policy_preference_gpp_cpas_73efff}",
+    "storage_path": "ad/easy-gpp-cpassword",
+    "primary_artifact": "ticket.json",
+    "description": "Group Policy Preference (GPP) cpassword decryption from SYSVOL share -- a easy-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Group Policy Preference (GPP) cpassword decryption from SYSVOL share\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Kerberoasting attack on Service Principal Names (SPN) with hash cracking",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "MEDIUM",
+    "topic": "Kerberoasting attack on Service Principal Names (SPN) with hash cracking",
+    "points": 200,
+    "estimated_time": 30,
+    "flag": "pwn{kerberoasting_attack_on_service__433175}",
+    "storage_path": "ad/med-kerberoast-spn",
+    "primary_artifact": "ticket.json",
+    "description": "Kerberoasting attack on Service Principal Names (SPN) with hash cracking -- a medium-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Kerberoasting attack on Service Principal Names (SPN) with hash cracking\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "MEDIUM",
+    "topic": "AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{as_rep_roasting_on_accounts_with_cbd7f5}",
+    "storage_path": "ad/med-asrep-roast",
+    "primary_artifact": "ticket.json",
+    "description": "AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication -- a medium-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Insecure DNS update ACL enabling Active Directory DNS record hijacking",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "MEDIUM",
+    "topic": "Insecure DNS update ACL enabling Active Directory DNS record hijacking",
+    "points": 200,
+    "estimated_time": 35,
+    "flag": "pwn{insecure_dns_update_acl_enabling_1e8449}",
+    "storage_path": "ad/med-dns-acl-hijack",
+    "primary_artifact": "ticket.json",
+    "description": "Insecure DNS update ACL enabling Active Directory DNS record hijacking -- a medium-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Insecure DNS update ACL enabling Active Directory DNS record hijacking\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Active Directory Certificate Services (ADCS) ESC1 template exploitation",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "HARD",
+    "topic": "Active Directory Certificate Services (ADCS) ESC1 template exploitation",
+    "points": 400,
+    "estimated_time": 60,
+    "flag": "pwn{active_directory_certificate_ser_02b315}",
+    "storage_path": "ad/hard-adcs-esc1",
+    "primary_artifact": "ticket.json",
+    "description": "Active Directory Certificate Services (ADCS) ESC1 template exploitation -- a hard-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Active Directory Certificate Services (ADCS) ESC1 template exploitation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "BloodHound graph analysis identifying unconstrained Kerberos delegation path",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "HARD",
+    "topic": "BloodHound graph analysis identifying unconstrained Kerberos delegation path",
+    "points": 400,
+    "estimated_time": 70,
+    "flag": "pwn{bloodhound_graph_analysis_identi_933778}",
+    "storage_path": "ad/hard-bloodhound-delegation",
+    "primary_artifact": "ticket.json",
+    "description": "BloodHound graph analysis identifying unconstrained Kerberos delegation path -- a hard-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"BloodHound graph analysis identifying unconstrained Kerberos delegation path\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "DCSync attack via replication rights (DS-Replication-Get-Changes)",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "HARD",
+    "topic": "DCSync attack via replication rights (DS-Replication-Get-Changes)",
+    "points": 400,
+    "estimated_time": 75,
+    "flag": "pwn{dcsync_attack_via_replication_ri_a5c1de}",
+    "storage_path": "ad/hard-dcsync-repl",
+    "primary_artifact": "ticket.json",
+    "description": "DCSync attack via replication rights (DS-Replication-Get-Changes) -- a hard-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"DCSync attack via replication rights (DS-Replication-Get-Changes)\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Golden Ticket and Silver Ticket forgery with RC4/AES256 keys and PAC manipulation",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "INSANE",
+    "topic": "Golden Ticket and Silver Ticket forgery with RC4/AES256 keys and PAC manipulation",
+    "points": 750,
+    "estimated_time": 120,
+    "flag": "pwn{golden_ticket_and_silver_ticket__c98457}",
+    "storage_path": "ad/insane-golden-ticket-pac",
+    "primary_artifact": "ticket.json",
+    "description": "Golden Ticket and Silver Ticket forgery with RC4/AES256 keys and PAC manipulation -- a insane-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Golden Ticket and Silver Ticket forgery with RC4/AES256 keys and PAC manipulation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Cross-forest SID filtering bypass and forest trust hop privilege escalation",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "INSANE",
+    "topic": "Cross-forest SID filtering bypass and forest trust hop privilege escalation",
+    "points": 750,
+    "estimated_time": 150,
+    "flag": "pwn{cross_forest_sid_filtering_bypas_12d302}",
+    "storage_path": "ad/insane-forest-trust-sid",
+    "primary_artifact": "ticket.json",
+    "description": "Cross-forest SID filtering bypass and forest trust hop privilege escalation -- a insane-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Cross-forest SID filtering bypass and forest trust hop privilege escalation\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  },
+  {
+    "name": "Resource-Based Constrained Delegation (RBCD) combined with machine account quota",
+    "category": "ACTIVE DIRECTORY",
+    "difficulty": "INSANE",
+    "topic": "Resource-Based Constrained Delegation (RBCD) combined with machine account quota",
+    "points": 750,
+    "estimated_time": 180,
+    "flag": "pwn{resource_based_constrained_deleg_b37839}",
+    "storage_path": "ad/insane-rbcd-machine-quota",
+    "primary_artifact": "ticket.json",
+    "description": "Resource-Based Constrained Delegation (RBCD) combined with machine account quota -- a insane-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+    "objectives": [
+      "Inspect the challenge bundle for \"Resource-Based Constrained Delegation (RBCD) combined with machine account quota\"",
+      "Locate the encoded artifact (look in every shipped file)",
+      "Unwrap the encoding applied to the artifact",
+      "Recover the plaintext flag and submit it in pwn{...} format"
+    ],
+    "hints": [
+      {
+        "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+        "penalty": 5
+      },
+      {
+        "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+        "penalty": 10
+      },
+      {
+        "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+        "penalty": 15
+      }
+    ]
+  }
+]

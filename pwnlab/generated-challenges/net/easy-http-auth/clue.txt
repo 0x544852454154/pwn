@@ -1,0 +1,6 @@
+# Encoded clue for: HTTP basic authentication header interception
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+d8ef9585c0ec8f8ef7fa9a8dc1fba49fddec939bc6ec929dc9ec9291c6c7939bc9fc9e8cf7ac98cc91fdcd83

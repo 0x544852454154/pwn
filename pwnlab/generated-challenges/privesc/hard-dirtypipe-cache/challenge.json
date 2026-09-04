@@ -1,0 +1,32 @@
+{
+  "name": "Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis",
+  "category": "PRIVILEGE ESCALATION",
+  "difficulty": "HARD",
+  "topic": "Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis",
+  "points": 400,
+  "estimated_time": 60,
+  "flag": "pwn{dirty_pipe_cve_2022_0847_page_ca_7fbd70}",
+  "storage_path": "privesc/hard-dirtypipe-cache",
+  "primary_artifact": "config_dump.bin",
+  "description": "Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis -- a hard-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

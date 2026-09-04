@@ -1,0 +1,6 @@
+# Encoded clue for: Diffie-Hellman weak prime generator discrete log attack
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+Idk5VDXHMUk4ywhHNMI7QjDACFg0zzxwIdw+QjTxMEo/yyVODplnTTefYlI=

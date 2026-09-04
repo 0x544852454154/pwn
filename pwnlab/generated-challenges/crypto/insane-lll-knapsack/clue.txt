@@ -1,0 +1,6 @@
+# Encoded clue for: Lattice-based cryptography LLL reduction on knapsack cryptosystem
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+f294e4ebeb91b4d1fdaabde2e3aaa8e6ff94a3e9e081a1f7fd968eeaea86b0ecd090b2e7fb81b0e2f49ba6fe

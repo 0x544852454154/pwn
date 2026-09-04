@@ -1,0 +1,6 @@
+# Encoded clue for: Format string vulnerability overwriting GOT entry with target address
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+HrHkwwip+NUPstXLGrTj1gmZ/M0CqO/KD6Tj1Aey8+cBsO/KMaW4gQz17MU=

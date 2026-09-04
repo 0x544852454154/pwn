@@ -1,0 +1,32 @@
+{
+  "name": "SUID find exec command injection",
+  "category": "LINUX",
+  "difficulty": "MEDIUM",
+  "topic": "SUID find exec command injection",
+  "points": 200,
+  "estimated_time": 30,
+  "flag": "pwn{suid_find_exec_command_injection_b0323f}",
+  "storage_path": "linux/med-suid-find",
+  "primary_artifact": "artifact.bin",
+  "description": "SUID find exec command injection -- a medium-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"SUID find exec command injection\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "TLS SNI anomaly and covert TCP flag signaling",
+  "category": "NETWORKING",
+  "difficulty": "MEDIUM",
+  "topic": "TLS SNI anomaly and covert TCP flag signaling",
+  "points": 200,
+  "estimated_time": 30,
+  "flag": "pwn{tls_sni_anomaly_and_covert_tcp_f_427aa1}",
+  "storage_path": "net/med-tls-sni",
+  "primary_artifact": "capture.pcap",
+  "description": "TLS SNI anomaly and covert TCP flag signaling -- a medium-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"TLS SNI anomaly and covert TCP flag signaling\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

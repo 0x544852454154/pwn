@@ -1,0 +1,27 @@
+{
+  "name": "Password spray log analysis identifying compromised user credentials",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "EASY",
+  "topic": "Password spray log analysis identifying compromised user credentials",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{password_spray_log_analysis_iden_3f4fc7}",
+  "storage_path": "ad/easy-pass-spray-log",
+  "primary_artifact": "ticket.json",
+  "description": "Password spray log analysis identifying compromised user credentials -- a easy-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Password spray log analysis identifying compromised user credentials\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

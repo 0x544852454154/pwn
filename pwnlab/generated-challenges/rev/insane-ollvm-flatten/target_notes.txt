@@ -1,0 +1,2 @@
+# OLLVM control flow flattening with opaque predicates and instruction substitution
+Use objdump or strings to recover the encoded clue from the binary.

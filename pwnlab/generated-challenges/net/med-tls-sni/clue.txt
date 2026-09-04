@@ -1,0 +1,6 @@
+# Encoded clue for: TLS SNI anomaly and covert TCP flag signaling
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+jb1aWImmR3yOpF18nKRbTpymTXycpFB8nqVCRo++a1eeumtFov4GFJyrBV4=

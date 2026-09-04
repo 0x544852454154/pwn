@@ -1,0 +1,6 @@
+# Encoded clue for: ICMP echo request data carving
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+45df5d175ccb5e1c6acd50045af7410944dd561f41f7570d41c96c0f54da45055bcf6c09569c560902d5

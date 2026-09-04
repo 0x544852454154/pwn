@@ -1,0 +1,32 @@
+{
+  "name": "Social media cross-platform handle correlation and timeline analysis",
+  "category": "OSINT",
+  "difficulty": "MEDIUM",
+  "topic": "Social media cross-platform handle correlation and timeline analysis",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{social_media_cross_platform_hand_92c199}",
+  "storage_path": "osint/med-handle-recon",
+  "primary_artifact": "recon_image.png",
+  "description": "Social media cross-platform handle correlation and timeline analysis -- a medium-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Social media cross-platform handle correlation and timeline analysis\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

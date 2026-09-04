@@ -1,0 +1,32 @@
+{
+  "name": "Server-side request forgery (SSRF) to cloud instance metadata endpoint",
+  "category": "WEB",
+  "difficulty": "MEDIUM",
+  "topic": "Server-side request forgery (SSRF) to cloud instance metadata endpoint",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{server_side_request_forgery_ssrf_f89ef2}",
+  "storage_path": "web/med-ssrf-metadata",
+  "primary_artifact": "response.json",
+  "description": "Server-side request forgery (SSRF) to cloud instance metadata endpoint -- a medium-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Server-side request forgery (SSRF) to cloud instance metadata endpoint\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Fault injection simulation on AES round key scheduling",
+  "category": "CRYPTOGRAPHY",
+  "difficulty": "INSANE",
+  "topic": "Fault injection simulation on AES round key scheduling",
+  "points": 750,
+  "estimated_time": 150,
+  "flag": "pwn{fault_injection_simulation_on_ae_33424d}",
+  "storage_path": "crypto/insane-aes-fault",
+  "primary_artifact": "ciphertext.bin",
+  "description": "Fault injection simulation on AES round key scheduling -- a insane-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Fault injection simulation on AES round key scheduling\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

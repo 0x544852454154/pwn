@@ -1,0 +1,4 @@
+# Capture context
+Source: DNS over HTTPS covert C2 channel traffic analysis with statistical fingerprinting
+Tool used: tcpdump
+Filtering: host 10.0.4.17

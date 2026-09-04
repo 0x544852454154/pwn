@@ -1,0 +1,6 @@
+# Encoded clue for: Linux memory analysis with custom kernel profile to extract encryption keys
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+594d4256316e7a655664686f364662496664684a31452f57566378387a6b6a45592b684d784754665a4d356c78452f4354345144795344564439413d

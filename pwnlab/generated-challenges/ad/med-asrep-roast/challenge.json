@@ -1,0 +1,32 @@
+{
+  "name": "AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "MEDIUM",
+  "topic": "AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{as_rep_roasting_on_accounts_with_cbd7f5}",
+  "storage_path": "ad/med-asrep-roast",
+  "primary_artifact": "ticket.json",
+  "description": "AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication -- a medium-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

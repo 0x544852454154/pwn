@@ -1,0 +1,32 @@
+{
+  "name": "Anti-debugging techniques (ptrace, timing checks) in stripped ELF",
+  "category": "REVERSE ENGINEERING",
+  "difficulty": "HARD",
+  "topic": "Anti-debugging techniques (ptrace, timing checks) in stripped ELF",
+  "points": 400,
+  "estimated_time": 60,
+  "flag": "pwn{anti_debugging_techniques_ptrace_9732eb}",
+  "storage_path": "rev/hard-anti-debug-elf",
+  "primary_artifact": "target.elf",
+  "description": "Anti-debugging techniques (ptrace, timing checks) in stripped ELF -- a hard-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Anti-debugging techniques (ptrace, timing checks) in stripped ELF\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

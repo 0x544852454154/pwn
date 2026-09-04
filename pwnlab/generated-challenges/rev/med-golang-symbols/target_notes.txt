@@ -1,0 +1,2 @@
+# Golang compiled binary symbol recovery and routine analysis
+Use objdump or strings to recover the encoded clue from the binary.

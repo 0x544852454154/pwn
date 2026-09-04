@@ -1,0 +1,6 @@
+# Encoded clue for: BloodHound graph analysis identifying unconstrained Kerberos delegation path
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+786b635458745263456b725357424a5132465169517352524455337055524e45326b6b4f544d56764645485458676c4d36516c4f466f45485256673d

@@ -1,0 +1,6 @@
+# Encoded clue for: Ransomware memory artifact extraction to recover ephemeral Salsa20 key
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+3381ca5f7ddd98322fcadf152be7df0e2fdec2193cd9f4143cd7c60823e7ce1f2fcfc6023dd6ca1f35d6dc1d

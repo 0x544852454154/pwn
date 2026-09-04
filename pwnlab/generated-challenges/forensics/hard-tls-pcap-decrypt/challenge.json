@@ -1,0 +1,32 @@
+{
+  "name": "Network packet capture combined with SSL keylogfile decryption",
+  "category": "FORENSICS",
+  "difficulty": "HARD",
+  "topic": "Network packet capture combined with SSL keylogfile decryption",
+  "points": 400,
+  "estimated_time": 75,
+  "flag": "pwn{network_packet_capture_combined__88da96}",
+  "storage_path": "forensics/hard-tls-pcap-decrypt",
+  "primary_artifact": "evidence.sqlite",
+  "description": "Network packet capture combined with SSL keylogfile decryption -- a hard-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Network packet capture combined with SSL keylogfile decryption\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

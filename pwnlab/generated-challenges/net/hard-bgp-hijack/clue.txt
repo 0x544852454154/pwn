@@ -1,0 +1,6 @@
+# Encoded clue for: BGP route hijacking and forged routing advertisements
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+485858757241396c384967666266576a4346336f7667646a34377745624f654944477a6b69417474387241495a742b6c4d6a546a3446566735716f3d

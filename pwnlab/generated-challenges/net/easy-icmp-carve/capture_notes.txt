@@ -1,0 +1,4 @@
+# Capture context
+Source: ICMP echo request data carving
+Tool used: tcpdump
+Filtering: host 10.0.4.17

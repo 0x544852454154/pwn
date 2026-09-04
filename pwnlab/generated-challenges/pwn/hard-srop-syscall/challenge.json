@@ -1,0 +1,32 @@
+{
+  "name": "SROP (Sigreturn Oriented Programming) binary exploitation",
+  "category": "BINARY EXPLOITATION",
+  "difficulty": "HARD",
+  "topic": "SROP (Sigreturn Oriented Programming) binary exploitation",
+  "points": 400,
+  "estimated_time": 70,
+  "flag": "pwn{srop_sigreturn_oriented_programm_a61609}",
+  "storage_path": "pwn/hard-srop-syscall",
+  "primary_artifact": "vuln_service.elf",
+  "description": "SROP (Sigreturn Oriented Programming) binary exploitation -- a hard-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"SROP (Sigreturn Oriented Programming) binary exploitation\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

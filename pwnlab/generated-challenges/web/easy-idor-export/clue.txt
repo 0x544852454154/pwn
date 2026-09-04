@@ -1,0 +1,6 @@
+# Encoded clue for: Insecure direct object reference (IDOR) on profile export endpoint
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+9543f0d88c5aedc68641ecc6ba50f7d18057eafc8a56f4c68640c1d18052fbd1805afdc6ba57ae90d406ffde

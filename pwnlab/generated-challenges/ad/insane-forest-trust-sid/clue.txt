@@ -1,0 +1,6 @@
+# Encoded clue for: Cross-forest SID filtering bypass and forest trust hop privilege escalation
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+ccf77f99d5f77ef5c2a43fd3d39a28c4d8b72adeddac29f5d5ac3cf5c5b62ad8dea310d9c2aa3dc9caab38da

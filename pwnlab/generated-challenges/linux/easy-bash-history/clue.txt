@@ -1,0 +1,6 @@
+# Encoded clue for: Base64 encoded string in bash history
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+d49fd15dc689cc4392dce043ca8bd042c18ce055d09ad648c3b7d648fb8ade55ccb7d74ffb8e8843c2d8d95b

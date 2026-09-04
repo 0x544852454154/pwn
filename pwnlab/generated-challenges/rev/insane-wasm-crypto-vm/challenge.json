@@ -1,0 +1,32 @@
+{
+  "name": "Obfuscated WebAssembly (Wasm) cryptographic key verification module",
+  "category": "REVERSE ENGINEERING",
+  "difficulty": "INSANE",
+  "topic": "Obfuscated WebAssembly (Wasm) cryptographic key verification module",
+  "points": 750,
+  "estimated_time": 180,
+  "flag": "pwn{obfuscated_webassembly_wasm_cryp_dbb1c2}",
+  "storage_path": "rev/insane-wasm-crypto-vm",
+  "primary_artifact": "target.elf",
+  "description": "Obfuscated WebAssembly (Wasm) cryptographic key verification module -- a insane-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Obfuscated WebAssembly (Wasm) cryptographic key verification module\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "RSA with low public exponent e=3 Coppersmith small root attack",
+  "category": "CRYPTOGRAPHY",
+  "difficulty": "MEDIUM",
+  "topic": "RSA with low public exponent e=3 Coppersmith small root attack",
+  "points": 200,
+  "estimated_time": 30,
+  "flag": "pwn{rsa_with_low_public_exponent_e_3_ba53fc}",
+  "storage_path": "crypto/med-rsa-low-e",
+  "primary_artifact": "ciphertext.bin",
+  "description": "RSA with low public exponent e=3 Coppersmith small root attack -- a medium-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"RSA with low public exponent e=3 Coppersmith small root attack\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

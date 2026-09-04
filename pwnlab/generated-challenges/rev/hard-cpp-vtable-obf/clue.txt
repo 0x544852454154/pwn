@@ -1,0 +1,6 @@
+# Encoded clue for: C++ binary with virtual method table obfuscation and template metaprogramming
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+66546b37426d34524e78526a4c796345556a6b38435755524978522f4f6941635952453447486b6d4f686c534f6a5166556e6474524439336251413d

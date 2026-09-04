@@ -1,0 +1,32 @@
+{
+  "name": "Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation",
+  "category": "FORENSICS",
+  "difficulty": "MEDIUM",
+  "topic": "Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{master_file_table_mft_and_ntfs_u_66f35c}",
+  "storage_path": "forensics/med-mft-timestomp",
+  "primary_artifact": "evidence.sqlite",
+  "description": "Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation -- a medium-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

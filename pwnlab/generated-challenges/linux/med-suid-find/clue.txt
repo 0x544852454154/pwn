@@ -1,0 +1,6 @@
+# Encoded clue for: SUID find exec command injection
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+nq4iNJ2sJSuxvyUhioYpN4u6EyyBtCEugL0TJoCzKSyasCMhsbt8fNzqKjI=

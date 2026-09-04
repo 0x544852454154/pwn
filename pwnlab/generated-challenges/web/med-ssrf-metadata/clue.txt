@@ -1,0 +1,6 @@
+# Encoded clue for: Server-side request forgery (SSRF) to cloud instance metadata endpoint
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+GM9QChvdTAcNymECAdxbLhrdTwQNy0ouDtdMFg3KRy4by0wXN94GSA3eDAw=

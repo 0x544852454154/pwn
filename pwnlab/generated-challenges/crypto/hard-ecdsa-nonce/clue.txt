@@ -1,0 +1,6 @@
+# Encoded clue for: ECDSA nonce reuse private key recovery
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4c316444727a70445361632b66304f374d554e4969793146574b63366631326d4e6c5a4d6f44702f5272456d66312b78414555657454735247716b3d

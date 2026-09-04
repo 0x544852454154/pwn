@@ -1,0 +1,6 @@
+# Encoded clue for: Browser history and SQLite download database inspection
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+c7068023d503812fc4149c07df189d2cd8039707d61f8a07c4008231c314b13cd8068034e813df6fd541d725

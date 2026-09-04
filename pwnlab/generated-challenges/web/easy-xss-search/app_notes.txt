@@ -1,0 +1,2 @@
+Vulnerability class: Reflected cross-site scripting (XSS) in search query parameter
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

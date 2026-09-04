@@ -1,0 +1,32 @@
+{
+  "name": "Kerberos pre-authentication AS-REQ hash extraction from PCAP",
+  "category": "NETWORKING",
+  "difficulty": "MEDIUM",
+  "topic": "Kerberos pre-authentication AS-REQ hash extraction from PCAP",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{kerberos_pre_authentication_as_r_1a05bb}",
+  "storage_path": "net/med-asreq-pcap",
+  "primary_artifact": "capture.pcap",
+  "description": "Kerberos pre-authentication AS-REQ hash extraction from PCAP -- a medium-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Kerberos pre-authentication AS-REQ hash extraction from PCAP\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

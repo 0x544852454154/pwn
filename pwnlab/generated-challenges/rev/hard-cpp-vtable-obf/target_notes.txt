@@ -1,0 +1,2 @@
+# C++ binary with virtual method table obfuscation and template metaprogramming
+Use objdump or strings to recover the encoded clue from the binary.

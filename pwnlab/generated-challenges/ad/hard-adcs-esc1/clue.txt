@@ -1,0 +1,6 @@
+# Encoded clue for: Active Directory Certificate Services (ADCS) ESC1 template exploitation
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+496b594466444e534757346b56444a6a4f304d495a435a654833344e556768314a6c674c626a46514757494e51676831445146665a57454157486f3d

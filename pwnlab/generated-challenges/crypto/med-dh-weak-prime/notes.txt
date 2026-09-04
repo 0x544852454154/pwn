@@ -1,0 +1,2 @@
+# Cipher context -- Diffie-Hellman weak prime generator discrete log attack
+Recover the plaintext flag. See README for the encoding.

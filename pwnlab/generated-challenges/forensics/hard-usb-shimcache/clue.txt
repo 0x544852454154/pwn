@@ -1,0 +1,6 @@
+# Encoded clue for: USB device insertion forensics with Windows Registry shellbags and shimcache
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+444b577458776d686f5873597437564e4837656354524b68706c59497536784b4937537356686d38734530666f5a7854492b536e5278693239316b3d

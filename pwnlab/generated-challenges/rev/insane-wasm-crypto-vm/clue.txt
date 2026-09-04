@@ -1,0 +1,6 @@
+# Encoded clue for: Obfuscated WebAssembly (Wasm) cryptographic key verification module
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+876adb0b983adc658a21ca59a535cb5b8d07c1569835dd498939da5f8d07dc5f8e39db498f3eda558136cf4a

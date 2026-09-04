@@ -1,0 +1,6 @@
+# Encoded clue for: Format string vulnerability leaking stack values
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+8d57dbcd9b4fc7db9c54eac58952dcd89a7fc3c3914ed0c49c42dcda9454cce99145d4dda218d4d5ce1180cb

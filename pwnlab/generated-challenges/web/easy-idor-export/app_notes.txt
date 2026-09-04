@@ -1,0 +1,2 @@
+Vulnerability class: Insecure direct object reference (IDOR) on profile export endpoint
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

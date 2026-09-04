@@ -1,0 +1,6 @@
+# Encoded clue for: Resource-Based Constrained Delegation (RBCD) combined with machine account quota
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+29ae9f1963a4ce7e33f2c04430c8c8443afecd5320e4c24e37c8c84427f6ce7e31f4de543be4c9532ff9db51

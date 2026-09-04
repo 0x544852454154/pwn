@@ -1,0 +1,6 @@
+# Encoded clue for: Custom proprietary binary network protocol reverse engineering
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+6b4f33642f6f507677504750392b7a316b76584439346e2f782b5353342b7a6e6966545339356e463365435537647a3376366d4476594f6f672f673d

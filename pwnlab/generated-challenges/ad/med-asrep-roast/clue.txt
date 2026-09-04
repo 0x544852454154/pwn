@@ -1,0 +1,6 @@
+# Encoded clue for: AS-REP Roasting on accounts with Do Not Require Kerberos Preauthentication
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+SM0nqVnJFqBdyhagV9s6plHULo1X1BazW9kmp1bOOo1P0z26Z9krtg/cfK8=

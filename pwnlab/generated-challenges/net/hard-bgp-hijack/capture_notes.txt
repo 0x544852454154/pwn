@@ -1,0 +1,4 @@
+# Capture context
+Source: BGP route hijacking and forged routing advertisements
+Tool used: tcpdump
+Filtering: host 10.0.4.17

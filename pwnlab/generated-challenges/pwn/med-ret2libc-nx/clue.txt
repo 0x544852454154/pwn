@@ -1,0 +1,6 @@
+# Encoded clue for: Ret2libc exploit bypassing NX with system and /bin/sh arguments
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+CUSx5QtWq6wVWr39Jlan7hVctuomUabuGECs9xdUgPABbKj3JlbrrUgEuuM=

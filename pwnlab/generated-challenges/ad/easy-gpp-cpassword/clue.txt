@@ -1,0 +1,6 @@
+# Encoded clue for: Group Policy Preference (GPP) cpassword decryption from SYSVOL share
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+b1723b11a6773a1fb15a2505ad6c36139e75270fa760270faf663035a6752535a27534199e32660fa7633317

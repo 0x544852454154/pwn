@@ -1,0 +1,6 @@
+# Encoded clue for: x86-64 binary with custom byte substitution and XOR validation table
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+W5LdS1PdhW8d0exSQovSQlK6xFlfjexTXpbHX0a60UlfgOxDdNzXAhuDg00=

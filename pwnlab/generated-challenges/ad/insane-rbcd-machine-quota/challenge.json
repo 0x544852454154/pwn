@@ -1,0 +1,32 @@
+{
+  "name": "Resource-Based Constrained Delegation (RBCD) combined with machine account quota",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "INSANE",
+  "topic": "Resource-Based Constrained Delegation (RBCD) combined with machine account quota",
+  "points": 750,
+  "estimated_time": 180,
+  "flag": "pwn{resource_based_constrained_deleg_b37839}",
+  "storage_path": "ad/insane-rbcd-machine-quota",
+  "primary_artifact": "ticket.json",
+  "description": "Resource-Based Constrained Delegation (RBCD) combined with machine account quota -- a insane-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Resource-Based Constrained Delegation (RBCD) combined with machine account quota\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

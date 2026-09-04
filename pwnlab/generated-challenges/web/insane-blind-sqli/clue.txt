@@ -1,0 +1,6 @@
+# Encoded clue for: Blind boolean-based SQL injection with time delay and character-by-character extraction over WebSocket
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+5806f2681c51fc514a0cbf6d400fa5677a09ba7d7a01ae7d440794604400a7614a07946a4b0ca76c5e0bbc7e

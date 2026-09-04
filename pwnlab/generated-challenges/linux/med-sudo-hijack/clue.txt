@@ -1,0 +1,6 @@
+# Encoded clue for: Insecure sudo permissions on python script with library hijacking
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4UuiwPhSv97ySb7ezk+53/5jvN7jUaXI4lWj1eJjo9XOTLXPzln/iKEN+sY=

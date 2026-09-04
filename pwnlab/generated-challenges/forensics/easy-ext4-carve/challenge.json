@@ -1,0 +1,27 @@
+{
+  "name": "Hidden deleted file recovery from ext4 filesystem image",
+  "category": "FORENSICS",
+  "difficulty": "EASY",
+  "topic": "Hidden deleted file recovery from ext4 filesystem image",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{hidden_deleted_file_recovery_fro_b445c8}",
+  "storage_path": "forensics/easy-ext4-carve",
+  "primary_artifact": "evidence.sqlite",
+  "description": "Hidden deleted file recovery from ext4 filesystem image -- a easy-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Hidden deleted file recovery from ext4 filesystem image\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

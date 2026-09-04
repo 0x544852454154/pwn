@@ -1,0 +1,6 @@
+# Encoded clue for: Custom virtual machine interpreter bytecode disassembly
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+43324a536d6868675435555565474f58456d64496c42703559347761646c53494658426a69425668575a4d4c5a316d564a43304968423469435a773d

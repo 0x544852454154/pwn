@@ -1,0 +1,6 @@
+# Encoded clue for: JWT algorithm confusion (HS256 vs RS256) public key signature spoofing
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+dU80um9PLp5kVD2ud1EuqWhnOa5rXi+ybFc0nm1LaPQzZyyyWgw4oGMLO7w=

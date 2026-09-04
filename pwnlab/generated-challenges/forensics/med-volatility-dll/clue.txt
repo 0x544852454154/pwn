@@ -1,0 +1,6 @@
+# Encoded clue for: Volatility memory dump analysis extracting injected DLL
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+oftmP6fjZCWl5WQtpfVXKbThZzao02wxvPxXJb/tZD2i5Xsbju06dbC8PTk=

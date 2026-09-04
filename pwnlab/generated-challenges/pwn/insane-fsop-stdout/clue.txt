@@ -1,0 +1,6 @@
+# Encoded clue for: Modern glibc 2.35+ heap exploitation (house of apple / FSOP stdout vtable hijacking)
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+f755057def01091afe04452ce509413def3a4124ef0d6e70b93a031ae9075829ed3a5f37ef015e28f10b4635

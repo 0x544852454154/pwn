@@ -1,0 +1,6 @@
+# Encoded clue for: Wildcard tar privilege escalation exploit
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
++0td5/xVX/joXUH41EhS7tRMQfX9VV/57Fls+fhfUvDqSFrz1AsK+rwIUeE=

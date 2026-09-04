@@ -1,0 +1,2 @@
+Vulnerability class: Prototype pollution leading to remote code execution in Node.js backend
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

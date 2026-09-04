@@ -1,0 +1,6 @@
+# Encoded clue for: Leaked pastebin and darknet onion forum pseudonym tracking
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4534514741412b57435241476c7a634c416f416348674761426951436e51776b42354961454132574843514d6e514555504d5a61486c72424467593d

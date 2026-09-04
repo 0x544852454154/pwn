@@ -1,0 +1,2 @@
+# Cipher context -- Base58 and Base85 layered encoding with checksum
+Recover the plaintext flag. See README for the encoding.

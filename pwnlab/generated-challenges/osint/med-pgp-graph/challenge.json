@@ -1,0 +1,32 @@
+{
+  "name": "PGP public key server fingerprint and key signing graph investigation",
+  "category": "OSINT",
+  "difficulty": "MEDIUM",
+  "topic": "PGP public key server fingerprint and key signing graph investigation",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{pgp_public_key_server_fingerprin_425627}",
+  "storage_path": "osint/med-pgp-graph",
+  "primary_artifact": "recon_image.png",
+  "description": "PGP public key server fingerprint and key signing graph investigation -- a medium-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"PGP public key server fingerprint and key signing graph investigation\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

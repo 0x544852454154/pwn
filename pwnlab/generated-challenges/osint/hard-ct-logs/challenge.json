@@ -1,0 +1,32 @@
+{
+  "name": "Certificate Transparency log analysis identifying staging infrastructure",
+  "category": "OSINT",
+  "difficulty": "HARD",
+  "topic": "Certificate Transparency log analysis identifying staging infrastructure",
+  "points": 400,
+  "estimated_time": 60,
+  "flag": "pwn{certificate_transparency_log_ana_4e878b}",
+  "storage_path": "osint/hard-ct-logs",
+  "primary_artifact": "recon_image.png",
+  "description": "Certificate Transparency log analysis identifying staging infrastructure -- a hard-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Certificate Transparency log analysis identifying staging infrastructure\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

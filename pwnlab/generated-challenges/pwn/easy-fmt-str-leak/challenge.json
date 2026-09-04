@@ -1,0 +1,27 @@
+{
+  "name": "Format string vulnerability leaking stack values",
+  "category": "BINARY EXPLOITATION",
+  "difficulty": "EASY",
+  "topic": "Format string vulnerability leaking stack values",
+  "points": 100,
+  "estimated_time": 10,
+  "flag": "pwn{format_string_vulnerability_leak_8ac315}",
+  "storage_path": "pwn/easy-fmt-str-leak",
+  "primary_artifact": "vuln_service.elf",
+  "description": "Format string vulnerability leaking stack values -- a easy-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Format string vulnerability leaking stack values\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

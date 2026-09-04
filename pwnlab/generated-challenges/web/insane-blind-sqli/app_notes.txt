@@ -1,0 +1,2 @@
+Vulnerability class: Blind boolean-based SQL injection with time delay and character-by-character extraction over WebSocket
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

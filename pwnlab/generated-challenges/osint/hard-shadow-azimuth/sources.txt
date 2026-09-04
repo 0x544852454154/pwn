@@ -1,0 +1,2 @@
+Public-source artifacts collected for Satellite imagery analysis with sun shadow azimuth calculation for geolocation.
+The image carries additional data in its metadata. Inspect every chunk.

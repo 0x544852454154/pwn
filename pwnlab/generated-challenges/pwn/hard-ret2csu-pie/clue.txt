@@ -1,0 +1,6 @@
+# Encoded clue for: Ret2csu exploitation technique on PIE-disabled binaries
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4e786a72636a554b3854736b48504257496866315a5367473857677a4275706e4742766761693842374867794374706d47463639504352663448513d

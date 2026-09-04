@@ -1,0 +1,6 @@
+# Encoded clue for: Golden Ticket and Silver Ticket forgery with RC4/AES256 keys and PAC manipulation
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+15ccaebb50c2f8d0378ffee40b92efd01a9eede30188c4eb069ac4fb0d90f8e61ca4f5ea0c97f4e81395ecff

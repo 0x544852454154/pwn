@@ -1,0 +1,32 @@
+{
+  "name": "Namespace breakout via cgroups release_agent",
+  "category": "LINUX",
+  "difficulty": "INSANE",
+  "topic": "Namespace breakout via cgroups release_agent",
+  "points": 750,
+  "estimated_time": 150,
+  "flag": "pwn{namespace_breakout_via_cgroups_r_acc803}",
+  "storage_path": "linux/insane-cgroup-escape",
+  "primary_artifact": "artifact.bin",
+  "description": "Namespace breakout via cgroups release_agent -- a insane-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Namespace breakout via cgroups release_agent\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

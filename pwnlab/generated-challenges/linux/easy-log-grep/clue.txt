@@ -1,0 +1,6 @@
+# Encoded clue for: Hidden file permissions and grep filtering in /var/log
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+10a0afd208bea5cd05b99ecf09bba4f610b2b3c409a4b2c00fb9b2f601b9a5f607a5a4d93fb2a49a54e4f0d4

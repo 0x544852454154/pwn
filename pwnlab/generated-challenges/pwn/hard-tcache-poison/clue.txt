@@ -1,0 +1,6 @@
+# Encoded clue for: Heap exploitation: fastbin dup and tcache poisoning leading to arbitrary write
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+7a784e4f793963425163446741566a413077744a784e345153642f524f3062527a42424332644537524d58504f30486534464551316f35564673303d

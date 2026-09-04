@@ -1,0 +1,6 @@
+# Encoded clue for: Network packet capture combined with SSL keylogfile decryption
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+736f722f674b7959355979746a2f716b73707a796b4b654a7a70696a6a65574f734a6a4f6d4b325138354b736d50576b6e6357706e3650457034593d

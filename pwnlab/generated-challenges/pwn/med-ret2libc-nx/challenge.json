@@ -1,0 +1,32 @@
+{
+  "name": "Ret2libc exploit bypassing NX with system and /bin/sh arguments",
+  "category": "BINARY EXPLOITATION",
+  "difficulty": "MEDIUM",
+  "topic": "Ret2libc exploit bypassing NX with system and /bin/sh arguments",
+  "points": 200,
+  "estimated_time": 30,
+  "flag": "pwn{ret2libc_exploit_bypassing_nx_wi_e4317e}",
+  "storage_path": "pwn/med-ret2libc-nx",
+  "primary_artifact": "vuln_service.elf",
+  "description": "Ret2libc exploit bypassing NX with system and /bin/sh arguments -- a medium-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Ret2libc exploit bypassing NX with system and /bin/sh arguments\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

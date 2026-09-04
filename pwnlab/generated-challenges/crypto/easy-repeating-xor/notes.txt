@@ -1,0 +1,2 @@
+# Cipher context -- XOR cipher with known repeating key length
+Recover the plaintext flag. See README for the encoding.

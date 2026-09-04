@@ -1,0 +1,6 @@
+# Encoded clue for: Linux eBPF verifier flaw privilege escalation
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+7be795b536b49bd963bbc5f06fa5dcd971b6c0e059a5c9ef60bedee37088caf664b2f3fe73b9c5ea7db9dbf6

@@ -1,0 +1,6 @@
+# Encoded clue for: AES-ECB mode block manipulation and oracle padding leak
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+OuqOaSv4k00v/oJNJ/KEdxX/jH0p9r9/K/OJYj/xgWYj8o5NFavVIHKrhG8=

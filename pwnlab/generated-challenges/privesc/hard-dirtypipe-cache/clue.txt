@@ -1,0 +1,6 @@
+# Encoded clue for: Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+6b704d374334614e4a7753627579555a6b6f454b45355342436b4c53316d637630747868523732554e426548757a595276644d7a456f62545a51303d

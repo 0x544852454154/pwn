@@ -1,0 +1,2 @@
+Vulnerability class: Path traversal and local file inclusion (LFI) via unvalidated template parameter
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

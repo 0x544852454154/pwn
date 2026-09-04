@@ -1,0 +1,6 @@
+# Encoded clue for: Insecure NFS root squashing misconfiguration
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+455565675a77686576586b4352627835506c366f627a35436f584d5662373174464647396441686571554d4d5762312f5067662b654656552f47453d

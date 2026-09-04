@@ -1,0 +1,6 @@
+# Encoded clue for: DCSync attack via replication rights (DS-Replication-Get-Changes)
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4c4d7774776a6a594d4d417932427a594b4d3869326a666b4e644139354448634c4e6371326a33504b7459793544485141397032326d33664a73513d

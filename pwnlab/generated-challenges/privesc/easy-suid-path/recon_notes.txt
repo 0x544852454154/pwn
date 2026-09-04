@@ -1,0 +1,2 @@
+linpeas output indicates: SUID binary with relative PATH environment variable hijacking
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

@@ -1,0 +1,6 @@
+# Encoded clue for: Modbus industrial SCADA traffic manipulation
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+9b6FLuimjzfwurQ8662eJvG7gjTplpg25K2KCvG7ijPjoIgK2vHaZeH6jyg=

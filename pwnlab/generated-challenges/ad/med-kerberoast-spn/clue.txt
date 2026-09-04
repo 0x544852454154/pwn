@@ -1,0 +1,6 @@
+# Encoded clue for: Kerberoasting attack on Service Principal Names (SPN) with hash cracking
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+LV5CcTZMXmg4W0NrLl1FZDp2TX4pSE9hAkZCVS5MXnw0SklVAh0fOWweGXc=

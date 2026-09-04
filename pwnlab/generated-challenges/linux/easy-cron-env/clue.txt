@@ -1,0 +1,6 @@
+# Encoded clue for: Cron environment variable token extraction
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+a9f9b263bafcb37686ebb26eb0fcb376b4ebb26c86f8bd6ab0efbe74bcd1a877b2ebb24786bae57debe8ba65

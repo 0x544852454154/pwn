@@ -1,0 +1,32 @@
+{
+  "name": "Insecure DNS update ACL enabling Active Directory DNS record hijacking",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "MEDIUM",
+  "topic": "Insecure DNS update ACL enabling Active Directory DNS record hijacking",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{insecure_dns_update_acl_enabling_1e8449}",
+  "storage_path": "ad/med-dns-acl-hijack",
+  "primary_artifact": "ticket.json",
+  "description": "Insecure DNS update ACL enabling Active Directory DNS record hijacking -- a medium-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Insecure DNS update ACL enabling Active Directory DNS record hijacking\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Encoded clue for: Master File Table ($MFT) and NTFS $UsnJrnl timestamp anti-forensics investigation
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+uNoMTKXMEUOt3z1RocEHaLzMAFut8g9RvPIDWazyDEOu3j1Cl5tUUfuYAUo=

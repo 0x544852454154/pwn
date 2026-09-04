@@ -1,0 +1,6 @@
+# Encoded clue for: Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+364d4c594c2b2f63324444337773554c374e72644d666271337a6e6f304d516e393976584950486132417672304e383578346651592f794230696b3d

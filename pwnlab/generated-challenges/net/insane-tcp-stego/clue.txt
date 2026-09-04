@@ -1,0 +1,6 @@
+# Encoded clue for: Zero-window TCP sequence number steganography covert data reconstruction
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+c406e9f68f56be9fe647bfa2d440b49fdc56b4a5cc44bfb3e645b9b4e642b5a4d75cad9fd647bfbac25badb0

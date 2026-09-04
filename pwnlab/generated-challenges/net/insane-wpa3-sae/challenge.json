@@ -1,0 +1,32 @@
+{
+  "name": "WPA3 SAE Dragonfly handshake offline timing attack artifact",
+  "category": "NETWORKING",
+  "difficulty": "INSANE",
+  "topic": "WPA3 SAE Dragonfly handshake offline timing attack artifact",
+  "points": 750,
+  "estimated_time": 180,
+  "flag": "pwn{wpa3_sae_dragonfly_handshake_off_b0ea3a}",
+  "storage_path": "net/insane-wpa3-sae",
+  "primary_artifact": "capture.pcap",
+  "description": "WPA3 SAE Dragonfly handshake offline timing attack artifact -- a insane-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"WPA3 SAE Dragonfly handshake offline timing attack artifact\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

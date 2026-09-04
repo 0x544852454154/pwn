@@ -1,0 +1,6 @@
+# Encoded clue for: Kerberos pre-authentication AS-REQ hash extraction from PCAP
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+xoyU+N2eiOHTiZXw6YuI5umaj/fenpT335ib99+UlNzXiKXx6cqbs4OZmP4=

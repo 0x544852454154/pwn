@@ -1,0 +1,2 @@
+Vulnerability class: PHP Phar deserialization exploit chain with custom POP gadgets
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

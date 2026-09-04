@@ -1,0 +1,6 @@
+# Encoded clue for: Windows Event Log (EVTX) logon artifact analysis
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4824ac1e4f3aac015724b13a5d25a70b4c0cae0a5f0ca7134c2b9d095734ad0b6732b011676bf3030f37f118

@@ -1,0 +1,5 @@
+# recovered from /etc -- SUID binary with relative PATH environment variable hijacking
+# (this dump does not contain the flag, but it does point to the next step)
+host=ops-jumpbox
+service=backup-runner
+hint=easy

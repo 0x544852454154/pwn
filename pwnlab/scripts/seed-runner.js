@@ -88,7 +88,7 @@ async function insertChallenges(challenges, catMap) {
         description: c.description,
         category_id: catId,
         difficulty: c.difficulty,
-        points: c.points, // 0
+        points: c.points, // per-difficulty curve from generator
         estimated_time: c.estimated_time,
         flag: c.flag,     // SERVER-SIDE ONLY -- never written to a user-visible file
         storage_path: c.storage_path,
@@ -184,8 +184,9 @@ async function main() {
   const failures = await insertChallenges(challenges, catMap);
   await uploadArtifacts(challenges);
 
-  console.log(`\nDone. Inserted ${challenges.length - failures.length}/${challenges.length}.`);
-  console.log(`All points reset to 0. Run an ops-side scorer to assign points if desired.`);
+  console.log(`Done. Inserted ${challenges.length - failures.length}/${challenges.length}.`);
+  console.log(`Points curve applied by difficulty (EASY=100/MEDIUM=200/HARD=400/INSANE=750).`);
+  console.log(`First-blood logic: only the first solver of each challenge is awarded points + notification.`);
   if (failures.length) {
     console.log(`Failures:`);
     failures.forEach((f) => console.log('  ', f.storage_path));

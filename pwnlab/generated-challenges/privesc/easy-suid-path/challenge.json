@@ -1,0 +1,27 @@
+{
+  "name": "SUID binary with relative PATH environment variable hijacking",
+  "category": "PRIVILEGE ESCALATION",
+  "difficulty": "EASY",
+  "topic": "SUID binary with relative PATH environment variable hijacking",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{suid_binary_with_relative_path_e_4d1538}",
+  "storage_path": "privesc/easy-suid-path",
+  "primary_artifact": "config_dump.bin",
+  "description": "SUID binary with relative PATH environment variable hijacking -- a easy-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"SUID binary with relative PATH environment variable hijacking\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

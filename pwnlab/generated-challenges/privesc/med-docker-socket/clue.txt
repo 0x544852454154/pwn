@@ -1,0 +1,6 @@
+# Encoded clue for: Docker socket group membership root container escape
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+xe/UzdH32d3Q6uXF2vvR08HH3cTa7crp2P3X1NDqyd7c6OXE6vuKgYT+2Ms=

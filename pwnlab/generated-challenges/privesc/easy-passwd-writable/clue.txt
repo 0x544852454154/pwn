@@ -1,0 +1,6 @@
+# Encoded clue for: World-writable /etc/passwd file enabling new root user creation
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+a1016036a6197c21b529793fb8026f2fbd135128a515513db0057d3ab5296824bd1351288e153d7fe6123830

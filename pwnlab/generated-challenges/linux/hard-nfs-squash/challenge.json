@@ -1,0 +1,32 @@
+{
+  "name": "Insecure NFS root squashing misconfiguration",
+  "category": "LINUX",
+  "difficulty": "HARD",
+  "topic": "Insecure NFS root squashing misconfiguration",
+  "points": 400,
+  "estimated_time": 75,
+  "flag": "pwn{insecure_nfs_root_squashing_misc_70d4d2}",
+  "storage_path": "linux/hard-nfs-squash",
+  "primary_artifact": "artifact.bin",
+  "description": "Insecure NFS root squashing misconfiguration -- a hard-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Insecure NFS root squashing misconfiguration\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

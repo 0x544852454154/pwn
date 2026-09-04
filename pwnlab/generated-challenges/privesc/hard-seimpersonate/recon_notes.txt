@@ -1,0 +1,2 @@
+linpeas output indicates: Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

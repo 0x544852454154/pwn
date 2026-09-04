@@ -1,0 +1,6 @@
+# Encoded clue for: QUIC protocol stream multiplexing covert channel
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4a703955507965645579634a6d456772496f645a4b7a71335354416b6a567370435956504b434b425369677a6b464d71436478664947666144446b3d

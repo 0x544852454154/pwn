@@ -1,0 +1,6 @@
+# Encoded clue for: Hidden deleted file recovery from ext4 filesystem image
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+e735d33aff2bd925f22ce225f22ed835f226e227fe2ed81ee527de2ee127cf38c824cf2ec8208975a221853c

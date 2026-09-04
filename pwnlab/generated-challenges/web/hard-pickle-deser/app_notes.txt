@@ -1,0 +1,2 @@
+Vulnerability class: Python pickle insecure deserialization RCE via session cookie
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

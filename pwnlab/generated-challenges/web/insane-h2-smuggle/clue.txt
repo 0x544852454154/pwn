@@ -1,0 +1,6 @@
+# Encoded clue for: HTTP/2 request smuggling desync attack bypassing WAF authentication filter
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+9d55e9f88355e99ebf02e6b89304ec9e870fe1ad8706fdac933efcb28514f9a4923eba9e9015fca99b0fffb1

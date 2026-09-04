@@ -1,0 +1,6 @@
+# Encoded clue for: SQL injection authentication bypass in login form
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+d2fbc37fd1fdc15bcbe2c761c1f8c46bccd3cc71d6e4c86ad6e5ce65d6e5c26afdeed474fdba9b3d91b59f79

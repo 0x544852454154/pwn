@@ -1,0 +1,2 @@
+# Cipher context -- AES-CBC bit-flipping attack modifying encrypted token payloads
+Recover the plaintext flag. See README for the encoding.

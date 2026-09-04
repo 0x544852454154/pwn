@@ -1,0 +1,27 @@
+{
+  "name": "DNS query exfiltration artifact analysis",
+  "category": "NETWORKING",
+  "difficulty": "EASY",
+  "topic": "DNS query exfiltration artifact analysis",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{dns_query_exfiltration_artifact__5c6512}",
+  "storage_path": "net/easy-dns-exfil",
+  "primary_artifact": "capture.pcap",
+  "description": "DNS query exfiltration artifact analysis -- a easy-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"DNS query exfiltration artifact analysis\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

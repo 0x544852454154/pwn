@@ -1,0 +1,2 @@
+linpeas output indicates: World-writable /etc/passwd file enabling new root user creation
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

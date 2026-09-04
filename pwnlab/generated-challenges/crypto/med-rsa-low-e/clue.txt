@@ -1,0 +1,6 @@
+# Encoded clue for: RSA with low public exponent e=3 Coppersmith small root attack
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+Rn33WkR5+H5BY+1JaWb2Vml67ENaY/p+U3LpTlhv91Vpb8YSaWj4FAVs+lw=

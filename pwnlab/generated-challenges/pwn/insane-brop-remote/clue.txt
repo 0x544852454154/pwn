@@ -1,0 +1,6 @@
+# Encoded clue for: Blind ROP (BROP) over network service without binary source
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+9758a7f8885cf7969c4cf0bab555e7a69d4af0a7b54cf0bf8561e5a6985ccab9854ccaad8457f9ab9150e2b9

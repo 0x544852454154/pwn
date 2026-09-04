@@ -1,0 +1,27 @@
+{
+  "name": "HTTP basic authentication header interception",
+  "category": "NETWORKING",
+  "difficulty": "EASY",
+  "topic": "HTTP basic authentication header interception",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{http_basic_authentication_header_4c29e6}",
+  "storage_path": "net/easy-http-auth",
+  "primary_artifact": "capture.pcap",
+  "description": "HTTP basic authentication header interception -- a easy-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"HTTP basic authentication header interception\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

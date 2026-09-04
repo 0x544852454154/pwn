@@ -1,0 +1,6 @@
+# Encoded clue for: Password spray log analysis identifying compromised user credentials
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+9b44f7ae9b52eaa69c5cebb1b440e9a78a4ac6b98454c6b48552f5ac985aea8a8257fcbbb400ffe18d50aea8

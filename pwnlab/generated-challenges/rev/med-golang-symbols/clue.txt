@@ -1,0 +1,6 @@
+# Encoded clue for: Golang compiled binary symbol recovery and routine analysis
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+0SP3tMY79a7PM8aszjnpps0x/ZDDPfeu0y3GvNg5+6DNC+uq/m2o/Zg1rbI=

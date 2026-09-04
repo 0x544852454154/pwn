@@ -1,0 +1,6 @@
+# Encoded clue for: Prototype pollution leading to remote code execution in Node.js backend
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+344258384b6541512f53622f46757369395433695066774f357962354466774e2f41667a4e766b4d3951336b446330677a31536a613649426f69383d

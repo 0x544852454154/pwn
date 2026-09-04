@@ -1,0 +1,27 @@
+{
+  "name": "Group Policy Preference (GPP) cpassword decryption from SYSVOL share",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "EASY",
+  "topic": "Group Policy Preference (GPP) cpassword decryption from SYSVOL share",
+  "points": 100,
+  "estimated_time": 10,
+  "flag": "pwn{group_policy_preference_gpp_cpas_73efff}",
+  "storage_path": "ad/easy-gpp-cpassword",
+  "primary_artifact": "ticket.json",
+  "description": "Group Policy Preference (GPP) cpassword decryption from SYSVOL share -- a easy-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Group Policy Preference (GPP) cpassword decryption from SYSVOL share\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Encoded clue for: Base58 and Base85 layered encoding with checksum
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+605b88b0724d95ae2514b9aa7e48b9a9715f83f325738aaa694994ae747383a5734382a24f1f84f8244ed5b6

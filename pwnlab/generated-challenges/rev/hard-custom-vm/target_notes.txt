@@ -1,0 +1,2 @@
+# Custom virtual machine interpreter bytecode disassembly
+Use objdump or strings to recover the encoded clue from the binary.

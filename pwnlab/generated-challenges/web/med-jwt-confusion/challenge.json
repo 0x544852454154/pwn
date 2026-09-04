@@ -1,0 +1,32 @@
+{
+  "name": "JWT algorithm confusion (HS256 vs RS256) public key signature spoofing",
+  "category": "WEB",
+  "difficulty": "MEDIUM",
+  "topic": "JWT algorithm confusion (HS256 vs RS256) public key signature spoofing",
+  "points": 200,
+  "estimated_time": 30,
+  "flag": "pwn{jwt_algorithm_confusion_hs256_vs_4baf3a}",
+  "storage_path": "web/med-jwt-confusion",
+  "primary_artifact": "response.json",
+  "description": "JWT algorithm confusion (HS256 vs RS256) public key signature spoofing -- a medium-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"JWT algorithm confusion (HS256 vs RS256) public key signature spoofing\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

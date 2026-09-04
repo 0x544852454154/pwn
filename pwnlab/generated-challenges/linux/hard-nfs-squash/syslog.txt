@@ -1,0 +1,5 @@
+# /var/log/syslog excerpt -- Insecure NFS root squashing misconfiguration
+Mar 14 09:12:01 srv01 CRON[2241]: (root) CMD (/usr/local/bin/backup.sh)
+Mar 14 09:12:31 srv01 sshd[2290]: Accepted password for svc-backup from 10.0.4.17
+Mar 14 09:14:02 srv01 systemd[1]: Started Daily apt download activities.
+# (operator pulled the artifact below from /var/spool/backup)

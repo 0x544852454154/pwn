@@ -1,0 +1,6 @@
+# Encoded clue for: PGP public key server fingerprint and key signing graph investigation
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+Bp+TnQaPjbkGnZ+KH4uijRORopUTmouDBLebjxiPmJQGmpSIKdzP00Dayps=

@@ -1,0 +1,4 @@
+# Capture context
+Source: Kerberos pre-authentication AS-REQ hash extraction from PCAP
+Tool used: tcpdump
+Filtering: host 10.0.4.17

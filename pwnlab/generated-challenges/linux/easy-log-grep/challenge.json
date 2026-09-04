@@ -1,0 +1,27 @@
+{
+  "name": "Hidden file permissions and grep filtering in /var/log",
+  "category": "LINUX",
+  "difficulty": "EASY",
+  "topic": "Hidden file permissions and grep filtering in /var/log",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{hidden_file_permissions_and_grep_ee3431}",
+  "storage_path": "linux/easy-log-grep",
+  "primary_artifact": "artifact.bin",
+  "description": "Hidden file permissions and grep filtering in /var/log -- a easy-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Hidden file permissions and grep filtering in /var/log\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

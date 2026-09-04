@@ -1,0 +1,32 @@
+{
+  "name": "Lattice-based cryptography LLL reduction on knapsack cryptosystem",
+  "category": "CRYPTOGRAPHY",
+  "difficulty": "INSANE",
+  "topic": "Lattice-based cryptography LLL reduction on knapsack cryptosystem",
+  "points": 750,
+  "estimated_time": 120,
+  "flag": "pwn{lattice_based_cryptography_lll_r_edde5a}",
+  "storage_path": "crypto/insane-lll-knapsack",
+  "primary_artifact": "ciphertext.bin",
+  "description": "Lattice-based cryptography LLL reduction on knapsack cryptosystem -- a insane-tier cryptography challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Lattice-based cryptography LLL reduction on knapsack cryptosystem\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

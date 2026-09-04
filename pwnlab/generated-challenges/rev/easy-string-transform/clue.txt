@@ -1,0 +1,6 @@
+# Encoded clue for: Disassembling simple C binary with hardcoded string transformation
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+5a90d5c74e8ec8dd5994ded1488bd2d24db8c8d54797d7d97584e4de4389dace53b8ccd575df8d8b1ed28dc1

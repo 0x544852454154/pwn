@@ -1,0 +1,6 @@
+# Encoded clue for: Insecure DNS update ACL enabling Active Directory DNS record hijacking
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+qidMd7M+UWm5JVBphTRMf4UlUmi7JEdTuzNOU78+Q262OUxrhWFHNO5kG3E=

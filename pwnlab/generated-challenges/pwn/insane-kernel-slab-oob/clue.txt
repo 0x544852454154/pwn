@@ -1,0 +1,6 @@
+# Encoded clue for: Linux kernel exploitation: slab out-of-bounds write to modify cred structure
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+49a482f556a587925bccd1ac58e0eca35bfac7ac40fadca144ebd69258f6ddbf51f8ecb541fddaa14ffdc4bd

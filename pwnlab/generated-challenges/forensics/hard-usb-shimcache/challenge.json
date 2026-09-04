@@ -1,0 +1,32 @@
+{
+  "name": "USB device insertion forensics with Windows Registry shellbags and shimcache",
+  "category": "FORENSICS",
+  "difficulty": "HARD",
+  "topic": "USB device insertion forensics with Windows Registry shellbags and shimcache",
+  "points": 400,
+  "estimated_time": 70,
+  "flag": "pwn{usb_device_insertion_forensics_w_6dcdd4}",
+  "storage_path": "forensics/hard-usb-shimcache",
+  "primary_artifact": "evidence.sqlite",
+  "description": "USB device insertion forensics with Windows Registry shellbags and shimcache -- a hard-tier forensics challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"USB device insertion forensics with Windows Registry shellbags and shimcache\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

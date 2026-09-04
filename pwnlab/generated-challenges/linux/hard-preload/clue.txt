@@ -1,0 +1,6 @@
+# Encoded clue for: Custom shared library LD_PRELOAD injection in daemon
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+5a382f526733544e7a4978343165434c66396e4e6e58506e303546317974364b627566546e456a497a5a31373139366353496d4d6d6936503259553d

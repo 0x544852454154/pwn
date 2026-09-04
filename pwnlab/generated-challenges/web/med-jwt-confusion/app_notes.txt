@@ -1,0 +1,2 @@
+Vulnerability class: JWT algorithm confusion (HS256 vs RS256) public key signature spoofing
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

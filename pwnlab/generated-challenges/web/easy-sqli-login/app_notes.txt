@@ -1,0 +1,2 @@
+Vulnerability class: SQL injection authentication bypass in login form
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

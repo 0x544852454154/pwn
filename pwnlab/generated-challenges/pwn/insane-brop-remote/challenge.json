@@ -1,0 +1,32 @@
+{
+  "name": "Blind ROP (BROP) over network service without binary source",
+  "category": "BINARY EXPLOITATION",
+  "difficulty": "INSANE",
+  "topic": "Blind ROP (BROP) over network service without binary source",
+  "points": 750,
+  "estimated_time": 150,
+  "flag": "pwn{blind_rop_brop_over_network_serv_bbb12f}",
+  "storage_path": "pwn/insane-brop-remote",
+  "primary_artifact": "vuln_service.elf",
+  "description": "Blind ROP (BROP) over network service without binary source -- a insane-tier binary exploitation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Blind ROP (BROP) over network service without binary source\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

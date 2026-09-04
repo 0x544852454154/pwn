@@ -1,0 +1,6 @@
+# Encoded clue for: XOR cipher with known repeating key length
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+5450514f5c484d6b474e4f5c415560434d53576b4f4950434a784d5154425e404d49586b7b110d5041460649

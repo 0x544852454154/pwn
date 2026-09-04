@@ -1,0 +1,6 @@
+# Encoded clue for: Insecure cron job script executing writable files in /tmp
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+59513bf1404826ef4a5327ef764527e547793fe54b7926e95b4f25fe76432def4a5321e3761134b34d1e61f7

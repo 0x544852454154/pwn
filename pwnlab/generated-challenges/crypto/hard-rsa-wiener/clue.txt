@@ -1,0 +1,6 @@
+# Encoded clue for: RSA Wiener continued fractions attack on small private exponent d
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+6b324a6d6a70466d6161715566473262686d64586c6f7837664a794e5947325276484e366c494268595a714e5a6c6555764852736c39556d6159673d

@@ -1,0 +1,32 @@
+{
+  "name": "PHP Phar deserialization exploit chain with custom POP gadgets",
+  "category": "WEB",
+  "difficulty": "INSANE",
+  "topic": "PHP Phar deserialization exploit chain with custom POP gadgets",
+  "points": 750,
+  "estimated_time": 150,
+  "flag": "pwn{php_phar_deserialization_exploit_2b7530}",
+  "storage_path": "web/insane-phar-pop",
+  "primary_artifact": "response.json",
+  "description": "PHP Phar deserialization exploit chain with custom POP gadgets -- a insane-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"PHP Phar deserialization exploit chain with custom POP gadgets\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

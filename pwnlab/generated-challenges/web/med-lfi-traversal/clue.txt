@@ -1,0 +1,6 @@
+# Encoded clue for: Path traversal and local file inclusion (LFI) via unvalidated template parameter
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+IHaC8yBgmOAPdZ7pJmSe+zFts+k+ZbPkP2KN5A9nheQ1XoXmDziNvjNiifU=

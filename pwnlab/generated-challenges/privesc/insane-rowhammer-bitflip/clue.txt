@@ -1,0 +1,6 @@
+# Encoded clue for: Hardware rowhammer simulation memory bitflip privilege escalation
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+2190d3da6ac686bc39c8bf8d33cc948230d08d8a2ffa928631c8818b2bca92bc39d7819438d7818b27cb9793

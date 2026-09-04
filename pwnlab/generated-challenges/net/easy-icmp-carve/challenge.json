@@ -1,0 +1,27 @@
+{
+  "name": "ICMP echo request data carving",
+  "category": "NETWORKING",
+  "difficulty": "EASY",
+  "topic": "ICMP echo request data carving",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{icmp_echo_request_data_carving_ec4ee7}",
+  "storage_path": "net/easy-icmp-carve",
+  "primary_artifact": "capture.pcap",
+  "description": "ICMP echo request data carving -- a easy-tier networking challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"ICMP echo request data carving\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

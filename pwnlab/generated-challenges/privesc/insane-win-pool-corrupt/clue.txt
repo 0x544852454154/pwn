@@ -1,0 +1,6 @@
+# Encoded clue for: Windows kernel pool corruption via vulnerable third-party driver
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+fa093a81b0076ce7f16e64d7ee457acdf54365dbd85d65d7f76e66dde9436fd3d8427dd7e35f63cffc5f7dc8

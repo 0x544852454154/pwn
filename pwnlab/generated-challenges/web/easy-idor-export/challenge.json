@@ -1,0 +1,27 @@
+{
+  "name": "Insecure direct object reference (IDOR) on profile export endpoint",
+  "category": "WEB",
+  "difficulty": "EASY",
+  "topic": "Insecure direct object reference (IDOR) on profile export endpoint",
+  "points": 100,
+  "estimated_time": 15,
+  "flag": "pwn{insecure_direct_object_reference_c0312a}",
+  "storage_path": "web/easy-idor-export",
+  "primary_artifact": "response.json",
+  "description": "Insecure direct object reference (IDOR) on profile export endpoint -- a easy-tier web challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Insecure direct object reference (IDOR) on profile export endpoint\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

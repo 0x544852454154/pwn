@@ -1,0 +1,6 @@
+# Encoded clue for: Obfuscated JavaScript crackme key validation function
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+ffcfb35ae0dabb54fcdbbc55eadc824beecebc52eccab451fbe7be53eedbb64ceae7b644d089b918b78de45c

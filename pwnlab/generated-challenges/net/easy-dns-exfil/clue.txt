@@ -1,0 +1,6 @@
+# Encoded clue for: DNS query exfiltration artifact analysis
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+2a84f97c3e9de4582b86f27523acf27f3c9afb732892e36e359dc8662887fe613b90e35805c6f4316fc2a57a

@@ -1,0 +1,4 @@
+# Capture context
+Source: Custom proprietary binary network protocol reverse engineering
+Tool used: tcpdump
+Filtering: host 10.0.4.17

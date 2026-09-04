@@ -1,0 +1,6 @@
+# Encoded clue for: Satellite imagery analysis with sun shadow azimuth calculation for geolocation
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+322b6f4a694e6a3845356248385136487a73494f6e737236416f48537767616479764565674d4c754f49544336512b73395068546b4a75764134343d

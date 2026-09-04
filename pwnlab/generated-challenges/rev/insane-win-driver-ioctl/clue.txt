@@ -1,0 +1,6 @@
+# Encoded clue for: Windows kernel driver (.sys) reverse engineering with IOCTL reversing
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+ee269b97f775c8fae035ccd3f635f6d6ea34f6d7f631c0d7f718c5c0fd35cccecc34decaf729c0d2e829ded5

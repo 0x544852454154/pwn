@@ -1,0 +1,6 @@
+# Encoded clue for: Polkit (PwnKit CVE-2021-4034) pkexec local privilege escalation
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+70456f444836525341512b39535449556f314d474461426944684b78596c395535677779554f514f5754756b5667676369317864552b4d4658686b3d

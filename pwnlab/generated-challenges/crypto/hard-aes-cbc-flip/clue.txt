@@ -1,0 +1,6 @@
+# Encoded clue for: AES-CBC bit-flipping attack modifying encrypted token payloads
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+64434b42456d55776e445a6e4e3477325a6a79624e6d493568686c305049454f577a53624857553268445a704f6f73415732474a436a52696a52513d

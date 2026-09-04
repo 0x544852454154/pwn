@@ -1,0 +1,32 @@
+{
+  "name": "Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)",
+  "category": "PRIVILEGE ESCALATION",
+  "difficulty": "HARD",
+  "topic": "Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)",
+  "points": 400,
+  "estimated_time": 70,
+  "flag": "pwn{windows_token_impersonation_seim_2f7d4d}",
+  "storage_path": "privesc/hard-seimpersonate",
+  "primary_artifact": "config_dump.bin",
+  "description": "Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style) -- a hard-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Windows Token Impersonation (SeImpersonatePrivilege / RottenPotato style)\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

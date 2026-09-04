@@ -1,0 +1,6 @@
+# Encoded clue for: Bleichenbacher RSA PKCS#1 v1.5 padding oracle adaptive attack
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+99d08f40d6d3dc7e94bc8f7ed595e510bb90d94a94bcdb5296bcc8448c80db438a86d2428d86d6439f8dcd51

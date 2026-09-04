@@ -1,0 +1,6 @@
+# Encoded clue for: DNS over HTTPS covert C2 channel traffic analysis with statistical fingerprinting
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+f0b421e7ece27188e1b22db9ecbf2088bfb41ca3ffb235b8ee8830a7f9a32b88ffb235b8d2a42db3f6b934a7

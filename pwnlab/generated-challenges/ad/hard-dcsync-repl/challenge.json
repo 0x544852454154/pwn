@@ -1,0 +1,32 @@
+{
+  "name": "DCSync attack via replication rights (DS-Replication-Get-Changes)",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "HARD",
+  "topic": "DCSync attack via replication rights (DS-Replication-Get-Changes)",
+  "points": 400,
+  "estimated_time": 75,
+  "flag": "pwn{dcsync_attack_via_replication_ri_a5c1de}",
+  "storage_path": "ad/hard-dcsync-repl",
+  "primary_artifact": "ticket.json",
+  "description": "DCSync attack via replication rights (DS-Replication-Get-Changes) -- a hard-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"DCSync attack via replication rights (DS-Replication-Get-Changes)\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

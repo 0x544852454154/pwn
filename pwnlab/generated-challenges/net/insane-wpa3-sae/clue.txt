@@ -1,0 +1,6 @@
+# Encoded clue for: WPA3 SAE Dragonfly handshake offline timing attack artifact
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4476d2b55c27838b5f718e8b5c7c80bc4a738fb5514898b85f798eb35865858b5c76928b0a7691a3427996a4

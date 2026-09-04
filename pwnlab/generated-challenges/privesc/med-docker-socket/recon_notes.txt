@@ -1,0 +1,2 @@
+linpeas output indicates: Docker socket group membership root container escape
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

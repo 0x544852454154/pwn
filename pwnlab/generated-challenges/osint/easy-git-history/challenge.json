@@ -1,0 +1,27 @@
+{
+  "name": "Public code repository commit history and leaked secret scanning",
+  "category": "OSINT",
+  "difficulty": "EASY",
+  "topic": "Public code repository commit history and leaked secret scanning",
+  "points": 100,
+  "estimated_time": 10,
+  "flag": "pwn{public_code_repository_commit_hi_b6b61d}",
+  "storage_path": "osint/easy-git-history",
+  "primary_artifact": "recon_image.png",
+  "description": "Public code repository commit history and leaked secret scanning -- a easy-tier osint challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Public code repository commit history and leaked secret scanning\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Windows kernel pool corruption via vulnerable third-party driver",
+  "category": "PRIVILEGE ESCALATION",
+  "difficulty": "INSANE",
+  "topic": "Windows kernel pool corruption via vulnerable third-party driver",
+  "points": 750,
+  "estimated_time": 150,
+  "flag": "pwn{windows_kernel_pool_corruption_v_f67908}",
+  "storage_path": "privesc/insane-win-pool-corrupt",
+  "primary_artifact": "config_dump.bin",
+  "description": "Windows kernel pool corruption via vulnerable third-party driver -- a insane-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Windows kernel pool corruption via vulnerable third-party driver\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

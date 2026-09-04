@@ -1,0 +1,2 @@
+Vulnerability class: HTTP/2 request smuggling desync attack bypassing WAF authentication filter
+Enumerate the endpoint, trigger the flaw, recover the encoded token, and decode it.

@@ -1,0 +1,6 @@
+# Encoded clue for: Android APK DEX reverse engineering and native JNI library analysis
+# Encoding: xor-base64
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+P+JFRC77T00g/E9gLuVAYCvwU2A98F1aPeZOYCr7TFYh8E5NEKIaBi2iH0I=

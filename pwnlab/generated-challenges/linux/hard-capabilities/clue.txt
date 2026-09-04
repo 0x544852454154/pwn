@@ -1,0 +1,6 @@
+# Encoded clue for: Linux capabilities cap_setuid exploitation
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+4f4264314879514a64524577503367464f4146354453514a62773074453051484b52424546793055626730735033346346314d6f55486f4266526b3d

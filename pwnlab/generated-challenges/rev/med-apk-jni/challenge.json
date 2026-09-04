@@ -1,0 +1,32 @@
+{
+  "name": "Android APK DEX reverse engineering and native JNI library analysis",
+  "category": "REVERSE ENGINEERING",
+  "difficulty": "MEDIUM",
+  "topic": "Android APK DEX reverse engineering and native JNI library analysis",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{android_apk_dex_reverse_engineer_719b74}",
+  "storage_path": "rev/med-apk-jni",
+  "primary_artifact": "target.elf",
+  "description": "Android APK DEX reverse engineering and native JNI library analysis -- a medium-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Android APK DEX reverse engineering and native JNI library analysis\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

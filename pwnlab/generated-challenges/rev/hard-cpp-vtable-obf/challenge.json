@@ -1,0 +1,32 @@
+{
+  "name": "C++ binary with virtual method table obfuscation and template metaprogramming",
+  "category": "REVERSE ENGINEERING",
+  "difficulty": "HARD",
+  "topic": "C++ binary with virtual method table obfuscation and template metaprogramming",
+  "points": 400,
+  "estimated_time": 75,
+  "flag": "pwn{c_binary_with_virtual_method_tab_989298}",
+  "storage_path": "rev/hard-cpp-vtable-obf",
+  "primary_artifact": "target.elf",
+  "description": "C++ binary with virtual method table obfuscation and template metaprogramming -- a hard-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"C++ binary with virtual method table obfuscation and template metaprogramming\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is a double layer: hex -> base64 -> XOR. Unwind both layers and recover the 4-byte XOR key.",
+      "penalty": 15
+    }
+  ]
+}

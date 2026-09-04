@@ -1,0 +1,6 @@
+# Encoded clue for: Autonomous System Number (ASN) BGP peering and DNS sinkhole infrastructure mapping
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+dd3180cb9064d4f0d030d3f0ce24d0f0d232d3c2d539eec2c523c2d6d308c2dacf3adec1cf23c4cedb39c6df

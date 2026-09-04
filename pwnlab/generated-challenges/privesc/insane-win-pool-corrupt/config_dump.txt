@@ -1,0 +1,5 @@
+# recovered from /etc -- Windows kernel pool corruption via vulnerable third-party driver
+# (this dump does not contain the flag, but it does point to the next step)
+host=ops-jumpbox
+service=backup-runner
+hint=insane

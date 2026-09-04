@@ -1,0 +1,27 @@
+{
+  "name": "Base64 encoded string in bash history",
+  "category": "LINUX",
+  "difficulty": "EASY",
+  "topic": "Base64 encoded string in bash history",
+  "points": 100,
+  "estimated_time": 10,
+  "flag": "pwn{base64_encoded_string_in_bash_hi_f7ef0f}",
+  "storage_path": "linux/easy-bash-history",
+  "primary_artifact": "artifact.bin",
+  "description": "Base64 encoded string in bash history -- a easy-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Base64 encoded string in bash history\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

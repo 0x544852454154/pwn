@@ -1,0 +1,2 @@
+# Cipher context -- Fault injection simulation on AES round key scheduling
+Recover the plaintext flag. See README for the encoding.

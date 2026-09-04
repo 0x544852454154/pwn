@@ -1,0 +1,2 @@
+linpeas output indicates: Dirty Pipe (CVE-2022-0847) page cache overwrite exploit analysis
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

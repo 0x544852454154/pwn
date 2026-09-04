@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "user": "victim",
+  "export_token": "GM9QChvdTAcNymECAdxbLhrdTwQNy0ouDtdMFg3KRy4by0wXN94GSA3eDAw=",
+  "issued_at": "2026-03-14T09:00:11Z"
+}

@@ -1,0 +1,6 @@
+# Encoded clue for: Certificate Transparency log analysis identifying staging infrastructure
+# Encoding: hex-of-base64-of-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+7843564a54396333565544644e45355831535a4361384167526c7248496b5a47305478455465732b534650724d306c5636325a4344494e7152556b3d

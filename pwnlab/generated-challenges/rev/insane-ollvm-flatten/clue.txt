@@ -1,0 +1,6 @@
+# Encoded clue for: OLLVM control flow flattening with opaque predicates and instruction substitution
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+d80922c39c0076aecc4e4f96cb507e94d14d719dc366679ec95f4f9dca4b649fca5a4f9cd3557c9ede576781

@@ -1,0 +1,32 @@
+{
+  "name": "Wildcard tar privilege escalation exploit",
+  "category": "LINUX",
+  "difficulty": "MEDIUM",
+  "topic": "Wildcard tar privilege escalation exploit",
+  "points": 200,
+  "estimated_time": 35,
+  "flag": "pwn{wildcard_tar_privilege_escalatio_79f74b}",
+  "storage_path": "linux/med-tar-wildcard",
+  "primary_artifact": "artifact.bin",
+  "description": "Wildcard tar privilege escalation exploit -- a medium-tier linux challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Wildcard tar privilege escalation exploit\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

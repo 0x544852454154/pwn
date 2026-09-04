@@ -1,0 +1,2 @@
+# Obfuscated WebAssembly (Wasm) cryptographic key verification module
+Use objdump or strings to recover the encoded clue from the binary.

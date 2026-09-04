@@ -1,0 +1,2 @@
+linpeas output indicates: Sudo LD_PRELOAD / env_keep configuration vulnerability
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

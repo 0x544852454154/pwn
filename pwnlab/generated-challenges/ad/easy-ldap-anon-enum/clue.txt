@@ -1,0 +1,6 @@
+# Encoded clue for: Anonymous LDAP binding enumeration and user account extraction
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+7b142f736a0d2e66720e2e7d783c2d6c6a131e6a620d256165041e6d65162c6d79023561545b256d335a2075

@@ -1,0 +1,6 @@
+# Encoded clue for: PHP Phar deserialization exploit chain with custom POP gadgets
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+204285056a10846f291bd95c2d0ad36f331ddf443c08df5c3c1bc4552e17d26f2f13de400202de40261cc140

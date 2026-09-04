@@ -1,0 +1,6 @@
+# Encoded clue for: Classic 32-bit stack buffer overflow redirecting to win function
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+60651c17737e131f637b113323202d0e79662d1f647311074f70070a767700337f64171e4f2b430e71234311

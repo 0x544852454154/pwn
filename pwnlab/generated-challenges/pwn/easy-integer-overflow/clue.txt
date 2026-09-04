@@ -1,0 +1,6 @@
+# Encoded clue for: Integer overflow leading to out-of-bounds array access
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+1583cdcd0c9ad7d30291d1e90a82c6c40398ccc13a98c6d7019dcdd13a80cce90a81d7e93a96c6d3049295cb

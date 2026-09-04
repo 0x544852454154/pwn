@@ -1,0 +1,6 @@
+# Encoded clue for: Fault injection simulation on AES round key scheduling
+# Encoding: reverse-hex-xor
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+2c66b55f6531b2323463de033e5def023876e001246fe81e0e6cee042561e4073f6bde193d77e00b2a6cf61d

@@ -1,0 +1,6 @@
+# Encoded clue for: Multi-stage Caesar shift and Vigenere cipher decoding
+# Encoding: xor-hex
+# (this file is intentionally plain text so you can recover the clue
+# without needing the right binary parser)
+
+b5911b7ea8931971acb90671a481105aa6871076a4942a76ad8f13719a871b619a901c629a874532a7d41378

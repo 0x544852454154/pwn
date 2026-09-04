@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><title>Profile Export -- JWT algorithm confusion (HS256 vs RS256) public key signature spoofing</title></head>
+<body>
+  <h1>Profile Export</h1>
+  <pre id="export-data"></pre>
+  <script>
+    // data fetched from /api/v1/profile/export?id=1337
+    fetch('/api/v1/profile/export?id=1337').then(r => r.json()).then(d => {
+      document.getElementById('export-data').innerText = JSON.stringify(d, null, 2);
+    });
+  </script>
+</body></html>

@@ -1,0 +1,2 @@
+linpeas output indicates: Insecure cron job script executing writable files in /tmp
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

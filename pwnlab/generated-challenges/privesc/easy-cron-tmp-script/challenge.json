@@ -1,0 +1,27 @@
+{
+  "name": "Insecure cron job script executing writable files in /tmp",
+  "category": "PRIVILEGE ESCALATION",
+  "difficulty": "EASY",
+  "topic": "Insecure cron job script executing writable files in /tmp",
+  "points": 100,
+  "estimated_time": 10,
+  "flag": "pwn{insecure_cron_job_script_executi_7a9d84}",
+  "storage_path": "privesc/easy-cron-tmp-script",
+  "primary_artifact": "config_dump.bin",
+  "description": "Insecure cron job script executing writable files in /tmp -- a easy-tier privilege escalation challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Insecure cron job script executing writable files in /tmp\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is a hex-encoded XOR cipher (4-byte repeating key). Brute-force or crib-drag with the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}

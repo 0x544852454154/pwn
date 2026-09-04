@@ -1,0 +1,2 @@
+linpeas output indicates: Linux eBPF verifier flaw privilege escalation
+Exploit the misconfiguration, recover the encoded artifact, and decode it.

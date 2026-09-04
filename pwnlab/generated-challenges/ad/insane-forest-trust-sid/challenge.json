@@ -1,0 +1,32 @@
+{
+  "name": "Cross-forest SID filtering bypass and forest trust hop privilege escalation",
+  "category": "ACTIVE DIRECTORY",
+  "difficulty": "INSANE",
+  "topic": "Cross-forest SID filtering bypass and forest trust hop privilege escalation",
+  "points": 750,
+  "estimated_time": 150,
+  "flag": "pwn{cross_forest_sid_filtering_bypas_12d302}",
+  "storage_path": "ad/insane-forest-trust-sid",
+  "primary_artifact": "ticket.json",
+  "description": "Cross-forest SID filtering bypass and forest trust hop privilege escalation -- a insane-tier active directory challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"Cross-forest SID filtering bypass and forest trust hop privilege escalation\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is layered: hex -> byte-reverse -> XOR with a 4-byte key. Recover the key with a known-plaintext crib.",
+      "penalty": 15
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "x86-64 binary with custom byte substitution and XOR validation table",
+  "category": "REVERSE ENGINEERING",
+  "difficulty": "MEDIUM",
+  "topic": "x86-64 binary with custom byte substitution and XOR validation table",
+  "points": 200,
+  "estimated_time": 30,
+  "flag": "pwn{x86_64_binary_with_custom_byte_s_9d20f0}",
+  "storage_path": "rev/med-xor-table",
+  "primary_artifact": "target.elf",
+  "description": "x86-64 binary with custom byte substitution and XOR validation table -- a medium-tier reverse engineering challenge. Review the bundled artifacts, locate the encoded clue, decode it, and recover the flag. Flag format: pwn{...}",
+  "objectives": [
+    "Inspect the challenge bundle for \"x86-64 binary with custom byte substitution and XOR validation table\"",
+    "Locate the encoded artifact (look in every shipped file)",
+    "Unwrap the encoding applied to the artifact",
+    "Recover the plaintext flag and submit it in pwn{...} format"
+  ],
+  "hints": [
+    {
+      "text": "Start by inspecting every file in the bundle (hex dump, headers, magic bytes).",
+      "penalty": 5
+    },
+    {
+      "text": "The artifact is wrapped in a non-text container -- use the right parser.",
+      "penalty": 10
+    },
+    {
+      "text": "The artifact is base64. After decoding you have a 4-byte XOR cipher -- recover the key by crib-dragging against the known flag prefix.",
+      "penalty": 15
+    }
+  ]
+}
