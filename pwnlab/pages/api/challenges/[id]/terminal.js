@@ -1,10 +1,16 @@
 import { supabaseAdmin } from '../../../../lib/db';
 import { requireAuth, sanitizeError } from '../../../../lib/api-middleware';
 import { execFile } from 'child_process';
+import fs from 'fs';
+import os from 'os';
 import path, { resolve } from 'path';
-import { existsSync } from 'fs';
 
 const CHALLENGE_FILES_ROOT = '/home/misery/pwnlab/challenges';
+const STORAGE_BUCKET = 'challenge-files';
+
+// On-demand materialization directory for the web terminal
+const WORK_ROOT = resolve(os.tmpdir(), 'pwnlab-terminal');
+fs.mkdirSync(WORK_ROOT, { recursive: true });
 
 const ALLOWED_COMMANDS = new Set([
   'ls', 'cat', 'file', 'strings', 'hexdump', 'xxd',
@@ -18,6 +24,64 @@ const ALLOWED_COMMANDS = new Set([
 const MAX_COMMAND_LENGTH = 500;
 const EXEC_TIMEOUT = 10000;
 const MAX_OUTPUT_SIZE = 1024 * 512;
+
+/**
+ * Materialize a challenge's file bundle into a local working directory.
+ * Each file is read from the Supabase Storage bucket and written under:
+ *   WORK_ROOT/<userId>/<challengeId>/
+ * The directory is reused and refreshed on first request for that user+challenge.
+ * This lets the web terminal work even when the legacy
+ * /home/misery/pwnlab/challenges tree is absent (files live in Storage).
+ */
+async function materializeChallengeDir(userId, challengeId, storagePath) {
+  const userDir = resolve(WORK_ROOT, String(userId), String(challengeId));
+  const marker = resolve(userDir, '.pwnlab-ready');
+
+  // Refresh if not already materialized (or stale)
+  if (fs.existsSync(marker)) return userDir;
+
+  fs.mkdirSync(userDir, { recursive: true });
+
+  // Try legacy on-disk tree first, then fall back to Storage bucket.
+  const legacyRoot = resolve(CHALLENGE_FILES_ROOT);
+  const legacyDir = resolve(legacyRoot, storagePath || '');
+  if (legacyDir.startsWith(legacyRoot) && fs.existsSync(legacyDir)) {
+    for (const entry of fs.readdirSync(legacyDir, { withFileTypes: true })) {
+      if (entry.isFile()) {
+        const src = path.join(legacyDir, entry.name);
+        fs.copyFileSync(src, resolve(userDir, entry.name));
+      }
+    }
+  } else {
+    // Fetch file list + content from Supabase Storage
+    const { data: fileRows, error: listError } = await supabaseAdmin
+      .from('challenge_files')
+      .select('filename, storage_path')
+      .eq('challenge_id', challengeId);
+
+    if (listError) {
+      throw new Error(`Failed to list challenge files: ${listError.message}`);
+    }
+
+    for (const { filename, storage_path: sp } of fileRows || []) {
+      try {
+        const { data: blob, error: dlError } = await supabaseAdmin.storage
+          .from(STORAGE_BUCKET)
+          .download(sp);
+        if (dlError) throw dlError;
+        const buf = Buffer.from(await blob.arrayBuffer());
+        // Sanitize filename (no path traversal)
+        const safeName = path.basename(filename);
+        fs.writeFileSync(resolve(userDir, safeName), buf);
+      } catch (dlErr) {
+        console.warn(`[terminal] failed to materialize ${sp}: ${dlErr.message}`);
+      }
+    }
+  }
+
+  fs.writeFileSync(marker, 'ready');
+  return userDir;
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -78,25 +142,26 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'Challenge not found' });
     }
 
-    const folderPath = challenge.storage_path || '';
-    const rootResolved = resolve(CHALLENGE_FILES_ROOT);
-    const targetDir = resolve(rootResolved, folderPath);
+    // Materialize (or reuse) the challenge environment on disk
+    const targetDir = await materializeChallengeDir(user.id, challengeId, challenge.storage_path);
 
-    if (!targetDir.startsWith(rootResolved) || !existsSync(targetDir)) {
-      return res.status(404).json({ error: 'Challenge environment directory not found' });
+    // Guard: never escape the working directory
+    const targetResolved = resolve(targetDir);
+    if (!targetResolved.startsWith(resolve(WORK_ROOT))) {
+      return res.status(500).json({ error: 'Invalid working directory' });
     }
 
     const args = parts.slice(1);
 
     execFile(baseCommand, args, {
-      cwd: targetDir,
+      cwd: targetResolved,
       timeout: EXEC_TIMEOUT,
       maxBuffer: MAX_OUTPUT_SIZE,
       env: {
         PATH: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
         TERM: 'xterm-256color',
         USER: 'operator',
-        HOME: targetDir
+        HOME: targetResolved
       }
     }, (err, stdout, stderr) => {
       let output = '';
