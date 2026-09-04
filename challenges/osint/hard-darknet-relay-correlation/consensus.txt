@@ -1,6 +1,0 @@
-network-status-version 3
-vote-status consensus
-r RelayTarget 8A91029384719283749102938471029384710293 2026-08-30 12:00:00 192.0.2.1 9001 0
-s Fast Guard Running Stable Valid
-w Bandwidth=120000
-contact operator-flag=pwn{t0r_c0ns3nsus_d34n0nym1z3_9931}

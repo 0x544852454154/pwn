@@ -1,1 +1,0 @@
-TELNET_STREAM_HEADER\x00\x00USER root\r\nPASS secret123\r\nFLAG=pwn{pc4p_cl34rt3xt_cr3ds_c4rv3d_1829}\r\n

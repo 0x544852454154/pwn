@@ -1,2 +1,0 @@
-# /etc/cron.d/backup_job
-* * * * * root echo "cHdue2NyMG5fYjRzMzY0X2QzYzBkM2RfODE5Mn0=" | base64 -d > /dev/null

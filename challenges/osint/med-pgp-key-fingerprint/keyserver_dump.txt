@@ -1,4 +1,0 @@
-pub   rsa4096 2026-08-30 [SC]
-      8A91 2049 1827 3948 1029  3847 1928 3749 1029 3847
-uid           [ultimate] Tactical Operator <operator@pwnlab.corp>
-sub   rsa4096 2026-08-30 [E]

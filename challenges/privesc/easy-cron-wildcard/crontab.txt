@@ -1,1 +1,0 @@
-*/1 * * * * root cd /var/log/app && tar -czf /backup/archive.tar.gz *

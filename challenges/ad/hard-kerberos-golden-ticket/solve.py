@@ -1,1 +1,0 @@
-import golden_ticket

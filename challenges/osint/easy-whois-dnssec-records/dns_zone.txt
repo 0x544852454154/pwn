@@ -1,4 +1,0 @@
-; Zone file for tactical.operator.pwn
-@       IN      SOA     ns1.tactical.operator.pwn. hostmaster.tactical.operator.pwn. ( 2026083001 7200 3600 1209600 3600 )
-@       IN      NS      ns1.tactical.operator.pwn.
-@       IN      TXT     "verification=70776e7b77683031735f646e737a306e335f7233633072645f7472346333645f343431307d"

@@ -1,1 +1,0 @@
-import crack_tgs

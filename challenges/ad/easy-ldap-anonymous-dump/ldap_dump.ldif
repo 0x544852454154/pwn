@@ -1,4 +1,0 @@
-dn: CN=Operator John,OU=Operators,DC=pwnlab,DC=local
-objectClass: user
-sAMAccountName: joperator
-description: 70776e7b6c6434705f346e306e796d3075735f62316e645f64337363723170745f393931387d

@@ -1,6 +1,0 @@
-{
-  "spi": "0x0a1b2c3d",
-  "encryption": "AES-128-CBC",
-  "key_hex": "0123456789abcdef0123456789abcdef",
-  "iv_hex": "fedcba9876543210fedcba9876543210"
-}

@@ -1,127 +1,199 @@
+#!/usr/bin/env node
+// scripts/seed-runner.js
+// 1. Wipes Supabase challenge data (challenges, objectives, hints, files, submissions, completions).
+// 2. Regenerates 120 fresh challenges via scripts/generate-challenges.js (points=0).
+// 3. Inserts them into Supabase.
+// 4. Uploads all artifact files (no solver, no flag) to the `challenge-files` bucket.
+//
+// Run: node scripts/seed-runner.js
+
+require('dotenv').config({ path: '.env.local' });
 const fs = require('fs');
 const path = require('path');
-const { supabaseAdmin } = require('../lib/supabase-admin');
-const { part1Challenges } = require('./challenges-part1');
-const { part2Challenges } = require('./challenges-part2');
-const { part3Challenges } = require('./challenges-part3');
-const { part4Challenges } = require('./challenges-part4');
-require('dotenv').config({ path: '.env.local' });
+const { createClient } = require('@supabase/supabase-js');
+const { buildChallenges } = require('./generate-challenges');
 
-const ROOT = '/home/misery/pwnlab/challenges';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const BUCKET = 'challenge-files';
 
-const allChallenges = [
-  ...part1Challenges,
-  ...part2Challenges,
-  ...part3Challenges,
-  ...part4Challenges,
-];
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env.local');
+  process.exit(1);
+}
 
-async function run() {
-  console.log(`\n=== Seeding ${allChallenges.length} Downloadable Challenges ===\n`);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { autoRefreshToken: false, persistSession: false },
+});
 
-  // 1. Create file directory tree on disk
-  console.log('Writing challenge files to', ROOT);
-  for (const chall of allChallenges) {
-    const dir = path.join(ROOT, chall.storage_path);
-    fs.mkdirSync(dir, { recursive: true });
-    for (const [filename, content] of Object.entries(chall.files)) {
-      const filePath = path.join(dir, filename);
-      fs.mkdirSync(path.dirname(filePath), { recursive: true });
-      fs.writeFileSync(filePath, content);
+const GEN_ROOT = path.join(__dirname, '..', 'generated-challenges');
+
+async function wipe() {
+  console.log('\n=== Wiping existing challenge data ===');
+  const tables = [
+    'challenge_hints',
+    'challenge_objectives',
+    'challenge_files',
+    'challenge_submissions',
+    'challenge_completions',
+    'challenges',
+  ];
+  for (const t of tables) {
+    const { error } = await supabase.from(t).delete().neq('id', 0);
+    if (error) {
+      console.error(`  ! failed to wipe ${t}: ${error.message}`);
+    } else {
+      console.log(`  - wiped ${t}`);
     }
-    console.log(`  ✓ Files created for [${chall.difficulty}] ${chall.name} (${chall.storage_path})`);
   }
+}
 
-  // 2. Fetch category map from database
-  const { data: categories, error: catError } = await supabaseAdmin
+async function fetchCategoryMap() {
+  const { data, error } = await supabase
     .from('challenge_categories')
     .select('id, name');
+  if (error) throw error;
+  const map = {};
+  for (const c of data || []) map[c.name.toUpperCase()] = c.id;
+  return map;
+}
 
-  if (catError || !categories) {
-    console.error('Failed to fetch categories:', catError);
-    process.exit(1);
+async function ensureBucket() {
+  const { data: buckets, error } = await supabase.storage.listBuckets();
+  if (error) throw error;
+  if (!(buckets || []).find((b) => b.name === BUCKET)) {
+    const { error: createErr } = await supabase.storage.createBucket(BUCKET, { public: true });
+    if (createErr) throw createErr;
+    console.log(`  + created bucket ${BUCKET}`);
+  } else {
+    console.log(`  = bucket ${BUCKET} exists`);
   }
+}
 
-  const catMap = {};
-  for (const c of categories) {
-    catMap[c.name.toUpperCase()] = c.id;
-  }
-
-  // 3. Clear existing challenges and re-seed
-  console.log('\nResetting existing challenge records in database...');
-  await supabaseAdmin.from('challenge_hints').delete().neq('id', 0);
-  await supabaseAdmin.from('challenge_objectives').delete().neq('id', 0);
-  await supabaseAdmin.from('challenge_files').delete().neq('id', 0);
-  await supabaseAdmin.from('challenge_submissions').delete().neq('id', 0);
-  await supabaseAdmin.from('challenge_completions').delete().neq('id', 0);
-  await supabaseAdmin.from('challenges').delete().neq('id', 0);
-
-  // 4. Insert each challenge
-  console.log(`\nInserting ${allChallenges.length} challenges into Supabase...`);
-  for (const [idx, chall] of allChallenges.entries()) {
-    const catId = catMap[chall.category.toUpperCase()] || catMap['WEB'];
-
-    const { data: insertedChallenge, error: challError } = await supabaseAdmin
-      .from('challenges')
-      .insert({
-        name: chall.name,
-        description: chall.description,
-        category_id: catId,
-        difficulty: chall.difficulty,
-        points: chall.points,
-        estimated_time: chall.estimated_time,
-        flag: chall.flag,
-        storage_path: chall.storage_path,
-        visibility: 'PUBLIC'
-      })
-      .select('id, name, difficulty, points')
-      .single();
-
-    if (challError) {
-      console.error(`❌ Failed to insert challenge ${chall.name}:`, challError.message);
+async function insertChallenges(challenges, catMap) {
+  console.log(`\n=== Inserting ${challenges.length} challenges ===`);
+  const failures = [];
+  for (const c of challenges) {
+    const catId = catMap[c.category.toUpperCase()];
+    if (!catId) {
+      console.error(`  ! no category row for ${c.category}`);
+      failures.push(c);
       continue;
     }
 
-    const challId = insertedChallenge.id;
+    const { data: ins, error } = await supabase
+      .from('challenges')
+      .insert({
+        name: c.name,
+        description: c.description,
+        category_id: catId,
+        difficulty: c.difficulty,
+        points: c.points, // 0
+        estimated_time: c.estimated_time,
+        flag: c.flag,     // SERVER-SIDE ONLY -- never written to a user-visible file
+        storage_path: c.storage_path,
+        visibility: 'PUBLIC',
+      })
+      .select('id')
+      .single();
+    if (error) {
+      console.error(`  ! insert ${c.storage_path}: ${error.message}`);
+      failures.push(c);
+      continue;
+    }
+    const id = ins.id;
 
-    // Insert objectives
-    if (chall.objectives && chall.objectives.length > 0) {
-      const objectivesData = chall.objectives.map((obj, i) => ({
-        challenge_id: challId,
-        objective: obj,
-        order_num: i + 1
-      }));
-      await supabaseAdmin.from('challenge_objectives').insert(objectivesData);
+    if (c.objectives && c.objectives.length) {
+      await supabase.from('challenge_objectives').insert(
+        c.objectives.map((o, i) => ({ challenge_id: id, objective: o, order_num: i + 1 }))
+      );
+    }
+    if (c.hints && c.hints.length) {
+      await supabase.from('challenge_hints').insert(
+        c.hints.map((h, i) => ({
+          challenge_id: id,
+          hint_text: h.text,
+          point_penalty: h.penalty || 0,
+          order_num: i + 1,
+        }))
+      );
     }
 
-    // Insert hints
-    if (chall.hints && chall.hints.length > 0) {
-      const hintsData = chall.hints.map((hint, i) => ({
-        challenge_id: challId,
-        hint_text: hint.text,
-        point_penalty: hint.penalty || 0,
-        order_num: i + 1
-      }));
-      await supabaseAdmin.from('challenge_hints').insert(hintsData);
-    }
-
-    // Insert challenge files record
-    for (const filename of Object.keys(chall.files)) {
-      await supabaseAdmin.from('challenge_files').insert({
-        challenge_id: challId,
-        filename: filename,
-        file_path: `${chall.storage_path}/${filename}`,
-        file_size: Buffer.byteLength(chall.files[filename])
+    // Record file metadata (no flag, no solver in any of these files)
+    for (const [fname, content] of Object.entries(c.files)) {
+      const buf = Buffer.isBuffer(content) ? content : Buffer.from(content);
+      await supabase.from('challenge_files').insert({
+        challenge_id: id,
+        filename: fname,
+        storage_path: `${c.storage_path}/${fname}`,
+        size_bytes: buf.length,
+        mime_type: mimeFor(fname),
       });
     }
-
-    console.log(`  [#${challId}] ${chall.difficulty} | ${chall.category} | ${chall.name} (${chall.points} pts)`);
+    console.log(`  + [#${id}] ${c.difficulty.padEnd(6)} ${c.category.padEnd(18)} ${c.name}`);
   }
-
-  console.log(`\n✅ All ${allChallenges.length} challenges seeded successfully!`);
+  return failures;
 }
 
-run().catch(err => {
-  console.error('Fatal error during seed:', err);
+function mimeFor(name) {
+  const ext = path.extname(name).toLowerCase();
+  switch (ext) {
+    case '.png': return 'image/png';
+    case '.pcap': return 'application/vnd.tcpdump.pcap';
+    case '.pdf': return 'application/pdf';
+    case '.elf': return 'application/x-executable';
+    case '.bin': return 'application/octet-stream';
+    case '.sqlite': return 'application/x-sqlite3';
+    case '.json': return 'application/json';
+    case '.md': return 'text/markdown';
+    case '.txt': case '.log': return 'text/plain';
+    case '.c': return 'text/x-c';
+    default: return 'application/octet-stream';
+  }
+}
+
+async function uploadArtifacts(challenges) {
+  console.log('\n=== Uploading artifact files to Supabase Storage ===');
+  await ensureBucket();
+  let ok = 0, fail = 0;
+  for (const c of challenges) {
+    for (const [fname, content] of Object.entries(c.files)) {
+      const buf = Buffer.isBuffer(content) ? content : Buffer.from(content);
+      const key = `${c.storage_path}/${fname}`;
+      const { error } = await supabase.storage
+        .from(BUCKET)
+        .upload(key, buf, { upsert: true, contentType: mimeFor(fname) });
+      if (error) {
+        console.error(`  ! upload ${key}: ${error.message}`);
+        fail++;
+      } else {
+        ok++;
+      }
+    }
+  }
+  console.log(`  uploaded ${ok} files, failed ${fail}`);
+}
+
+async function main() {
+  console.log('Generating fresh challenge set...');
+  const challenges = buildChallenges();
+  console.log(`Generated ${challenges.length} challenges.`);
+
+  await wipe();
+  const catMap = await fetchCategoryMap();
+  const failures = await insertChallenges(challenges, catMap);
+  await uploadArtifacts(challenges);
+
+  console.log(`\nDone. Inserted ${challenges.length - failures.length}/${challenges.length}.`);
+  console.log(`All points reset to 0. Run an ops-side scorer to assign points if desired.`);
+  if (failures.length) {
+    console.log(`Failures:`);
+    failures.forEach((f) => console.log('  ', f.storage_path));
+    process.exit(2);
+  }
+}
+
+main().catch((e) => {
+  console.error('Fatal:', e);
   process.exit(1);
 });
